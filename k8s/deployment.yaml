@@ -1,0 +1,128 @@
+# Phase 112 — Kubernetes Deployment
+# Rolling update, liveness/readiness/startup probes, resource limits, non-root security context
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vantrex-api
+  namespace: vantrex
+  labels:
+    app.kubernetes.io/name: vantrex-api
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/component: api
+    app.kubernetes.io/part-of: vantrex-platform
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: vantrex-api
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1         # allow 1 extra pod during rollout
+      maxUnavailable: 0   # zero-downtime: never take a pod down before new one is ready
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: vantrex-api
+        app.kubernetes.io/version: "1.0.0"
+      annotations:
+        # Force pod restart when ConfigMap changes (declarative practice)
+        checksum/config: "{{ configmap-checksum }}"
+    spec:
+      # Phase 111 — Security: non-root user
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        runAsGroup: 1001
+        fsGroup: 1001
+
+      # Phase 117 — Graceful shutdown: allow 30s drain
+      terminationGracePeriodSeconds: 30
+
+      containers:
+        - name: api
+          image: ghcr.io/agnextechnology/agnex-api:v1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+              name: http
+              protocol: TCP
+
+          # Phase 112 — Resource Requests & Limits
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+
+          # Phase 112 — Kubernetes Probes
+          startupProbe:
+            httpGet:
+              path: /health/startup
+              port: 5000
+            failureThreshold: 30
+            periodSeconds: 2
+
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            timeoutSeconds: 5
+            failureThreshold: 3
+
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 2
+
+          # Phase 111 — Config injected via env (Twelve-Factor)
+          envFrom:
+            - configMapRef:
+                name: vantrex-api-config
+            - secretRef:
+                name: vantrex-api-secrets
+
+          # Phase 117 — Allow graceful drain before SIGTERM
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", "sleep 5"]
+
+          # Phase 111 — Security: read-only root filesystem
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+
+          # Writable volume mounts required by read-only root filesystem
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+            - name: logs
+              mountPath: /app/server/logs
+
+      volumes:
+        - name: tmp
+          emptyDir: {}
+        - name: logs
+          emptyDir: {}
+
+      # Prefer scheduling pods on different nodes (resilience)
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: vantrex-api

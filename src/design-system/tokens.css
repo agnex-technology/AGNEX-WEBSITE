@@ -1,0 +1,143 @@
+/* ==========================================================================
+   AGNEX TECHNOLOGY — ENTERPRISE DESIGN SYSTEM TOKENS
+   Brand: AGNEX ("Engineering What's Next.")
+   Foundations: Engineering, Foundation, Precision, Progress
+   Palette: Black (#0B0D10), White (#F7F8FA), Graphite (#20242B), Steel (#7C8490)
+   Primary Accent: Official AGNEX Blue (#057AEF)
+   ========================================================================== */
+
+:root {
+  /* --- 01. COLOR SYSTEM --- */
+  /* Primitive Brand Colors */
+  --agnex-black: #0B0D10;
+  --agnex-base: #0B0D10;
+  --agnex-base-raised: #12151B;
+  --agnex-base-card: #151820;
+  --agnex-white: #F7F8FA;
+  --agnex-graphite: #20242B;
+  --agnex-graphite-light: #2E343E;
+  --agnex-steel: #7C8490;
+  --agnex-steel-dark: #4A515D;
+  --agnex-steel-light: #A4ACB9;
+  
+  /* Primary Brand Accent (Official AGNEX Logo Arrow Blue) */
+  --agnex-blue: #057AEF;
+  --agnex-accent: #057AEF;
+  --agnex-accent-hover: #0468CE;
+  --agnex-accent-active: #0357AC;
+  --agnex-accent-subtle: rgba(5, 122, 239, 0.08);
+  --agnex-accent-border: rgba(5, 122, 239, 0.32);
+
+  /* Functional Status */
+  --agnex-success: #10B981;
+  --agnex-warning: #F59E0B;
+  --agnex-error: #EF4444;
+  --agnex-info: #057AEF;
+
+  /* Semantic Mappings */
+  --bg-main: var(--agnex-black);
+  --bg-surface: var(--agnex-base-raised);
+  --bg-card: var(--agnex-base-card);
+  --bg-card-hover: #191D26;
+  
+  --text-main: var(--agnex-white);
+  --text-muted: var(--agnex-steel);
+  --text-dim: var(--agnex-steel-dark);
+  --text-bright: #FFFFFF;
+
+  --border-color: var(--agnex-graphite);
+  --border-hover: var(--agnex-graphite-light);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-accent: var(--agnex-accent-border);
+
+  /* --- 02. TYPOGRAPHY SYSTEM --- */
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  /* Font Weights */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Fluid Font Scale */
+  --text-2xs: 0.6875rem;                       /* 11px - Micro badges / indices */
+  --text-xs: 0.75rem;                          /* 12px - Technical labels */
+  --text-sm: 0.875rem;                         /* 14px - UI labels / secondary copy */
+  --text-base: 1rem;                           /* 16px - Body default */
+  --text-md: 1.125rem;                         /* 18px - Lead paragraphs */
+  --text-lg: 1.25rem;                          /* 20px - Subheads */
+  --text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);   /* 24px */
+  --text-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem); /* 30px */
+  --text-3xl: clamp(1.75rem, 1.5rem + 1.25vw, 2.375rem); /* 38px */
+  --text-4xl: clamp(2.25rem, 1.75rem + 2.5vw, 3.25rem);  /* 52px */
+  --text-5xl: clamp(2.75rem, 2rem + 3.75vw, 4.25rem);    /* 68px */
+  --text-hero: clamp(3rem, 2.25rem + 4.5vw, 5.25rem);    /* 84px */
+
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.1;
+  --leading-snug: 1.28;
+  --leading-normal: 1.55;
+  --leading-relaxed: 1.7;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.035em;
+  --tracking-normal: -0.01em;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.12em;
+
+  /* --- 03. SPACING SYSTEM (4px base) --- */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+
+  /* --- 04. CONTAINER & GRID SYSTEM --- */
+  --container-max: 1240px;
+  --container-wide: 1400px;
+  --container-narrow: 880px;
+  --container-padding: clamp(1.25rem, 4vw, 3rem);
+
+  /* --- 05. BORDER RADIUS RULES (Restrained, architectural, non-excessive) --- */
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-pill: 9999px;
+
+  /* --- 06. ELEVATION & SHADOWS --- */
+  --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 12px 32px rgba(0, 0, 0, 0.55);
+
+  /* --- 07. MOTION & TRANSITIONS --- */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all var(--duration-fast) var(--ease-out);
+  --transition-normal: all var(--duration-normal) var(--ease-out);
+  --transition-slow: all var(--duration-slow) var(--ease-out);
+
+  /* --- 08. Z-INDEX SYSTEM --- */
+  --z-base: 1;
+  --z-nav: 100;
+  --z-drawer: 200;
+  --z-modal: 500;
+  --z-skip-link: 1000;
+}

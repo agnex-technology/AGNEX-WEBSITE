@@ -1,0 +1,89 @@
+# Phase 119 — Prometheus Alerting Rules
+# SLI/SLO-based alerts for the Vantrex platform
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: vantrex-slo-alerts
+  namespace: vantrex
+  labels:
+    app.kubernetes.io/name: vantrex-api
+    prometheus: kube-prometheus
+    role: alert-rules
+spec:
+  groups:
+    # ── Availability SLO: 99.9% uptime (max 43.8min/month downtime) ──────────
+    - name: vantrex.availability
+      interval: 30s
+      rules:
+        - alert: VantrexHighErrorRate
+          expr: |
+            (
+              sum(rate(http_requests_total{namespace="vantrex", status=~"5.."}[5m]))
+              /
+              sum(rate(http_requests_total{namespace="vantrex"}[5m]))
+            ) > 0.001
+          for: 2m
+          labels:
+            severity: critical
+            slo: availability
+            team: sre
+          annotations:
+            summary: "Vantrex API error rate exceeds SLO (>0.1%)"
+            description: "Error rate is {{ humanizePercentage $value }} over the last 5 minutes."
+            runbook: "https://wiki.agnex.tech/runbooks/high-error-rate"
+
+        - alert: VantrexErrorBudgetBurn
+          expr: |
+            (
+              sum(rate(http_requests_total{namespace="vantrex", status=~"5.."}[1h]))
+              /
+              sum(rate(http_requests_total{namespace="vantrex"}[1h]))
+            ) > 0.005
+          for: 5m
+          labels:
+            severity: warning
+            slo: availability
+          annotations:
+            summary: "Error budget burning fast (>0.5% error rate)"
+
+    # ── Latency SLO: p95 < 500ms ──────────────────────────────────────────────
+    - name: vantrex.latency
+      interval: 30s
+      rules:
+        - alert: VantrexHighLatency
+          expr: |
+            histogram_quantile(0.95, 
+              sum(rate(http_request_duration_seconds_bucket{namespace="vantrex"}[5m])) by (le)
+            ) > 0.5
+          for: 5m
+          labels:
+            severity: warning
+            slo: latency
+          annotations:
+            summary: "p95 API latency exceeds 500ms SLO"
+            description: "p95 latency is {{ humanizeDuration $value }}"
+            runbook: "https://wiki.agnex.tech/runbooks/high-latency"
+
+    # ── Pod Availability ──────────────────────────────────────────────────────
+    - name: vantrex.capacity
+      rules:
+        - alert: VantrexPodsUnavailable
+          expr: |
+            kube_deployment_status_replicas_unavailable{namespace="vantrex", deployment="vantrex-api"} > 0
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Vantrex API has unavailable pods"
+            description: "{{ $value }} pods unavailable in vantrex-api deployment"
+
+        - alert: VantrexHPAMaxed
+          expr: |
+            kube_horizontalpodautoscaler_status_current_replicas{namespace="vantrex", horizontalpodautoscaler="vantrex-api-hpa"}
+            == 
+            kube_horizontalpodautoscaler_spec_max_replicas{namespace="vantrex", horizontalpodautoscaler="vantrex-api-hpa"}
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "HPA at maximum replicas — capacity ceiling reached"

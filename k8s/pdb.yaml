@@ -1,0 +1,15 @@
+# Phase 112 — Pod Disruption Budget
+# Ensures at least 2 pods remain available during voluntary disruptions
+# (node drains, rolling updates, cluster upgrades)
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: vantrex-api-pdb
+  namespace: vantrex
+  labels:
+    app.kubernetes.io/name: vantrex-api
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: vantrex-api

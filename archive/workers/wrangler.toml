@@ -1,0 +1,14 @@
+name = "web-vantrex-backend"
+main = "src/index.js"
+compatibility_date = "2026-07-12"
+
+# Production environment variables placeholders
+# Configure these via the Cloudflare Dashboard or Wrangler secrets CLI:
+# wrangler secret put SUPABASE_URL
+# wrangler secret put SUPABASE_ANON_KEY
+# wrangler secret put RESEND_API_KEY
+# wrangler secret put GEMINI_API_KEY
+# wrangler secret put ADMIN_EMAIL
+
+[vars]
+ENVIRONMENT = "production"

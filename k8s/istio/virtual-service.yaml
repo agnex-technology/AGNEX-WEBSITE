@@ -1,0 +1,60 @@
+# Phase 114 — Istio VirtualService
+# Controls traffic routing, retries, timeouts, and canary splits
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: vantrex-api
+  namespace: vantrex
+spec:
+  hosts:
+    - agnex.tech
+    - www.agnex.tech
+    - api.agnex.tech
+    - vantrex-api
+    - vantrex-frontend
+  gateways:
+    - vantrex-gateway
+    - mesh
+  http:
+    # Phase 117 — Canary Release: 95% stable / 5% canary
+    - match:
+        - headers:
+            x-canary:
+              exact: "true"
+      route:
+        - destination:
+            host: vantrex-api
+            subset: canary
+          weight: 100
+
+    # API Traffic Routing
+    - match:
+        - uri:
+            prefix: /api
+      route:
+        - destination:
+            host: vantrex-api
+            subset: stable
+          weight: 95
+        - destination:
+            host: vantrex-api
+            subset: canary
+          weight: 5
+      timeout: 30s
+      retries:
+        attempts: 3
+        perTryTimeout: 10s
+        retryOn: "gateway-error,connect-failure,retriable-4xx"
+
+    # Frontend Traffic Routing
+    - route:
+        - destination:
+            host: vantrex-frontend
+            port:
+              number: 80
+      fault:
+        # Phase 119 — SRE: Fault injection for chaos engineering (disabled in prod)
+        # abort:
+        #   httpStatus: 500
+        #   percentage:
+        #     value: 1

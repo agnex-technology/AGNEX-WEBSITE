@@ -1,0 +1,19 @@
+# === .dockerignore — Phase 111 Cloud Native ===
+node_modules
+npm-debug.log*
+dist
+dev-dist
+.workbox-cache
+.git
+.github
+.env
+.env.*
+*.md
+*.log
+tests
+docs
+infra
+k8s
+.vscode
+.eslintrc.cjs
+.prettierrc

@@ -1,0 +1,11 @@
+# Phase 112 — Kubernetes Namespace
+# Logical isolation for all Vantrex platform workloads
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: vantrex
+  labels:
+    app.kubernetes.io/name: vantrex
+    app.kubernetes.io/part-of: vantrex-platform
+    environment: production
+    istio-injection: enabled

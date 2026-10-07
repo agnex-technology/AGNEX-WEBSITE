@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline | AGNEX Technology</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --agnex-base: #0B0D10;
+            --agnex-white: #F7F8FA;
+            --agnex-graphite: #20242B;
+            --agnex-steel: #7C8490;
+            --agnex-accent: #057AEF;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--agnex-base);
+            color: var(--agnex-white);
+            text-align: center;
+            padding: 1.5rem;
+        }
+        .offline-card {
+            max-width: 480px;
+            padding: 3rem 2rem;
+            border-radius: 4px;
+            background: #12151B;
+            border: 1px solid var(--agnex-graphite);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+        }
+        .symbol-container {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 1.5rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            background: rgba(5, 122, 239, 0.12);
+            border: 1px solid rgba(5, 122, 239, 0.3);
+        }
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--agnex-white);
+        }
+        h1 span { color: var(--agnex-accent); }
+        p {
+            color: var(--agnex-steel);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        .retry-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            background: var(--agnex-white);
+            color: var(--agnex-base);
+            border: none;
+            border-radius: 2px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+        .retry-btn:hover {
+            opacity: 0.9;
+        }
+        .brand {
+            margin-top: 2.5rem;
+            font-size: 0.75rem;
+            color: #4A515D;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-card">
+        <img src="/brand/agnex-logo-light.svg" alt="AGNEX Technology" width="180" style="margin: 0 auto 1.5rem auto; display: block;" />
+        <h1>Connection <span>Interrupted</span></h1>
+        <p>You appear to be offline. Local client assets remain cached, but connecting to live systems requires an active internet connection.</p>
+        <button class="retry-btn" onclick="window.location.reload()">
+            <span>Reconnect</span>
+            <span style="color: var(--agnex-accent)">→</span>
+        </button>
+        <div class="brand">AGNEX Technology • Engineering What's Next.</div>
+    </div>
+</body>
+</html>
