@@ -1,0 +1,9 @@
+server/
+k8s/
+helm/
+docker-compose*.yml
+Dockerfile*
+.agents/
+tests/
+coverage/
+*.log
