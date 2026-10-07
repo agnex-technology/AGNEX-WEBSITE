@@ -4,12 +4,12 @@
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
-  name: vantrex-api-pdb
-  namespace: vantrex
+  name: agnex-api-pdb
+  namespace: agnex
   labels:
-    app.kubernetes.io/name: vantrex-api
+    app.kubernetes.io/name: agnex-api
 spec:
   minAvailable: 2
   selector:
     matchLabels:
-      app.kubernetes.io/name: vantrex-api
+      app.kubernetes.io/name: agnex-api

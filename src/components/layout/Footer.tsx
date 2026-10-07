@@ -10,6 +10,7 @@ export default function Footer() {
   const navLinks = [
     { label: 'Expertise', href: '/expertise' },
     { label: 'Work', href: '/work' },
+    { label: 'AI Slop Auditor', href: '/ai-slop-checker' },
     { label: 'Company', href: '/company' },
     { label: 'Insights', href: '/insights' },
     { label: 'Contact', href: '/contact' }

@@ -16,24 +16,29 @@
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://agnextechnology.com/work/unified-inventory-ledger</loc>
+        <loc>https://agnextechnology.com/work/rda</loc>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.85</priority>
     </url>
     <url>
-        <loc>https://agnextechnology.com/work/automated-dispatch-engine</loc>
+        <loc>https://agnextechnology.com/work/skynet</loc>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.85</priority>
     </url>
     <url>
-        <loc>https://agnextechnology.com/work/enterprise-digital-flagship</loc>
+        <loc>https://agnextechnology.com/work/lawguide-ai</loc>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.85</priority>
     </url>
     <url>
-        <loc>https://agnextechnology.com/work/cloud-microservices-modernization</loc>
+        <loc>https://agnextechnology.com/work/sentinelx-ai</loc>
         <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://agnextechnology.com/ai-slop-checker</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
     </url>
     <url>
         <loc>https://agnextechnology.com/company</loc>

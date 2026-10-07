@@ -3,15 +3,15 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: vantrex-api-hpa
-  namespace: vantrex
+  name: agnex-api-hpa
+  namespace: agnex
   labels:
-    app.kubernetes.io/name: vantrex-api
+    app.kubernetes.io/name: agnex-api
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: vantrex-api
+    name: agnex-api
   minReplicas: 3
   maxReplicas: 20
   metrics:

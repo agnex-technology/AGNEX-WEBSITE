@@ -18,7 +18,7 @@ class PromptService {
 
   /**
    * Resolve a system prompt by key and interpolate variables
-   * @param {string} key - e.g. 'vantrex.assistant.v1'
+   * @param {string} key - e.g. 'agnex.assistant.v1'
    * @param {object} variables - Variable values to interpolate
    * @returns {string} Rendered system prompt
    */

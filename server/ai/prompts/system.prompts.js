@@ -116,8 +116,4 @@ Always confirm understanding before proposing solutions. Escalate to human suppo
   },
 };
 
-// Backwards compatibility aliases
-SYSTEM_PROMPTS['vantrex.assistant.v1'] = SYSTEM_PROMPTS['agnex.assistant.v1'];
-SYSTEM_PROMPTS['vantrex.rag.v1'] = SYSTEM_PROMPTS['agnex.rag.v1'];
-
 module.exports = SYSTEM_PROMPTS;

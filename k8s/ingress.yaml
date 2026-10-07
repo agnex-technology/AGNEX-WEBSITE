@@ -3,10 +3,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: vantrex-api-ingress
-  namespace: vantrex
+  name: agnex-api-ingress
+  namespace: agnex
   labels:
-    app.kubernetes.io/name: vantrex-api
+    app.kubernetes.io/name: agnex-api
     app.kubernetes.io/component: ingress
   annotations:
     # TLS / HTTPS
@@ -31,7 +31,7 @@ spec:
   tls:
     - hosts:
         - api.agnex.tech
-      secretName: vantrex-api-tls
+      secretName: agnex-api-tls
   rules:
     - host: api.agnex.tech
       http:
@@ -40,13 +40,13 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: vantrex-api
+                name: agnex-api
                 port:
                   number: 80
           - path: /health
             pathType: Prefix
             backend:
               service:
-                name: vantrex-api
+                name: agnex-api
                 port:
                   number: 80

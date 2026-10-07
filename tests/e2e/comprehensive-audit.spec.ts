@@ -11,6 +11,7 @@ test.describe('Automated Platform Diagnostics & Bug Audit', () => {
     '/work/skynet',
     '/work/lawguide-ai',
     '/work/sentinelx-ai',
+    '/ai-slop-checker',
     '/company',
     '/about',
     '/contact',
@@ -308,4 +309,51 @@ test.describe('Automated Platform Diagnostics & Bug Audit', () => {
       expect(heroWhatsAppBox.height).toBeGreaterThanOrEqual(44);
     }
   });
+
+  test('Interactive Audit: AI Slop Website Auditor & Intelligence Feature', async ({ page }) => {
+    await page.goto('/ai-slop-checker', { waitUntil: 'domcontentloaded' });
+    await page.waitForLoadState('networkidle', { timeout: 3000 }).catch(() => {});
+
+    // 1. Verify Header & Disclaimer
+    await expect(page.locator('h1')).toContainText('AI Slop Website Auditor');
+    await expect(page.locator('text=Analysis Methodology Notice:')).toBeVisible();
+
+    // 2. Trigger Demo Mode
+    const demoBtn = page.locator('text=Try Demo Analysis →');
+    await expect(demoBtn).toBeVisible();
+    await demoBtn.click();
+
+    // 3. Verify Demo Report Appears
+    await expect(page.locator('text=DEMO ANALYSIS')).toBeVisible();
+    await expect(page.locator('h2').first()).toContainText('demo-saas-enterprise.io');
+    await expect(page.locator('text=Transparent Dimension Scores')).toBeVisible();
+
+    // 4. Test Score Breakdown Modal
+    const slopScoreCard = page.locator('text=AI Slop Risk').first();
+    await slopScoreCard.click();
+    await expect(page.locator('text=AI Slop Risk Breakdown')).toBeVisible();
+    await expect(page.locator('text=Evaluated Sub-Factors & Weighting')).toBeVisible();
+    // Close modal
+    await page.locator('text=Close Breakdown').click();
+    await expect(page.locator('text=AI Slop Risk Breakdown')).not.toBeVisible();
+
+    // 5. Test Page Forensic Inspection Modal
+    const inspectBtn = page.locator('text=Inspect Page →').first();
+    await expect(inspectBtn).toBeVisible();
+    await inspectBtn.click();
+    await expect(page.locator('text=Page Audit · Forensic Inspection')).toBeVisible();
+    await page.locator('text=Close Inspection').click();
+    await expect(page.locator('text=Page Audit · Forensic Inspection')).not.toBeVisible();
+
+    // 6. Test Duplicate Clusters Tab
+    const dupTab = page.locator('text=Duplicate Clusters');
+    await dupTab.click();
+    await expect(page.locator('text=Geo-Targeted Cloud Migration Doorway Pages')).toBeVisible();
+
+    // 7. Test Actionable Recommendations Tab
+    const recTab = page.locator('text=Actionable Fixes');
+    await recTab.click();
+    await expect(page.locator('text=Eradicate Formulaic AI Introductions and Conclusions')).toBeVisible();
+  });
 });
+

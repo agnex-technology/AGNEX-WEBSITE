@@ -3,14 +3,14 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: vantrex-api-netpol
-  namespace: vantrex
+  name: agnex-api-netpol
+  namespace: agnex
   labels:
-    app.kubernetes.io/name: vantrex-api
+    app.kubernetes.io/name: agnex-api
 spec:
   podSelector:
     matchLabels:
-      app.kubernetes.io/name: vantrex-api
+      app.kubernetes.io/name: agnex-api
   policyTypes:
     - Ingress
     - Egress
@@ -29,7 +29,7 @@ spec:
         - namespaceSelector:
             matchLabels:
               kubernetes.io/metadata.name: istio-system
-    # Allow traffic from within the vantrex namespace (inter-service)
+    # Allow traffic from within the agnex namespace (inter-service)
     - from:
         - podSelector: {}
 

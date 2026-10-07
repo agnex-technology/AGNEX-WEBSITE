@@ -9,6 +9,14 @@
       "destination": "/api/consultation"
     },
     {
+      "source": "/api/v1/audit",
+      "destination": "/api/audit"
+    },
+    {
+      "source": "/api/audit",
+      "destination": "/api/audit"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

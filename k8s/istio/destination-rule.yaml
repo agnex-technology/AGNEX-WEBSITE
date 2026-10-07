@@ -3,10 +3,10 @@
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
-  name: vantrex-api
-  namespace: vantrex
+  name: agnex-api
+  namespace: agnex
 spec:
-  host: vantrex-api
+  host: agnex-api
   # Phase 114 — Mutual TLS (mTLS) between all services
   trafficPolicy:
     tls:

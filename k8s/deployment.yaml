@@ -3,20 +3,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vantrex-api
-  namespace: vantrex
+  name: agnex-api
+  namespace: agnex
   labels:
-    app.kubernetes.io/name: vantrex-api
+    app.kubernetes.io/name: agnex-api
     app.kubernetes.io/version: "1.0.0"
     app.kubernetes.io/component: api
-    app.kubernetes.io/part-of: vantrex-platform
+    app.kubernetes.io/part-of: agnex-platform
   annotations:
     deployment.kubernetes.io/revision: "1"
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app.kubernetes.io/name: vantrex-api
+      app.kubernetes.io/name: agnex-api
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -25,7 +25,7 @@ spec:
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: vantrex-api
+        app.kubernetes.io/name: agnex-api
         app.kubernetes.io/version: "1.0.0"
       annotations:
         # Force pod restart when ConfigMap changes (declarative practice)
@@ -88,9 +88,9 @@ spec:
           # Phase 111 — Config injected via env (Twelve-Factor)
           envFrom:
             - configMapRef:
-                name: vantrex-api-config
+                name: agnex-api-config
             - secretRef:
-                name: vantrex-api-secrets
+                name: agnex-api-secrets
 
           # Phase 117 — Allow graceful drain before SIGTERM
           lifecycle:
@@ -125,4 +125,4 @@ spec:
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
-              app.kubernetes.io/name: vantrex-api
+              app.kubernetes.io/name: agnex-api

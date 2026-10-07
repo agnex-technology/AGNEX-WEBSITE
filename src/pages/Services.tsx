@@ -64,6 +64,7 @@ export default function Services() {
       builds: [
         'Automated Multi-Step Business Workflows',
         'Private, Air-Gapped Knowledge & Document Retrieval (RAG)',
+        'AI Slop Website Auditor & Content Quality Intelligence',
         'Intelligent Email, Invoice & Order Parsing',
         'Predictive Operations & Demand Forecasting',
         'Customer Support Decision-Support Agents',

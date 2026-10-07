@@ -3,17 +3,17 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: vantrex-api
-  namespace: vantrex
+  name: agnex-api
+  namespace: agnex
 spec:
   hosts:
     - agnex.tech
     - www.agnex.tech
     - api.agnex.tech
-    - vantrex-api
-    - vantrex-frontend
+    - agnex-api
+    - agnex-frontend
   gateways:
-    - vantrex-gateway
+    - agnex-gateway
     - mesh
   http:
     # Phase 117 — Canary Release: 95% stable / 5% canary
@@ -23,7 +23,7 @@ spec:
               exact: "true"
       route:
         - destination:
-            host: vantrex-api
+            host: agnex-api
             subset: canary
           weight: 100
 
@@ -33,11 +33,11 @@ spec:
             prefix: /api
       route:
         - destination:
-            host: vantrex-api
+            host: agnex-api
             subset: stable
           weight: 95
         - destination:
-            host: vantrex-api
+            host: agnex-api
             subset: canary
           weight: 5
       timeout: 30s
@@ -49,7 +49,7 @@ spec:
     # Frontend Traffic Routing
     - route:
         - destination:
-            host: vantrex-frontend
+            host: agnex-frontend
             port:
               number: 80
       fault:

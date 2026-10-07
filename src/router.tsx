@@ -10,6 +10,7 @@ const CaseStudy = lazy(() => import('./pages/CaseStudy'));
 const About = lazy(() => import('./pages/About')); // Will be AGNEX Company
 const Contact = lazy(() => import('./pages/Contact'));
 const Insights = lazy(() => import('./pages/Insights'));
+const AiSlopChecker = lazy(() => import('./pages/AiSlopChecker'));
 const NotFound404 = lazy(() => import('./pages/NotFound404'));
 
 // Minimal, on-brand fallback loader for route splitting
@@ -133,6 +134,16 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<RouteLoader />}>
             <Insights />
+          </Suspense>
+        ),
+      },
+
+      // Agnex Technology — Website Intelligence Tool: /ai-slop-checker
+      {
+        path: 'ai-slop-checker',
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <AiSlopChecker />
           </Suspense>
         ),
       },

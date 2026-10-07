@@ -77,6 +77,36 @@ export default defineConfig({
             });
             return;
           }
+          if (req.method === 'POST' && (req.url === '/api/audit' || req.url === '/api/v1/audit')) {
+            let body = '';
+            req.on('data', (chunk) => {
+              body += chunk;
+            });
+            req.on('end', async () => {
+              try {
+                const auditHandler = (await import('./api/audit.js')).default;
+                req.body = body;
+                if (!res.json) {
+                  res.json = (data) => {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify(data));
+                  };
+                }
+                if (!res.status) {
+                  res.status = (code) => {
+                    res.statusCode = code;
+                    return res;
+                  };
+                }
+                await auditHandler(req, res);
+              } catch (err) {
+                res.setHeader('Content-Type', 'application/json');
+                res.statusCode = 500;
+                res.end(JSON.stringify({ status: 'error', message: err.message }));
+              }
+            });
+            return;
+          }
           next();
         });
       }

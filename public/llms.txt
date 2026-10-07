@@ -38,7 +38,12 @@ Brand Concept:
 - Enterprise Leaders & CTOs
 - Businesses needing custom software and workflow automation
 
+## Featured Products & Tools
+- **AI Slop Website Auditor**: Enterprise website content quality and intelligence analyzer evaluating AI-generated content likelihood, AI-slop risk, originality, thin content, duplicate page clustering, SEO, and technical website health.
+- Tool URL: https://agnextechnology.com/ai-slop-checker
+
 ## Contact & Consultation
 - Website: https://agnextechnology.com
 - Consultation Intake: https://agnextechnology.com/contact
 - Inquiries: Direct project discovery through the online consultation portal.
+
