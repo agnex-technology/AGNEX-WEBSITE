@@ -226,14 +226,14 @@ export default function FourPillarsSystem() {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(12, 1fr)',
               gap: 'clamp(2rem, 3.5vw, 3.5rem)',
               alignItems: 'center'
             }}
+            className="pillars-grid-container"
           >
             {/* Left 6 Columns: Narrative, Problem, Capabilities, Business Outcome */}
             <div
-              style={{ gridColumn: 'span 12' }}
+              style={{ minWidth: 0 }}
               className="pillar-content-col"
             >
               <div
@@ -362,7 +362,7 @@ export default function FourPillarsSystem() {
 
             {/* Right 6 Columns: Interactive SVG System Schematic */}
             <div
-              style={{ gridColumn: 'span 12' }}
+              style={{ minWidth: 0 }}
               className="pillar-diagram-col"
             >
               <div
@@ -551,7 +551,19 @@ export default function FourPillarsSystem() {
       </div>
 
       <style>{`
+        .pillars-grid-container {
+          grid-template-columns: 1fr;
+        }
+        .pillar-content-col,
+        .pillar-diagram-col {
+          grid-column: 1 / -1;
+          min-width: 0;
+          max-width: 100%;
+        }
         @media (min-width: 1024px) {
+          .pillars-grid-container {
+            grid-template-columns: repeat(12, 1fr);
+          }
           .pillar-content-col {
             grid-column: span 6 !important;
           }

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import ScrollFade from '../components/motion/ScrollFade';
+import { LinkedInIcon, InstagramIcon, PhoneIcon } from '../components/brand/SocialIcons';
+import { siteConfig } from '../config/site';
 
 interface FormData {
   needHelpWith: string[];
@@ -202,7 +204,12 @@ export default function Contact() {
                   "mainEntity": {
                     "@type": "Organization",
                     "name": "AGNEX Technology",
-                    "url": "https://agnextechnology.com"
+                    "url": "https://agnextechnology.com",
+                    "telephone": "+91 75983 41607",
+                    "sameAs": [
+                      "https://www.linkedin.com/company/agnex-technology",
+                      "https://www.instagram.com/agnextechnology"
+                    ]
                   }
                 }
               ]
@@ -245,6 +252,122 @@ export default function Contact() {
             >
               Tell us what you're trying to build, improve or solve. You will receive direct architectural feedback and a realistic project roadmap from our engineering leads.
             </p>
+
+            {/* Official Direct Contact & Connect with AGNEX */}
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                alignItems: 'center',
+                gap: 'clamp(1rem, 2.5vw, 2.5rem)',
+                marginTop: '2rem',
+                paddingTop: '1.75rem',
+                borderTop: '1px solid var(--border-color)'
+              }}
+            >
+              {/* Direct Phone Option */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 'var(--text-xs)',
+                    color: 'var(--agnex-steel)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.06em'
+                  }}
+                >
+                  Direct Line:
+                </span>
+                <a
+                  href={siteConfig.links.phone}
+                  className="contact-phone-pill"
+                  aria-label={`Call AGNEX Technology at ${siteConfig.phone}`}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 'var(--text-sm)',
+                    fontWeight: 600,
+                    color: 'var(--agnex-white)',
+                    textDecoration: 'none',
+                    padding: '0.5rem 0.875rem',
+                    backgroundColor: 'var(--agnex-base-raised)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: 'var(--radius-xs)',
+                    minHeight: '44px',
+                    transition: 'border-color 200ms ease, color 200ms ease, background-color 200ms ease'
+                  }}
+                >
+                  <PhoneIcon size={15} style={{ color: 'var(--agnex-accent)' }} />
+                  <span>{siteConfig.phone}</span>
+                </a>
+              </div>
+
+              {/* Connect with AGNEX */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 'var(--text-xs)',
+                    color: 'var(--agnex-steel)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.06em'
+                  }}
+                >
+                  Connect with AGNEX:
+                </span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <a
+                    href={siteConfig.social.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contact-social-pill"
+                    aria-label="Official AGNEX Technology LinkedIn Page"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: 'var(--text-sm)',
+                      color: 'var(--text-muted)',
+                      textDecoration: 'none',
+                      padding: '0.5rem 0.75rem',
+                      borderRadius: 'var(--radius-xs)',
+                      minHeight: '44px',
+                      transition: 'color 200ms ease, transform 200ms ease'
+                    }}
+                  >
+                    <LinkedInIcon size={16} />
+                    <span>LinkedIn</span>
+                  </a>
+
+                  <a
+                    href={siteConfig.social.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contact-social-pill"
+                    aria-label="Official AGNEX Technology Instagram Profile"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: 'var(--text-sm)',
+                      color: 'var(--text-muted)',
+                      textDecoration: 'none',
+                      padding: '0.5rem 0.75rem',
+                      borderRadius: 'var(--radius-xs)',
+                      minHeight: '44px',
+                      transition: 'color 200ms ease, transform 200ms ease'
+                    }}
+                  >
+                    <InstagramIcon size={16} />
+                    <span>Instagram</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </ScrollFade>
         </div>
       </section>
@@ -751,6 +874,18 @@ export default function Contact() {
           )}
         </div>
       </section>
+
+      <style>{`
+        .contact-phone-pill:hover {
+          border-color: var(--agnex-accent) !important;
+          background-color: var(--agnex-black) !important;
+          color: var(--agnex-white) !important;
+        }
+        .contact-social-pill:hover {
+          color: var(--agnex-white) !important;
+          transform: translateY(-1px);
+        }
+      `}</style>
     </>
   );
 }

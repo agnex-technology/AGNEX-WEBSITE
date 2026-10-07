@@ -1,22 +1,17 @@
 import { Link } from 'react-router-dom';
 import AgnexLogo from '../brand/AgnexLogo';
+import { LinkedInIcon, InstagramIcon, PhoneIcon } from '../brand/SocialIcons';
+import { siteConfig } from '../../config/site';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const capabilities = [
-    { label: '01 — Digital', href: '/expertise#digital', desc: 'Websites, web apps, mobile apps, digital products' },
-    { label: '02 — Systems', href: '/expertise#systems', desc: 'ERP, CRM, inventory, billing & workflow software' },
-    { label: '03 — Intelligence', href: '/expertise#intelligence', desc: 'AI solutions, automation, analytics & workflows' },
-    { label: '04 — Engineering', href: '/expertise#engineering', desc: 'Architecture, APIs, cloud & technology consulting' }
-  ];
-
-  const companyLinks = [
-    { label: 'About AGNEX', href: '/company' },
-    { label: 'Selected Work', href: '/work' },
-    { label: 'Capabilities', href: '/expertise' },
-    { label: 'Insights & Research', href: '/insights' },
-    { label: 'Start a Project', href: '/contact' }
+  const navLinks = [
+    { label: 'Expertise', href: '/expertise' },
+    { label: 'Work', href: '/work' },
+    { label: 'Company', href: '/company' },
+    { label: 'Insights', href: '/insights' },
+    { label: 'Contact', href: '/contact' }
   ];
 
   return (
@@ -24,23 +19,23 @@ export default function Footer() {
       style={{
         backgroundColor: 'var(--agnex-base-raised)',
         borderTop: '1px solid var(--border-color)',
-        paddingTop: 'clamp(4rem, 6vw, 6rem)',
-        paddingBottom: '3rem',
+        paddingTop: 'clamp(3.5rem, 5vw, 5.5rem)',
+        paddingBottom: '2.5rem',
         position: 'relative'
       }}
     >
       <div className="agnex-container">
-        {/* Top Consultation Callout */}
+        {/* Top Direct Action Banner */}
         <div
           style={{
             borderBottom: '1px solid var(--border-color)',
-            paddingBottom: 'clamp(2.5rem, 5vw, 4rem)',
-            marginBottom: 'clamp(3rem, 5vw, 4.5rem)',
+            paddingBottom: 'clamp(2rem, 4vw, 3rem)',
+            marginBottom: 'clamp(2.5rem, 4vw, 3.5rem)',
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'space-between',
             alignItems: 'center',
-            gap: '2rem'
+            gap: '1.5rem'
           }}
         >
           <div>
@@ -51,47 +46,68 @@ export default function Footer() {
                 color: 'var(--agnex-accent)',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
-                marginBottom: '0.75rem'
+                marginBottom: '0.5rem'
               }}
             >
               Ready to build?
             </div>
             <h2
               style={{
-                fontSize: 'clamp(1.75rem, 3.5vw, 2.75rem)',
+                fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
                 fontWeight: 600,
                 color: 'var(--agnex-white)',
-                lineHeight: 1.15
+                lineHeight: 1.2,
+                margin: 0
               }}
             >
               Have something that needs engineering?
             </h2>
           </div>
-          <Link to="/contact" className="btn btn-primary" style={{ padding: '0.875rem 2rem' }}>
+          <Link to="/contact" className="btn btn-primary" style={{ padding: '0.75rem 1.75rem' }}>
             <span>Start a Project</span>
             <span style={{ color: 'var(--agnex-accent)', fontWeight: 700 }}>→</span>
           </Link>
         </div>
 
-        {/* Main Footer Grid */}
+        {/* Main 4-Column Footer Hierarchy */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '3rem',
-            marginBottom: '4rem'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
+            gap: 'clamp(2rem, 3.5vw, 3.5rem)',
+            marginBottom: '3.5rem'
           }}
         >
-          {/* Brand Info */}
-          <div style={{ maxWidth: '360px' }}>
+          {/* Column 1: Official Brand Identity */}
+          <div style={{ maxWidth: '340px' }}>
             <AgnexLogo asLink={true} size="md" style={{ marginBottom: '1.25rem' }} />
-            <div style={{ color: 'var(--agnex-white)', fontWeight: 600, fontSize: 'var(--text-base)', marginBottom: '0.25rem' }}>
+            <div
+              style={{
+                color: 'var(--agnex-white)',
+                fontWeight: 600,
+                fontSize: 'var(--text-base)',
+                marginBottom: '0.25rem'
+              }}
+            >
               AGNEX Technology
             </div>
-            <div style={{ color: 'var(--agnex-steel)', fontSize: 'var(--text-sm)', marginBottom: '0.5rem' }}>
+            <div
+              style={{
+                color: 'var(--agnex-steel)',
+                fontSize: 'var(--text-sm)',
+                marginBottom: '0.35rem'
+              }}
+            >
               Engineering What's Next.
             </div>
-            <p style={{ color: 'var(--agnex-accent)', fontSize: 'var(--text-sm)', fontWeight: 500, marginBottom: '1rem' }}>
+            <p
+              style={{
+                color: 'var(--agnex-accent)',
+                fontSize: 'var(--text-sm)',
+                fontWeight: 500,
+                marginBottom: '1rem'
+              }}
+            >
               Ideas, engineered into impact.
             </p>
             <p
@@ -99,25 +115,14 @@ export default function Footer() {
                 fontSize: 'var(--text-sm)',
                 color: 'var(--text-muted)',
                 lineHeight: 1.6,
-                marginBottom: '1.5rem'
+                margin: 0
               }}
             >
-              AGNEX is a technology and engineering company that transforms ideas and business challenges into practical digital solutions.
+              Transforming complex engineering and operational friction into resilient digital systems.
             </p>
-            <div
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.75rem',
-                color: 'var(--agnex-steel-dark)',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase'
-              }}
-            >
-              Engineer · Think · Build · Connect · Evolve
-            </div>
           </div>
 
-          {/* Capabilities Column */}
+          {/* Column 2: Navigation */}
           <div>
             <h3
               style={{
@@ -127,64 +132,36 @@ export default function Footer() {
                 color: 'var(--agnex-white)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.12em',
-                marginBottom: '1.5rem'
+                marginBottom: '1.25rem'
               }}
             >
-              Capabilities
+              Navigation
             </h3>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
-              {capabilities.map((cap) => (
-                <li key={cap.label}>
-                  <Link
-                    to={cap.href}
-                    style={{
-                      fontFamily: 'var(--font-sans)',
-                      fontSize: 'var(--text-sm)',
-                      color: 'var(--text-muted)',
-                      textDecoration: 'none',
-                      transition: 'color var(--duration-fast) var(--ease-out)',
-                      display: 'inline-block'
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--agnex-white)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
-                  >
-                    {cap.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company Column */}
-          <div>
-            <h3
+            <ul
               style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: 'var(--text-xs)',
-                fontWeight: 600,
-                color: 'var(--agnex-white)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.12em',
-                marginBottom: '1.5rem'
+                listStyle: 'none',
+                padding: 0,
+                margin: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.75rem'
               }}
             >
-              Company
-            </h3>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
-              {companyLinks.map((item) => (
+              {navLinks.map((item) => (
                 <li key={item.label}>
                   <Link
                     to={item.href}
+                    className="footer-nav-link"
                     style={{
                       fontFamily: 'var(--font-sans)',
                       fontSize: 'var(--text-sm)',
                       color: 'var(--text-muted)',
                       textDecoration: 'none',
-                      transition: 'color var(--duration-fast) var(--ease-out)',
-                      display: 'inline-block'
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      minHeight: '36px',
+                      transition: 'color 200ms ease, transform 200ms ease'
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--agnex-white)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
                   >
                     {item.label}
                   </Link>
@@ -193,7 +170,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Positioning / Value Column */}
+          {/* Column 3: Connect (Official Social Profiles) */}
           <div>
             <h3
               style={{
@@ -203,29 +180,121 @@ export default function Footer() {
                 color: 'var(--agnex-white)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.12em',
-                marginBottom: '1.5rem'
+                marginBottom: '1.25rem'
               }}
             >
-              The Brand
+              Connect
             </h3>
-            <div
+            <ul
               style={{
-                backgroundColor: 'var(--agnex-base)',
-                border: '1px solid var(--border-color)',
-                borderRadius: 'var(--radius-sm)',
-                padding: '1.25rem',
-                fontSize: 'var(--text-xs)',
-                color: 'var(--agnex-steel)',
-                lineHeight: 1.6
+                listStyle: 'none',
+                padding: 0,
+                margin: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.75rem'
               }}
             >
-              <div style={{ color: 'var(--agnex-white)', fontWeight: 600, marginBottom: '0.5rem' }}>
-                Engineering What's Next.
-              </div>
-              <p style={{ margin: 0, fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>
-                <strong>AG</strong> = Foundation & Precision<br />
-                <strong>NEX</strong> = Next & Forward Progress<br />
-                <strong>X</strong> = Technology × People × Ideas
+              <li>
+                <a
+                  href={siteConfig.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer-social-link"
+                  aria-label="Official AGNEX Technology LinkedIn Page"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.625rem',
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: 'var(--text-sm)',
+                    color: 'var(--text-muted)',
+                    textDecoration: 'none',
+                    minHeight: '44px',
+                    transition: 'color 200ms ease, transform 200ms ease'
+                  }}
+                >
+                  <LinkedInIcon size={16} />
+                  <span>LinkedIn</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={siteConfig.social.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer-social-link"
+                  aria-label="Official AGNEX Technology Instagram Profile"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.625rem',
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: 'var(--text-sm)',
+                    color: 'var(--text-muted)',
+                    textDecoration: 'none',
+                    minHeight: '44px',
+                    transition: 'color 200ms ease, transform 200ms ease'
+                  }}
+                >
+                  <InstagramIcon size={16} />
+                  <span>Instagram</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Contact (Official Direct Line) */}
+          <div>
+            <h3
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: 'var(--text-xs)',
+                fontWeight: 600,
+                color: 'var(--agnex-white)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.12em',
+                marginBottom: '1.25rem'
+              }}
+            >
+              Contact
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <a
+                href={siteConfig.links.phone}
+                className="footer-phone-link"
+                aria-label={`Call AGNEX Technology at ${siteConfig.phone}`}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.625rem',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 'var(--text-sm)',
+                  fontWeight: 500,
+                  color: 'var(--agnex-white)',
+                  textDecoration: 'none',
+                  minHeight: '44px',
+                  padding: '0.4rem 0.75rem',
+                  backgroundColor: 'var(--agnex-base)',
+                  border: '1px solid var(--border-color)',
+                  borderRadius: 'var(--radius-xs)',
+                  width: 'fit-content',
+                  transition: 'border-color 200ms ease, color 200ms ease, background-color 200ms ease'
+                }}
+              >
+                <PhoneIcon size={15} style={{ color: 'var(--agnex-accent)' }} />
+                <span>{siteConfig.phone}</span>
+              </a>
+
+              <p
+                style={{
+                  fontSize: 'var(--text-xs)',
+                  color: 'var(--text-muted)',
+                  lineHeight: 1.5,
+                  margin: 0
+                }}
+              >
+                Direct engineering desk. Mobile dialer enabled.
               </p>
             </div>
           </div>
@@ -235,7 +304,7 @@ export default function Footer() {
         <div
           style={{
             borderTop: '1px solid var(--border-color)',
-            paddingTop: '2rem',
+            paddingTop: '1.75rem',
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'space-between',
@@ -248,13 +317,26 @@ export default function Footer() {
           <div>
             &copy; {currentYear} AGNEX Technology. All rights reserved. Ideas, engineered into impact.
           </div>
-          <div style={{ display: 'flex', gap: '1.5rem' }}>
-            <span>WCAG 2.2 AA Compliant</span>
-            <span>Zero-Telemetry Leakage</span>
+          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
             <span>Enterprise SLA</span>
+            <span>Zero-Telemetry Leakage</span>
+            <span>WCAG 2.1 AA Compliant</span>
           </div>
         </div>
       </div>
+
+      <style>{`
+        .footer-nav-link:hover,
+        .footer-social-link:hover {
+          color: var(--agnex-white) !important;
+          transform: translateX(3px);
+        }
+        .footer-phone-link:hover {
+          border-color: var(--agnex-accent) !important;
+          background-color: var(--agnex-black) !important;
+          color: var(--agnex-white) !important;
+        }
+      `}</style>
     </footer>
   );
 }

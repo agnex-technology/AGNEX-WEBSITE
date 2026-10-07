@@ -17,9 +17,16 @@ export const siteConfig = {
     'AGNEX is a technology and engineering company that transforms ideas and business challenges into practical digital solutions. Ideas, engineered into impact.',
   url: SITE_URL,
   ogImage: `${SITE_URL}/brand/agnex-og.png`,
-  contactEmail: 'contact@agnextechnology.com',
+  phone: '+91 75983 41607',
+  phoneTel: 'tel:+917598341607',
+  social: {
+    linkedin: 'https://www.linkedin.com/company/agnex-technology',
+    instagram: 'https://www.instagram.com/agnextechnology'
+  },
   links: {
-    linkedin: 'https://linkedin.com/company/agnex-technology',
+    linkedin: 'https://www.linkedin.com/company/agnex-technology',
+    instagram: 'https://www.instagram.com/agnextechnology',
+    phone: 'tel:+917598341607',
     consultation: `${SITE_URL}/contact`,
     capabilities: `${SITE_URL}/expertise`,
     work: `${SITE_URL}/work`

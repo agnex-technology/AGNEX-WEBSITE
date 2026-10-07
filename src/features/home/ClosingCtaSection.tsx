@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { PhoneIcon } from '../../components/brand/SocialIcons';
+import { siteConfig } from '../../config/site';
 
 export default function ClosingCtaSection() {
   return (
@@ -114,20 +116,25 @@ export default function ClosingCtaSection() {
                 }}
               >
                 <div>
-                  <div style={{ fontSize: 'var(--text-2xs)', fontFamily: 'var(--font-mono)', color: 'var(--agnex-steel)', marginBottom: '0.25rem' }}>
-                    DIRECT ARCHITECT DESK
+                  <div style={{ fontSize: 'var(--text-2xs)', fontFamily: 'var(--font-mono)', color: 'var(--agnex-steel)', marginBottom: '0.35rem', textTransform: 'uppercase' }}>
+                    DIRECT TELEPHONE DESK
                   </div>
                   <a
-                    href="mailto:contact@agnextechnology.com"
+                    href={siteConfig.links.phone}
                     style={{
                       fontSize: 'var(--text-base)',
                       color: 'var(--agnex-white)',
                       textDecoration: 'none',
                       fontFamily: 'var(--font-mono)',
-                      fontWeight: 500
+                      fontWeight: 600,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      minHeight: '44px'
                     }}
                   >
-                    contact@agnextechnology.com
+                    <PhoneIcon size={16} style={{ color: 'var(--agnex-accent)' }} />
+                    <span>{siteConfig.phone}</span>
                   </a>
                 </div>
 

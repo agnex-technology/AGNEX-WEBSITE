@@ -135,7 +135,12 @@ export default function Services() {
                   "provider": {
                     "@type": "Organization",
                     "name": "AGNEX Technology",
-                    "url": "https://agnextechnology.com"
+                    "url": "https://agnextechnology.com",
+                    "telephone": "+91 75983 41607",
+                    "sameAs": [
+                      "https://www.linkedin.com/company/agnex-technology",
+                      "https://www.instagram.com/agnextechnology"
+                    ]
                   },
                   "hasOfferCatalog": {
                     "@type": "OfferCatalog",

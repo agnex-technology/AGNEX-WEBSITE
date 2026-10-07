@@ -149,7 +149,11 @@ export default function AgnexMethodSection() {
                 backgroundColor: 'var(--agnex-base-raised)',
                 padding: '0.35rem',
                 borderRadius: 'var(--radius-sm)',
-                border: '1px solid var(--border-color)'
+                border: '1px solid var(--border-color)',
+                maxWidth: '100%',
+                overflowX: 'auto',
+                WebkitOverflowScrolling: 'touch',
+                scrollbarWidth: 'none'
               }}
               role="tablist"
               aria-label="Engineering Method Phases"
@@ -166,14 +170,16 @@ export default function AgnexMethodSection() {
                       background: isActive ? 'var(--agnex-graphite-light)' : 'transparent',
                       color: isActive ? 'var(--agnex-white)' : 'var(--agnex-steel)',
                       border: 'none',
-                      padding: '0.5rem 1rem',
+                      padding: '0.45rem 0.75rem',
                       fontFamily: 'var(--font-mono)',
                       fontSize: 'var(--text-xs)',
                       cursor: 'pointer',
                       borderRadius: 'var(--radius-xs)',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '0.4rem',
+                      gap: '0.35rem',
+                      whiteSpace: 'nowrap',
+                      flexShrink: 0,
                       transition: 'all 0.2s ease'
                     }}
                   >
@@ -190,15 +196,15 @@ export default function AgnexMethodSection() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(12, 1fr)',
             gap: 'clamp(2rem, 4vw, 3.5rem)',
             alignItems: 'center'
           }}
+          className="method-grid-container"
         >
           {/* Left Column: Phase Specification (5 Columns) */}
           <div
             style={{
-              gridColumn: 'span 12'
+              minWidth: 0
             }}
             className="method-details-col"
           >
@@ -315,7 +321,7 @@ export default function AgnexMethodSection() {
           {/* Right Column: Evolving Architectural Diagram (7 Columns) */}
           <div
             style={{
-              gridColumn: 'span 12'
+              minWidth: 0
             }}
             className="method-diagram-col"
           >
@@ -498,7 +504,19 @@ export default function AgnexMethodSection() {
     </div>
 
       <style>{`
+        .method-grid-container {
+          grid-template-columns: 1fr;
+        }
+        .method-details-col,
+        .method-diagram-col {
+          grid-column: 1 / -1;
+          min-width: 0;
+          max-width: 100%;
+        }
         @media (min-width: 1024px) {
+          .method-grid-container {
+            grid-template-columns: repeat(12, 1fr);
+          }
           .method-details-col {
             grid-column: span 5 !important;
           }

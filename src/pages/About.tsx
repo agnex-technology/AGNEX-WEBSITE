@@ -92,7 +92,12 @@ export default function About() {
                     "name": "AGNEX Technology",
                     "url": "https://agnextechnology.com",
                     "slogan": "Engineering What's Next.",
-                    "description": "AGNEX is a technology and engineering company that transforms ideas and business challenges into practical digital solutions."
+                    "description": "AGNEX is a technology and engineering company that transforms ideas and business challenges into practical digital solutions.",
+                    "telephone": "+91 75983 41607",
+                    "sameAs": [
+                      "https://www.linkedin.com/company/agnex-technology",
+                      "https://www.instagram.com/agnextechnology"
+                    ]
                   }
                 }
               ]
