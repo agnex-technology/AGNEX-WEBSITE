@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import '../design-system/tokens.css';
 
 /* ==========================================================================
-   AGNEX ENTERPRISE RESET & BASE ARCHITECTURE
+   AGNEX TECHNOLOGY — GLOBAL ARCHITECTURAL STYLESHEET
+   Aesthetic: Engineering studio, architectural blueprint, industrial precision
+   Visual Ratio: 75% White, 15% Deep Navy, 10% AGNEX Blue
    ========================================================================== */
 
 *, *::before, *::after {
@@ -14,8 +16,8 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
-  background-color: var(--agnex-black);
-  color: var(--text-main);
+  background-color: var(--agnex-canvas);
+  color: var(--text-primary);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -23,11 +25,12 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--agnex-black);
-  color: var(--text-main);
+  background-color: var(--agnex-canvas);
+  color: var(--text-primary);
   line-height: var(--leading-normal);
   overflow-x: hidden;
   min-height: 100vh;
+  position: relative;
 }
 
 /* Accessibility: Skip to Content */
@@ -35,61 +38,52 @@ body {
   position: absolute;
   top: -120px;
   left: 1.5rem;
-  background: var(--agnex-accent);
+  background: var(--agnex-blue);
   color: #FFFFFF;
   padding: 0.75rem 1.5rem;
   font-weight: var(--fw-semibold);
   font-size: var(--text-sm);
-  border-radius: var(--radius-sm);
-  z-index: var(--z-skip-link);
-  transition: top var(--duration-fast) var(--ease-out);
+  border-radius: var(--radius-xs);
+  z-index: var(--z-nav);
+  transition: top var(--duration-fast) var(--ease-technical);
   text-decoration: none;
 }
 
 .skip-link:focus {
   top: 1.5rem;
-  outline: 2px solid #FFFFFF;
+  outline: 2px solid var(--agnex-navy);
   outline-offset: 2px;
 }
 
-/* Global Selection */
+/* Precision Selection */
 ::selection {
-  background-color: var(--agnex-accent);
-  color: #FFFFFF;
+  background-color: var(--agnex-blue-pale);
+  color: var(--agnex-blue-dark);
 }
 
-/* Scrollbar Styling (Minimal, Technical, Architectural) */
+/* Custom Scrollbar (Engineered, Hairline) */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--agnex-black);
+  background: var(--agnex-canvas-subtle);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--agnex-graphite);
+  background: rgba(12, 28, 41, 0.2);
   border-radius: var(--radius-none);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--agnex-steel-dark);
+  background: var(--agnex-blue);
 }
 
-/* Focus Visible Standard */
+/* Keyboard Focus */
 :focus-visible {
-  outline: 2px solid var(--agnex-accent);
-  outline-offset: 2px;
-}
-
-/* Official AGNEX Logo Component Rules */
-.agnex-logo {
-  width: clamp(145px, 12vw, 205px);
-  height: auto;
-  max-width: 100%;
-  display: block;
-  object-fit: contain;
+  outline: 2px solid var(--agnex-blue);
+  outline-offset: 3px;
 }
 
 /* ==========================================================================
@@ -98,15 +92,14 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  color: var(--agnex-white);
-  font-weight: var(--fw-semibold);
+  color: var(--agnex-navy);
+  font-weight: var(--fw-bold);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
 }
 
 h1 {
   font-size: var(--text-4xl);
-  font-weight: var(--fw-bold);
 }
 
 h2 {
@@ -115,7 +108,7 @@ h2 {
 
 h3 {
   font-size: var(--text-2xl);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-semibold);
 }
 
 h4 {
@@ -124,14 +117,9 @@ h4 {
 }
 
 p {
-  color: var(--text-muted);
+  color: var(--text-secondary);
   line-height: var(--leading-relaxed);
   font-size: var(--text-base);
-}
-
-small {
-  font-size: var(--text-sm);
-  color: var(--text-muted);
 }
 
 code, pre {
@@ -140,7 +128,7 @@ code, pre {
 }
 
 /* ==========================================================================
-   LAYOUT CONTAINERS & SECTIONS
+   LAYOUT CONTAINERS & TECHNICAL GRIDS
    ========================================================================== */
 
 .agnex-container {
@@ -148,8 +136,8 @@ code, pre {
   max-width: var(--container-max);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--container-padding);
-  padding-right: var(--container-padding);
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
 }
 
 .agnex-container-wide {
@@ -157,8 +145,8 @@ code, pre {
   max-width: var(--container-wide);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--container-padding);
-  padding-right: var(--container-padding);
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
 }
 
 .agnex-container-narrow {
@@ -166,45 +154,80 @@ code, pre {
   max-width: var(--container-narrow);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--container-padding);
-  padding-right: var(--container-padding);
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
 }
 
 .agnex-section {
-  padding-top: clamp(4rem, 7vw, 7.5rem);
-  padding-bottom: clamp(4rem, 7vw, 7.5rem);
+  padding-top: clamp(4.5rem, 8vw, 8.5rem);
+  padding-bottom: clamp(4.5rem, 8vw, 8.5rem);
   position: relative;
+  background-color: var(--agnex-canvas);
 }
 
-.agnex-section-divider {
-  border-top: 1px solid var(--border-color);
+.agnex-section-subtle {
+  background-color: var(--agnex-canvas-subtle);
+}
+
+.agnex-section-navy {
+  background-color: var(--agnex-navy);
+  color: var(--text-inverse);
+}
+.agnex-section-navy h1,
+.agnex-section-navy h2,
+.agnex-section-navy h3,
+.agnex-section-navy h4 {
+  color: #FFFFFF;
+}
+.agnex-section-navy p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.agnex-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-color);
+  border: none;
+}
+
+/* Technical Blueprint Grid Pattern */
+.agnex-blueprint-grid {
+  background-image: 
+    linear-gradient(to right, rgba(12, 28, 41, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(12, 28, 41, 0.035) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.agnex-blueprint-grid-dense {
+  background-image: 
+    linear-gradient(to right, rgba(12, 28, 41, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(12, 28, 41, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
 /* ==========================================================================
-   BUTTON & INTERACTION SYSTEM (MICRO-INTERACTIONS)
+   BUTTON & LINK SYSTEM (ENGINEERED PHYSICALITY)
    ========================================================================== */
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
-  min-height: 44px;
-  padding: 0.75rem 1.625rem;
+  gap: var(--space-3);
+  min-height: 48px;
+  padding: 0.85rem 1.85rem;
   font-family: var(--font-sans);
   font-size: var(--text-sm);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-semibold);
   letter-spacing: var(--tracking-normal);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-xs);
   text-decoration: none;
   cursor: pointer;
-  transition: background-color var(--duration-fast) var(--ease-out),
-              border-color var(--duration-fast) var(--ease-out),
-              color var(--duration-fast) var(--ease-out),
-              transform var(--duration-fast) var(--ease-out);
+  transition: all var(--duration-fast) var(--ease-technical);
   border: 1px solid transparent;
   white-space: nowrap;
   position: relative;
+  overflow: hidden;
 }
 
 .btn:disabled {
@@ -213,44 +236,43 @@ code, pre {
   pointer-events: none;
 }
 
-/* Button arrow micro-interaction: travels 5-7px forward on hover */
 .btn .btn-arrow {
   display: inline-block;
-  transition: transform var(--duration-fast) var(--ease-out);
+  transition: transform var(--duration-fast) var(--ease-technical);
   will-change: transform;
 }
 
 .btn:hover .btn-arrow {
-  transform: translateX(6px);
+  transform: translateX(4px);
 }
 
-/* Primary Button: Solid White with Obsidian Text */
+/* Primary Button: AGNEX Blue with Crisp White Text */
 .btn-primary {
-  background-color: var(--agnex-white);
-  color: var(--agnex-black);
-  border-color: var(--agnex-white);
+  background-color: var(--agnex-blue);
+  color: #FFFFFF;
+  border-color: var(--agnex-blue);
 }
 
 .btn-primary:hover {
-  background-color: #FFFFFF;
-  border-color: #FFFFFF;
+  background-color: var(--agnex-blue-dark);
+  border-color: var(--agnex-blue-dark);
   transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(1, 122, 239, 0.28);
 }
 
 .btn-primary:active {
   transform: translateY(0);
 }
 
-/* Secondary Button: Subtle Graphite Frame */
+/* Secondary Button: Architectural White with Navy Border */
 .btn-secondary {
-  background-color: transparent;
-  color: var(--agnex-white);
-  border-color: var(--agnex-graphite-light);
+  background-color: var(--agnex-white);
+  color: var(--agnex-navy);
+  border-color: var(--agnex-navy);
 }
 
 .btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.04);
-  border-color: var(--agnex-steel-dark);
+  background-color: var(--agnex-navy);
   color: #FFFFFF;
   transform: translateY(-1px);
 }
@@ -259,29 +281,29 @@ code, pre {
   transform: translateY(0);
 }
 
-/* Accent Button: Official AGNEX Blue */
-.btn-accent {
-  background-color: var(--agnex-accent);
-  color: #FFFFFF;
-  border-color: var(--agnex-accent);
+/* Ghost Technical Button */
+.btn-ghost {
+  background-color: transparent;
+  color: var(--agnex-navy);
+  border-color: var(--border-color);
 }
 
-.btn-accent:hover {
-  background-color: var(--agnex-accent-hover);
-  border-color: var(--agnex-accent-hover);
-  transform: translateY(-1px);
+.btn-ghost:hover {
+  border-color: var(--agnex-blue);
+  color: var(--agnex-blue);
+  background-color: var(--agnex-blue-pale);
 }
 
-/* Link System with Traveling Underline Micro-interaction */
+/* Links with directional traveling underline */
 .agnex-link {
-  color: var(--agnex-white);
+  color: var(--agnex-navy);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
   font-weight: var(--fw-medium);
   position: relative;
-  transition: color var(--duration-fast) var(--ease-out);
+  transition: color var(--duration-fast) var(--ease-technical);
 }
 
 .agnex-link::after {
@@ -291,175 +313,126 @@ code, pre {
   left: 0;
   width: 0;
   height: 1.5px;
-  background-color: var(--agnex-accent);
-  transition: width var(--duration-normal) var(--ease-out);
+  background-color: var(--agnex-blue);
+  transition: width var(--duration-normal) var(--ease-technical);
+}
+
+.agnex-link:hover {
+  color: var(--agnex-blue);
 }
 
 .agnex-link:hover::after {
   width: 100%;
 }
 
-.agnex-link-accent {
-  color: var(--agnex-accent);
-  text-decoration: none;
-  font-weight: var(--fw-medium);
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  transition: color var(--duration-fast) var(--ease-out);
-}
-
-.agnex-link-accent .link-arrow {
-  transition: transform var(--duration-fast) var(--ease-out);
-}
-
-.agnex-link-accent:hover {
-  color: var(--agnex-accent-hover);
-}
-
-.agnex-link-accent:hover .link-arrow {
-  transform: translateX(5px);
-}
-
 /* ==========================================================================
-   CARD SYSTEM (Restrained, Architectural)
+   TECHNICAL ANNOTATIONS & LABELS
    ========================================================================== */
 
-.agnex-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  padding: clamp(1.5rem, 3vw, 2.25rem);
-  transition: border-color var(--duration-normal) var(--ease-out),
-              background-color var(--duration-normal) var(--ease-out);
-  position: relative;
-  overflow: hidden;
-}
-
-.agnex-card:hover {
-  border-color: var(--border-hover);
-}
-
-.agnex-card-interactive {
-  cursor: pointer;
-}
-
-.agnex-card-interactive:hover {
-  border-color: var(--agnex-steel-dark);
-  background-color: var(--bg-card-hover);
-}
-
-/* ==========================================================================
-   BADGE & PILL SYSTEM
-   ========================================================================== */
-
-.agnex-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-family: var(--font-display);
-  font-size: var(--text-2xs);
-  font-weight: var(--fw-medium);
+.tech-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wider);
-  padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-xs);
-  border: 1px solid var(--border-color);
-  background-color: var(--agnex-base-raised);
-  color: var(--agnex-steel-light);
-  width: fit-content;
+  color: var(--agnex-blue);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
-.agnex-badge-accent {
-  border-color: var(--agnex-accent-border);
-  background-color: var(--agnex-accent-subtle);
-  color: var(--agnex-white);
+.tech-coord {
+  font-family: var(--font-mono);
+  font-size: var(--text-3xs);
+  color: var(--text-muted);
+  letter-spacing: var(--tracking-wide);
 }
 
-.agnex-badge-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--agnex-accent);
+.section-num {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--agnex-blue);
+  letter-spacing: var(--tracking-wide);
 }
 
 /* ==========================================================================
-   FORM SYSTEM
+   FORM INPUTS
    ========================================================================== */
-
-.agnex-form-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  margin-bottom: var(--space-6);
-}
-
-.agnex-label {
-  font-family: var(--font-sans);
-  font-size: var(--text-xs);
-  font-weight: var(--fw-medium);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-wide);
-  color: var(--text-muted);
-}
 
 .agnex-input,
 .agnex-textarea,
 .agnex-select {
   width: 100%;
-  min-height: 48px;
-  padding: 0.875rem 1.125rem;
-  background-color: var(--agnex-base-raised);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  color: var(--text-main);
+  min-height: 50px;
+  padding: 0.85rem 1.15rem;
+  background-color: var(--agnex-canvas);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xs);
+  color: var(--agnex-navy);
   font-family: var(--font-sans);
   font-size: var(--text-base);
-  line-height: var(--leading-normal);
-  transition: border-color var(--duration-fast) var(--ease-out);
+  transition: all var(--duration-fast) var(--ease-technical);
   outline: none;
 }
 
 .agnex-textarea {
-  min-height: 130px;
+  min-height: 140px;
   resize: vertical;
 }
 
 .agnex-input:focus,
 .agnex-textarea:focus,
 .agnex-select:focus {
-  border-color: var(--agnex-accent);
-  box-shadow: 0 0 0 1px var(--agnex-accent);
+  border-color: var(--agnex-blue);
+  box-shadow: 0 0 0 2px var(--agnex-blue-pale);
 }
 
 .agnex-input::placeholder,
 .agnex-textarea::placeholder {
-  color: var(--agnex-steel-dark);
-}
-
-.agnex-form-hint {
-  font-size: var(--text-xs);
   color: var(--text-muted);
 }
 
-.agnex-form-error {
-  font-size: var(--text-xs);
-  color: var(--agnex-error);
-}
-
 /* ==========================================================================
-   PRECISION ENGINEERING GRID (Clean architectural coordinates)
+   CUSTOM CURSOR (DESKTOP ONLY)
    ========================================================================== */
 
-.agnex-grid-mesh {
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 48px 48px;
+.agnex-custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background-color: var(--agnex-blue);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, transform 0.08s ease-out;
+  mix-blend-mode: multiply;
+}
+
+.agnex-custom-cursor.hover {
+  width: 32px;
+  height: 32px;
+  background-color: rgba(1, 122, 239, 0.2);
+  border: 1px solid var(--agnex-blue);
+}
+
+.agnex-custom-cursor.view {
+  width: 56px;
+  height: 56px;
+  background-color: var(--agnex-navy);
+  color: #FFFFFF;
+}
+
+@media (pointer: coarse), (hover: none) {
+  .agnex-custom-cursor {
+    display: none !important;
+  }
 }
 
 /* ==========================================================================
-   ACCESSIBILITY: REDUCED MOTION SUPPORT
+   ACCESSIBILITY: PREFERS-REDUCED-MOTION
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
@@ -472,5 +445,9 @@ code, pre {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .agnex-custom-cursor {
+    display: none !important;
   }
 }

@@ -1,59 +1,57 @@
 /* ==========================================================================
-   AGNEX TECHNOLOGY — ENTERPRISE DESIGN SYSTEM TOKENS
-   Brand: AGNEX ("Engineering What's Next.")
-   Foundations: Engineering, Foundation, Precision, Progress
-   Palette: Black (#0B0D10), White (#F7F8FA), Graphite (#20242B), Steel (#7C8490)
-   Primary Accent: Official AGNEX Blue (#057AEF)
+   AGNEX TECHNOLOGY — FOUNDATIONAL DESIGN SYSTEM TOKENS
+   Visual Ratio: 75% White (Canvas), 15% Deep Navy (Structure), 10% Blue (Signal)
+   Meaning:
+     WHITE = Possibility / Space
+     NAVY  = Engineering / Structure
+     BLUE  = Motion / Action / Next
    ========================================================================== */
 
 :root {
-  /* --- 01. COLOR SYSTEM --- */
-  /* Primitive Brand Colors */
-  --agnex-black: #0B0D10;
-  --agnex-base: #0B0D10;
-  --agnex-base-raised: #12151B;
-  --agnex-base-card: #151820;
-  --agnex-white: #F7F8FA;
-  --agnex-graphite: #20242B;
-  --agnex-graphite-light: #2E343E;
-  --agnex-steel: #7C8490;
-  --agnex-steel-dark: #4A515D;
-  --agnex-steel-light: #A4ACB9;
-  
-  /* Primary Brand Accent (Official AGNEX Logo Arrow Blue) */
-  --agnex-blue: #057AEF;
-  --agnex-accent: #057AEF;
-  --agnex-accent-hover: #0468CE;
-  --agnex-accent-active: #0357AC;
-  --agnex-accent-subtle: rgba(5, 122, 239, 0.08);
-  --agnex-accent-border: rgba(5, 122, 239, 0.32);
+  /* --- 01. BRAND CORE PALETTE --- */
+  --agnex-white: #FFFFFF;
+  --agnex-canvas: #FFFFFF;
+  --agnex-canvas-subtle: #F8FAFC;
+  --agnex-canvas-dim: #F1F5F9;
 
-  /* Functional Status */
-  --agnex-success: #10B981;
-  --agnex-warning: #F59E0B;
-  --agnex-error: #EF4444;
-  --agnex-info: #057AEF;
+  --agnex-navy: #0C1C29;
+  --agnex-navy-soft: #162C3D;
+  --agnex-navy-muted: #283E51;
+  --agnex-navy-subtle: #415A70;
+
+  --agnex-blue: #017AEF;
+  --agnex-blue-dark: #005EBA;
+  --agnex-blue-light: #3898F4;
+  --agnex-blue-pale: #EBF5FE;
+  --agnex-blue-glow: rgba(1, 122, 239, 0.15);
 
   /* Semantic Mappings */
-  --bg-main: var(--agnex-black);
-  --bg-surface: var(--agnex-base-raised);
-  --bg-card: var(--agnex-base-card);
-  --bg-card-hover: #191D26;
-  
-  --text-main: var(--agnex-white);
-  --text-muted: var(--agnex-steel);
-  --text-dim: var(--agnex-steel-dark);
-  --text-bright: #FFFFFF;
+  --bg-canvas: var(--agnex-canvas);
+  --bg-surface: var(--agnex-canvas-subtle);
+  --bg-surface-elevated: var(--agnex-white);
+  --bg-navy: var(--agnex-navy);
+  --bg-navy-soft: var(--agnex-navy-soft);
 
-  --border-color: var(--agnex-graphite);
-  --border-hover: var(--agnex-graphite-light);
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-accent: var(--agnex-accent-border);
+  --text-main: var(--agnex-navy);
+  --text-primary: var(--agnex-navy);
+  --text-secondary: var(--agnex-navy-muted);
+  --text-muted: #627D98;
+  --text-dim: #9FB3C8;
+  --text-inverse: #FFFFFF;
+  --text-accent: var(--agnex-blue);
+
+  /* Hairline Technical Borders */
+  --border-color: rgba(12, 28, 41, 0.08);
+  --border-subtle: rgba(12, 28, 41, 0.05);
+  --border-strong: rgba(12, 28, 41, 0.16);
+  --border-navy: var(--agnex-navy);
+  --border-blue: rgba(1, 122, 239, 0.35);
+  --border-blue-solid: var(--agnex-blue);
 
   /* --- 02. TYPOGRAPHY SYSTEM --- */
-  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
 
   /* Font Weights */
   --fw-light: 300;
@@ -62,32 +60,34 @@
   --fw-semibold: 600;
   --fw-bold: 700;
 
-  /* Fluid Font Scale */
-  --text-2xs: 0.6875rem;                       /* 11px - Micro badges / indices */
-  --text-xs: 0.75rem;                          /* 12px - Technical labels */
-  --text-sm: 0.875rem;                         /* 14px - UI labels / secondary copy */
-  --text-base: 1rem;                           /* 16px - Body default */
-  --text-md: 1.125rem;                         /* 18px - Lead paragraphs */
-  --text-lg: 1.25rem;                          /* 20px - Subheads */
-  --text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);   /* 24px */
-  --text-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem); /* 30px */
-  --text-3xl: clamp(1.75rem, 1.5rem + 1.25vw, 2.375rem); /* 38px */
-  --text-4xl: clamp(2.25rem, 1.75rem + 2.5vw, 3.25rem);  /* 52px */
-  --text-5xl: clamp(2.75rem, 2rem + 3.75vw, 4.25rem);    /* 68px */
-  --text-hero: clamp(3rem, 2.25rem + 4.5vw, 5.25rem);    /* 84px */
+  /* Fluid Architectural Scale */
+  --text-3xs: 0.625rem;                        /* 10px - Coordinate indicators */
+  --text-2xs: 0.6875rem;                       /* 11px - Micro technical labels */
+  --text-xs: 0.75rem;                          /* 12px - Technical labels / tags */
+  --text-sm: 0.875rem;                         /* 14px - Metadata / UI elements */
+  --text-base: 1rem;                           /* 16px - Body text */
+  --text-md: 1.125rem;                         /* 18px - Editorial lead paragraph */
+  --text-lg: 1.25rem;                          /* 20px - Subheadings */
+  --text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);      /* 24px */
+  --text-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem);   /* 30px */
+  --text-3xl: clamp(1.85rem, 1.55rem + 1.25vw, 2.5rem);   /* 40px */
+  --text-4xl: clamp(2.35rem, 1.85rem + 2.5vw, 3.5rem);    /* 56px */
+  --text-5xl: clamp(2.85rem, 2.15rem + 3.75vw, 4.5rem);   /* 72px */
+  --text-hero: clamp(3.25rem, 2.5rem + 5vw, 6.25rem);     /* 100px - Massive architectural hero */
 
-  /* Line Heights */
+  /* Leading & Tracking */
   --leading-none: 1;
-  --leading-tight: 1.1;
-  --leading-snug: 1.28;
+  --leading-tight: 1.08;
+  --leading-snug: 1.25;
   --leading-normal: 1.55;
   --leading-relaxed: 1.7;
 
-  /* Letter Spacing */
-  --tracking-tight: -0.035em;
+  --tracking-tighter: -0.04em;
+  --tracking-tight: -0.025em;
   --tracking-normal: -0.01em;
   --tracking-wide: 0.05em;
   --tracking-wider: 0.12em;
+  --tracking-widest: 0.2em;
 
   /* --- 03. SPACING SYSTEM (4px base) --- */
   --space-1: 0.25rem;   /* 4px */
@@ -103,41 +103,44 @@
   --space-20: 5rem;     /* 80px */
   --space-24: 6rem;     /* 96px */
   --space-32: 8rem;     /* 128px */
+  --space-40: 10rem;    /* 160px */
 
-  /* --- 04. CONTAINER & GRID SYSTEM --- */
-  --container-max: 1240px;
-  --container-wide: 1400px;
-  --container-narrow: 880px;
-  --container-padding: clamp(1.25rem, 4vw, 3rem);
+  /* Container Boundaries */
+  --container-max: 1380px;
+  --container-wide: 1560px;
+  --container-narrow: 920px;
+  --container-pad: clamp(1.25rem, 4vw, 3.5rem);
 
-  /* --- 05. BORDER RADIUS RULES (Restrained, architectural, non-excessive) --- */
+  /* --- 04. RADII & SHADOWS (RESTRAINED, ARCHITECTURAL) --- */
+  /* Zero excessive rounded cards, crisp geometric architecture */
   --radius-none: 0px;
   --radius-xs: 2px;
   --radius-sm: 4px;
   --radius-md: 6px;
-  --radius-lg: 8px;
-  --radius-pill: 9999px;
+  --radius-full: 9999px;
 
-  /* --- 06. ELEVATION & SHADOWS --- */
-  --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --shadow-elevated: 0 12px 32px rgba(0, 0, 0, 0.55);
+  /* Elevation (Subtle structural shadows, no heavy gaussian blur) */
+  --shadow-subtle: 0 1px 3px rgba(12, 28, 41, 0.05);
+  --shadow-float: 0 8px 24px -4px rgba(12, 28, 41, 0.08);
+  --shadow-technical: 0 0 0 1px rgba(12, 28, 41, 0.08);
 
-  /* --- 07. MOTION & TRANSITIONS --- */
-  --duration-fast: 150ms;
-  --duration-normal: 250ms;
-  --duration-slow: 400ms;
-
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-fast: all var(--duration-fast) var(--ease-out);
-  --transition-normal: all var(--duration-normal) var(--ease-out);
-  --transition-slow: all var(--duration-slow) var(--ease-out);
-
-  /* --- 08. Z-INDEX SYSTEM --- */
+  /* --- 05. Z-INDEX SYSTEM --- */
+  --z-negative: -1;
   --z-base: 1;
+  --z-canvas-grid: 2;
+  --z-signal-line: 5;
+  --z-content: 10;
   --z-nav: 100;
-  --z-drawer: 200;
-  --z-modal: 500;
-  --z-skip-link: 1000;
+  --z-cursor: 9999;
+
+  /* --- 06. TIMING & EASING --- */
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-normal: 350ms;
+  --duration-deliberate: 550ms;
+  --duration-cinematic: 800ms;
+
+  --ease-technical: cubic-bezier(0.2, 0, 0, 1);
+  --ease-in-out-sharp: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }

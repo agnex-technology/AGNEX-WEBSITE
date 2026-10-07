@@ -1,63 +1,63 @@
 import { Helmet } from 'react-helmet-async';
 import HeroSection from '../features/home/HeroSection';
-import BrandPhilosophySection from '../features/home/BrandPhilosophySection';
+import CapabilitiesExplorer from '../features/home/CapabilitiesExplorer';
 import AgnexMethodSection from '../features/home/AgnexMethodSection';
-import FourPillarsSystem from '../features/home/FourPillarsSystem';
-import OperationalDiagnosticsSection from '../features/home/OperationalDiagnosticsSection';
+import EngineeringPrinciplesSection from '../features/home/EngineeringPrinciplesSection';
 import SelectedWorkSection from '../features/home/SelectedWorkSection';
 import TechMatrixSection from '../features/home/TechMatrixSection';
-import ClosingCtaSection from '../features/home/ClosingCtaSection';
+import AboutIntroSection from '../features/home/AboutIntroSection';
+import ContactConvergenceSection from '../features/home/ContactConvergenceSection';
 
 export default function Home() {
   return (
     <>
       <Helmet>
-        <title>AGNEX Technology | Engineering What's Next.</title>
+        <title>AGNEX Technology — Engineering What's Next.</title>
         <meta
           name="description"
-          content="AGNEX is a technology and engineering company that transforms ideas and business challenges into practical digital solutions. Ideas, engineered into impact."
+          content="AGNEX Technology designs and engineers digital products, business systems and intelligent technology for real-world problems that don't fit inside a template."
         />
         <link rel="canonical" href="https://agnextechnology.com/" />
-        <meta property="og:title" content="AGNEX Technology | Engineering What's Next." />
+        <meta property="og:title" content="AGNEX Technology — Engineering What's Next." />
         <meta
           property="og:description"
-          content="We engineer digital products, custom operational platforms, intelligent systems, and scalable cloud infrastructure."
+          content="AGNEX designs and engineers digital products, business systems and intelligent technology for real-world problems."
         />
         <meta property="og:url" content="https://agnextechnology.com/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://agnextechnology.com/brand/agnex-og.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="AGNEX Technology | Engineering What's Next." />
+        <meta name="twitter:title" content="AGNEX Technology — Engineering What's Next." />
         <meta
-          property="twitter:description"
-          content="We engineer digital products, custom operational platforms, intelligent systems, and scalable cloud infrastructure."
+          name="twitter:description"
+          content="AGNEX designs and engineers digital products, business systems and intelligent technology for real-world problems."
         />
         <meta name="twitter:image" content="https://agnextechnology.com/brand/agnex-og.png" />
       </Helmet>
 
-      {/* 01 — HERO ENGINEERING COMPOSITION (Custom SVG Geometry & Authored GSAP Sequence) */}
+      {/* 01 — HERO SIGNATURE EXPERIENCE (Architectural Statement, SVG Coordinates, Blue Signal) */}
       <HeroSection />
 
-      {/* 02 — EDITORIAL BRAND PHILOSOPHY (Full-Width High-Signal Statement) */}
-      <BrandPhilosophySection />
+      {/* 02 — STORY & CAPABILITIES (Interactive Editorial Explorer, 4 Disciplines) */}
+      <CapabilitiesExplorer />
 
-      {/* 03 — SIGNATURE METHODOLOGY (Pinned GSAP ScrollTrigger & Evolving Diagrams) */}
+      {/* 03 — APPROACH (THINK. ENGINEER. SHIP. Progressive System Flow) */}
       <AgnexMethodSection />
 
-      {/* 04 — FOUR PILLARS INTERACTIVE SYSTEM (Single State-Driven Console) */}
-      <FourPillarsSystem />
+      {/* 04 — EDITORIAL MANIFESTO (TECHNOLOGY SHOULD DO SOMETHING) */}
+      <EngineeringPrinciplesSection />
 
-      {/* 05 — OPERATIONAL DIAGNOSTICS (Asymmetric Problem-Solving Ledger) */}
-      <OperationalDiagnosticsSection />
-
-      {/* 06 — VERIFIED REFERENCE ARCHITECTURES (Case Studies with Real Metrics) */}
+      {/* 05 — SELECTED WORK (Editorial Compositions of Verified System Architectures) */}
       <SelectedWorkSection />
 
-      {/* 07 — ARCHITECTURAL CAPABILITY MATRIX (Disciplined Technology Stack) */}
+      {/* 06 — TECHNOLOGY STACK (The Stack as an Evolving Engineering System) */}
       <TechMatrixSection />
 
-      {/* 08 — DIRECT ENGAGEMENT (Restrained Closing Action) */}
-      <ClosingCtaSection />
+      {/* 07 — ABOUT AGNEX (Built for the Next Problem) */}
+      <AboutIntroSection />
+
+      {/* 08 — CONTACT CLIMAX & CONVERGENCE (Blue Signal Convergence & Signature Resolve) */}
+      <ContactConvergenceSection />
     </>
   );
 }

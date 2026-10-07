@@ -13,7 +13,7 @@ export interface AgnexLogoProps {
 }
 
 export default function AgnexLogo({
-  variant = 'light',
+  variant = 'dark',
   size = 'lg',
   className = '',
   style = {},
@@ -23,14 +23,14 @@ export default function AgnexLogo({
   linkAriaLabel = "AGNEX Technology — Home"
 }: AgnexLogoProps) {
   // Determine asset source based on variant
-  // 'light' and 'default' use the white-lettering + blue-arrow logo for dark surfaces (#0B0D10)
-  // 'dark' uses the original dark-lettering logo for light surfaces
-  // 'mark' uses the standalone X + soaring blue arrow icon
-  let src = '/brand/agnex-logo-light.svg';
+  // 'dark' (default): dark lettering on light canvas (#FFFFFF)
+  // 'light': white lettering on navy / dark surfaces (#0C1C29)
+  // 'mark': standalone X + soaring blue arrow icon
+  let src = '/brand/agnex-logo.svg';
   let aspectRatio = 841 / 242; // ~3.475
 
-  if (variant === 'dark') {
-    src = '/brand/agnex-logo.svg';
+  if (variant === 'light') {
+    src = '/brand/agnex-logo-light.svg';
     aspectRatio = 841 / 242;
   } else if (variant === 'mark') {
     src = '/brand/agnex-mark.svg';

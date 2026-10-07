@@ -1,153 +1,181 @@
-const stackCategories = [
+import { SectionLabel } from '../../components/primitives';
+
+interface TechLayer {
+  category: string;
+  number: string;
+  items: string[];
+  rationale: string;
+}
+
+const techLayers: TechLayer[] = [
   {
-    pillar: '01 / DIGITAL',
-    name: 'Frontend & Digital Flagships',
-    tech: ['React 19', 'TypeScript', 'Vite', 'Next.js', 'Semantic HTML5', 'Vanilla CSS', 'Tailwind CSS', 'Framer Motion'],
-    standard: 'Sub-second LCP, 0ms CLS, 100% WCAG 2.1 AA accessible'
+    category: 'FRONTEND',
+    number: '01',
+    items: ['React 19', 'Next.js', 'TypeScript', 'Vite', 'Framer Motion'],
+    rationale: 'Sub-second compilation, strict client-side typing, and zero layout shift rendering.'
   },
   {
-    pillar: '02 / SYSTEMS',
-    name: 'Core Services & Operational Backends',
-    tech: ['Go (Golang)', 'Node.js / Express', 'Python (FastAPI)', 'RESTful Endpoints', 'GraphQL', 'BullMQ & Redis Streams'],
-    standard: 'Deterministic ACID transactions, distributed locking, idempotent APIs'
+    category: 'BACKEND',
+    number: '02',
+    items: ['Node.js', 'Express', 'REST & GraphQL APIs', 'PostgreSQL', 'Redis Streams'],
+    rationale: 'Deterministic transactions, idempotent API contracts, and high-throughput connection pooling.'
   },
   {
-    pillar: '03 / INTELLIGENCE',
-    name: 'Data Architecture & Practical AI',
-    tech: ['PostgreSQL / Lakebase', 'pgvector', 'Redis 7', 'Local Quantized LLMs', 'Schema Extraction Pipelines', 'Prometheus & Loki'],
-    standard: 'Strict data governance, zero public model leakage, audited privacy perimeters'
+    category: 'INTELLIGENCE',
+    number: '03',
+    items: ['Private AI Gateways', 'Workflow Automation', 'Predictive Analytics', 'pgvector'],
+    rationale: 'Strict data privacy boundaries, anti-hallucination verification, and deterministic pipelines.'
   },
   {
-    pillar: '04 / ENGINEERING',
-    name: 'Cloud Infrastructure & Reliability',
-    tech: ['Docker & Rootless Pods', 'Kubernetes (K8s)', 'Cloudflare Edge', 'AWS & Multi-Cloud', 'Automated CI/CD Pipelines', 'Zero-Trust Networks'],
-    standard: '99.99% availability SLA, automated regression testing, immutable infrastructure'
+    category: 'INFRASTRUCTURE',
+    number: '04',
+    items: ['Cloud Platforms', 'CI/CD Pipelines', 'Docker', 'Telemetry & Monitoring', 'Security Hardening'],
+    rationale: 'Immutable deployments, zero-trust perimeter enforcement, and proactive error telemetry.'
   }
 ];
 
 export default function TechMatrixSection() {
   return (
     <section
-      className="agnex-section tech-matrix-section"
+      id="technology"
+      className="agnex-section"
       style={{
-        backgroundColor: 'var(--agnex-base-raised)',
+        backgroundColor: 'var(--agnex-canvas-subtle)',
         borderBottom: '1px solid var(--border-color)',
+        paddingTop: 'clamp(5rem, 8vw, 8.5rem)',
+        paddingBottom: 'clamp(5rem, 8vw, 8.5rem)',
         position: 'relative'
       }}
     >
       <div className="agnex-container">
-        {/* Section Header */}
-        <div style={{ marginBottom: '3.5rem' }}>
-          <div className="agnex-badge" style={{ marginBottom: '1rem' }}>
-            Technical Capabilities Ledger
-          </div>
-          <div
+        {/* Header */}
+        <div style={{ marginBottom: '4rem' }}>
+          <SectionLabel number="05" label="Technology Stack" />
+          <h2
             style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'space-between',
-              alignItems: 'flex-end',
-              gap: '1.5rem'
+              fontSize: 'clamp(2.5rem, 4.5vw, 4.25rem)',
+              fontWeight: 700,
+              lineHeight: 1.05,
+              letterSpacing: 'var(--tracking-tighter)',
+              color: 'var(--agnex-navy)',
+              margin: 0,
+              textTransform: 'uppercase'
             }}
           >
-            <div>
-              <h2 style={{ fontSize: 'var(--text-4xl)', marginBottom: '0.75rem' }}>
-                Engineering Standards & Stack
-              </h2>
-              <p style={{ maxWidth: '640px', margin: 0 }}>
-                We choose tools based on operational longevity, strict typing, and runtime predictability — never hype.
-              </p>
-            </div>
-
-            <div
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: 'var(--text-xs)',
-                color: 'var(--agnex-steel)'
-              }}
-            >
-              COMPATIBILITY: ENTERPRISE-GRADE // STRICT_TYPE: ON
-            </div>
-          </div>
+            THE STACK AS AN<br />
+            EVOLVING SYSTEM.
+          </h2>
+          <p
+            style={{
+              fontSize: 'var(--text-md)',
+              color: 'var(--text-secondary)',
+              maxWidth: '640px',
+              marginTop: '1.5rem',
+              lineHeight: 1.6
+            }}
+          >
+            We do not maintain a decorative wall of logos. We choose tools with strict typing, deterministic runtimes, and proven enterprise reliability.
+          </p>
         </div>
 
-        {/* 4-Pillar Matrix Grid */}
+        {/* 4-Layer Architectural System Grid */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
             gap: '1.5rem'
           }}
         >
-          {stackCategories.map((cat, i) => (
+          {techLayers.map((layer) => (
             <div
-              key={i}
+              key={layer.category}
               style={{
-                backgroundColor: 'var(--agnex-black)',
-                border: '1px solid var(--border-color)',
-                borderRadius: 'var(--radius-sm)',
-                padding: '1.75rem',
+                backgroundColor: '#FFFFFF',
+                border: '1px solid var(--border-strong)',
+                borderRadius: 'var(--radius-xs)',
+                padding: '2rem',
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                transition: 'border-color 0.2s ease'
               }}
             >
               <div>
                 <div
                   style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: 'var(--text-xs)',
-                    color: 'var(--agnex-accent)',
-                    marginBottom: '0.5rem'
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    borderBottom: '1px solid var(--border-color)',
+                    paddingBottom: '0.85rem',
+                    marginBottom: '1.5rem'
                   }}
                 >
-                  {cat.pillar}
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: 'var(--text-xs)',
+                      fontWeight: 700,
+                      color: 'var(--agnex-blue)',
+                      letterSpacing: '0.08em'
+                    }}
+                  >
+                    LAYER [{layer.number}]
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: 'var(--text-xs)',
+                      fontWeight: 700,
+                      color: 'var(--agnex-navy)'
+                    }}
+                  >
+                    {layer.category}
+                  </span>
                 </div>
 
-                <h3
+                <ul
                   style={{
-                    fontSize: 'var(--text-lg)',
-                    fontWeight: 600,
-                    color: 'var(--agnex-white)',
-                    marginBottom: '1.25rem'
+                    listStyle: 'none',
+                    padding: 0,
+                    margin: 0,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.75rem',
+                    marginBottom: '2rem'
                   }}
                 >
-                  {cat.name}
-                </h3>
-
-                {/* Tech chips */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.75rem' }}>
-                  {cat.tech.map((item) => (
-                    <span
+                  {layer.items.map((item) => (
+                    <li
                       key={item}
                       style={{
                         fontFamily: 'var(--font-mono)',
-                        fontSize: '11px',
-                        color: 'var(--agnex-steel-light)',
-                        backgroundColor: 'var(--agnex-base-raised)',
-                        border: '1px solid var(--border-color)',
-                        padding: '0.25rem 0.5rem',
-                        borderRadius: 'var(--radius-xs)'
+                        fontSize: 'var(--text-sm)',
+                        color: 'var(--agnex-navy)',
+                        fontWeight: 600,
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
                       }}
                     >
-                      {item}
-                    </span>
+                      <span style={{ color: 'var(--agnex-blue)' }}>//</span>
+                      <span>{item}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
 
-              {/* Standard specification */}
               <div
                 style={{
                   borderTop: '1px solid var(--border-color)',
                   paddingTop: '1rem',
+                  fontFamily: 'var(--font-sans)',
                   fontSize: 'var(--text-xs)',
-                  color: 'var(--agnex-steel)',
+                  color: 'var(--text-secondary)',
                   lineHeight: 1.5
                 }}
               >
-                <span style={{ color: 'var(--agnex-white)', fontWeight: 600 }}>Standard: </span>
-                {cat.standard}
+                {layer.rationale}
               </div>
             </div>
           ))}

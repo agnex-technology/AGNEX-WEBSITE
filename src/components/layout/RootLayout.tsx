@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { CustomCursor } from '../motion/CustomCursor';
 
 export default function RootLayout() {
   const { pathname } = useLocation();
@@ -17,11 +18,14 @@ export default function RootLayout() {
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
-        backgroundColor: 'var(--agnex-base)',
-        color: 'var(--text-main)',
+        backgroundColor: 'var(--agnex-canvas)',
+        color: 'var(--text-primary)',
         position: 'relative'
       }}
     >
+      {/* Subtle Desktop-Only Custom Cursor */}
+      <CustomCursor />
+
       {/* Accessible Skip Link */}
       <a href="#main-content" className="skip-link">
         Skip to main content
@@ -39,7 +43,8 @@ export default function RootLayout() {
           paddingTop: '76px', // Header offset
           display: 'flex',
           flexDirection: 'column',
-          outline: 'none'
+          outline: 'none',
+          backgroundColor: 'var(--agnex-canvas)'
         }}
       >
         <Outlet />
