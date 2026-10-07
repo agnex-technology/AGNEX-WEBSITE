@@ -65,11 +65,13 @@ export default function ClosingCtaSection() {
                   fontWeight: 700,
                   color: 'var(--agnex-white)',
                   marginBottom: '1rem',
-                  lineHeight: 1.1,
+                  lineHeight: 1.15,
                   letterSpacing: 'var(--tracking-tight)'
                 }}
               >
-                Ready to engineer what's next?
+                Have a complex problem?
+                <br />
+                <span style={{ color: 'var(--agnex-accent)' }}>Let's engineer what's next.</span>
               </h2>
 
               <p
@@ -77,11 +79,11 @@ export default function ClosingCtaSection() {
                   fontSize: 'var(--text-lg)',
                   color: 'var(--text-muted)',
                   lineHeight: 1.6,
-                  maxWidth: '640px',
+                  maxWidth: '680px',
                   marginBottom: '2.5rem'
                 }}
               >
-                Speak directly with senior software architects and product engineers. No aggressive sales pitches — just clear technical discovery and practical engineering roadmaps.
+                Whether you're building a digital product, modernizing an operational system, integrating AI, or solving a complex engineering challenge, AGNEX can help turn the problem into a system.
               </p>
 
               <div
@@ -103,7 +105,7 @@ export default function ClosingCtaSection() {
                   rel="noopener noreferrer"
                   className="btn btn-secondary"
                   id="cta-whatsapp"
-                  aria-label="Chat with AGNEX Technology on WhatsApp"
+                  aria-label="Talk to AGNEX on WhatsApp"
                   onClick={() => trackEvent('whatsapp_click', { location: 'home_closing_cta' })}
                   style={{
                     display: 'inline-flex',
@@ -113,7 +115,7 @@ export default function ClosingCtaSection() {
                   }}
                 >
                   <WhatsAppIcon size={16} style={{ color: 'var(--agnex-accent)' }} />
-                  <span>Chat on WhatsApp</span>
+                  <span>Talk to AGNEX on WhatsApp</span>
                   <span className="btn-arrow" style={{ color: 'var(--agnex-accent)' }}>→</span>
                 </a>
 

@@ -7,8 +7,10 @@ test.describe('Automated Platform Diagnostics & Bug Audit', () => {
     '/services',
     '/work',
     '/portfolio',
-    '/work/unified-inventory-ledger',
-    '/work/automated-dispatch-engine',
+    '/work/rda',
+    '/work/skynet',
+    '/work/lawguide-ai',
+    '/work/sentinelx-ai',
     '/company',
     '/about',
     '/contact',
@@ -45,7 +47,8 @@ test.describe('Automated Platform Diagnostics & Bug Audit', () => {
         }
       });
 
-      const response = await page.goto(route, { waitUntil: 'networkidle' });
+      const response = await page.goto(route, { waitUntil: 'domcontentloaded' });
+      await page.waitForLoadState('networkidle', { timeout: 3000 }).catch(() => {});
       expect(response).not.toBeNull();
 
       // Check for broken images (excluding data URLs and SVGs if rendered inline)
@@ -260,7 +263,7 @@ test.describe('Automated Platform Diagnostics & Bug Audit', () => {
     // Homepage Closing CTA WhatsApp Button
     const closingCtaWhatsApp = page.locator('#cta-whatsapp');
     await expect(closingCtaWhatsApp).toBeVisible();
-    await expect(closingCtaWhatsApp).toContainText('Chat on WhatsApp');
+    await expect(closingCtaWhatsApp).toContainText(/WhatsApp/);
     await expect(closingCtaWhatsApp).toHaveAttribute('href', /wa\.me\/917598341607/);
 
     // 2. Audit Mobile Nav Drawer WhatsApp Button

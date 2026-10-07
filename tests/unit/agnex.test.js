@@ -34,32 +34,59 @@ describe('AGNEX Design System Tokens', () => {
 });
 
 describe('AGNEX Case Studies Data Store', () => {
-  it('should have case studies defined with valid fields', () => {
-    expect(projectsData.length).toBeGreaterThanOrEqual(4);
+  it('should have all 4 core AGNEX engineering works defined with valid fields', () => {
+    expect(projectsData.length).toBe(4);
+    const expectedIds = ['rda', 'skynet', 'lawguide-ai', 'sentinelx-ai'];
+    expect(projectsData.map((p) => p.id)).toEqual(expectedIds);
+
     projectsData.forEach((project) => {
       expect(project.id).toBeDefined();
+      expect(project.name).toBeDefined();
       expect(project.title).toBeDefined();
+      expect(project.category).toBeDefined();
       expect(project.challenge).toBeDefined();
-      expect(project.solution).toBeDefined();
+      expect(project.approach).toBeDefined();
+      expect(project.whatWeBuilt.length).toBeGreaterThan(0);
+      expect(project.architecture).toBeDefined();
+      expect(project.engineeringDecisions.length).toBeGreaterThan(0);
       expect(project.technologies.length).toBeGreaterThan(0);
-      expect(project.results.length).toBeGreaterThan(0);
-      expect(project.relatedCapabilities.length).toBeGreaterThan(0);
+      expect(project.systemFlow).toBeDefined();
+      expect(project.securityReliability.length).toBeGreaterThan(0);
+      expect(project.evolution).toBeDefined();
     });
   });
 
-  it('should retrieve project by ID correctly', () => {
-    const p = getProjectById('unified-inventory-ledger');
-    expect(p).toBeDefined();
-    expect(p?.industry).toContain('Logistics');
+  it('should retrieve project by ID correctly across all 4 works', () => {
+    const rda = getProjectById('rda');
+    expect(rda).toBeDefined();
+    expect(rda?.domain).toBe('Logistics');
+    expect(rda?.name).toBe('RDA');
+
+    const skynet = getProjectById('skynet');
+    expect(skynet).toBeDefined();
+    expect(skynet?.domain).toBe('Cybersecurity');
+    expect(skynet?.name).toBe('SKYNET v5.0');
+
+    const lawGuide = getProjectById('lawguide-ai');
+    expect(lawGuide).toBeDefined();
+    expect(lawGuide?.domain).toBe('Legal AI');
+    expect(lawGuide?.disclaimer).toBeDefined();
+
+    const sentinelX = getProjectById('sentinelx-ai');
+    expect(sentinelX).toBeDefined();
+    expect(sentinelX?.domain).toBe('Cybersecurity');
+    expect(sentinelX?.statusBadge).toBe('v0.1.0 Foundation');
   });
 
-  it('should only reference the 4 core AGNEX pillars', () => {
-    const validPillars = ['DIGITAL', 'SYSTEMS', 'INTELLIGENCE', 'ENGINEERING'];
-    projectsData.forEach((project) => {
-      project.relatedCapabilities.forEach((cap) => {
-        expect(validPillars).toContain(cap);
-      });
-    });
+  it('should verify defensive and regulatory boundaries', () => {
+    const skynet = getProjectById('skynet');
+    expect(skynet?.securityBoundary).toContain('Automation where appropriate. Human control where it matters.');
+
+    const lawGuide = getProjectById('lawguide-ai');
+    expect(lawGuide?.disclaimer).toContain('informational assistance, not legal advice');
+
+    const sentinelX = getProjectById('sentinelx-ai');
+    expect(sentinelX?.securityBoundary).toContain('DEFENSIVE BOUNDARY');
   });
 });
 
