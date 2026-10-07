@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { PhoneIcon } from '../../components/brand/SocialIcons';
+import { PhoneIcon, WhatsAppIcon } from '../../components/brand/SocialIcons';
 import { siteConfig } from '../../config/site';
+import { trackEvent } from '../../utils/analytics';
 
 export default function ClosingCtaSection() {
   return (
@@ -91,12 +92,32 @@ export default function ClosingCtaSection() {
                   alignItems: 'center'
                 }}
               >
-                <Link to="/contact" className="btn btn-primary" id="cta-start-project">
+                <Link to="/contact" className="btn btn-primary" id="cta-start-project" style={{ minHeight: '44px' }}>
                   <span>Start a Project</span>
                   <span className="btn-arrow" style={{ color: 'var(--agnex-accent)' }}>→</span>
                 </Link>
 
-                <Link to="/expertise" className="btn btn-secondary" id="cta-explore-capabilities">
+                <a
+                  href={siteConfig.links.whatsappWithText}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary"
+                  id="cta-whatsapp"
+                  aria-label="Chat with AGNEX Technology on WhatsApp"
+                  onClick={() => trackEvent('whatsapp_click', { location: 'home_closing_cta' })}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    minHeight: '44px'
+                  }}
+                >
+                  <WhatsAppIcon size={16} style={{ color: 'var(--agnex-accent)' }} />
+                  <span>Chat on WhatsApp</span>
+                  <span className="btn-arrow" style={{ color: 'var(--agnex-accent)' }}>→</span>
+                </a>
+
+                <Link to="/expertise" className="btn btn-secondary" id="cta-explore-capabilities" style={{ minHeight: '44px' }}>
                   <span>Explore Capabilities</span>
                 </Link>
               </div>
@@ -135,6 +156,32 @@ export default function ClosingCtaSection() {
                   >
                     <PhoneIcon size={16} style={{ color: 'var(--agnex-accent)' }} />
                     <span>{siteConfig.phone}</span>
+                  </a>
+                </div>
+
+                <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '1rem' }}>
+                  <div style={{ fontSize: 'var(--text-2xs)', fontFamily: 'var(--font-mono)', color: 'var(--agnex-steel)', marginBottom: '0.35rem', textTransform: 'uppercase' }}>
+                    OFFICIAL WHATSAPP
+                  </div>
+                  <a
+                    href={siteConfig.links.whatsappWithText}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackEvent('whatsapp_click', { location: 'home_closing_cta_desk' })}
+                    style={{
+                      fontSize: 'var(--text-base)',
+                      color: 'var(--agnex-white)',
+                      textDecoration: 'none',
+                      fontFamily: 'var(--font-mono)',
+                      fontWeight: 600,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      minHeight: '44px'
+                    }}
+                  >
+                    <WhatsAppIcon size={16} style={{ color: 'var(--agnex-accent)' }} />
+                    <span>{siteConfig.whatsapp}</span>
                   </a>
                 </div>
 

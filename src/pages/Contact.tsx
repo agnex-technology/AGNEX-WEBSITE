@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import ScrollFade from '../components/motion/ScrollFade';
-import { LinkedInIcon, InstagramIcon, PhoneIcon } from '../components/brand/SocialIcons';
+import { LinkedInIcon, InstagramIcon, PhoneIcon, WhatsAppIcon } from '../components/brand/SocialIcons';
 import { siteConfig } from '../config/site';
+import { trackEvent } from '../utils/analytics';
 
 interface FormData {
   needHelpWith: string[];
@@ -304,6 +305,59 @@ export default function Contact() {
                 </a>
               </div>
 
+              {/* Official WhatsApp Channel */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 'var(--text-xs)',
+                    color: 'var(--agnex-steel)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.06em'
+                  }}
+                >
+                  WhatsApp:
+                </span>
+                <a
+                  href={siteConfig.links.whatsappWithText}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-phone-pill contact-whatsapp-pill"
+                  aria-label={`Chat with AGNEX Technology on WhatsApp at ${siteConfig.whatsapp}`}
+                  onClick={() => trackEvent('whatsapp_click', { location: 'contact_hero' })}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 'var(--text-sm)',
+                    fontWeight: 600,
+                    color: 'var(--agnex-white)',
+                    textDecoration: 'none',
+                    padding: '0.5rem 0.875rem',
+                    backgroundColor: 'var(--agnex-base-raised)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: 'var(--radius-xs)',
+                    minHeight: '44px',
+                    transition: 'border-color 200ms ease, color 200ms ease, background-color 200ms ease'
+                  }}
+                >
+                  <WhatsAppIcon size={15} style={{ color: 'var(--agnex-accent)' }} />
+                  <span>{siteConfig.whatsapp}</span>
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: 'var(--text-xs)',
+                      fontWeight: 600,
+                      color: 'var(--agnex-accent)',
+                      marginLeft: '0.25rem'
+                    }}
+                  >
+                    Chat on WhatsApp →
+                  </span>
+                </a>
+              </div>
+
               {/* Connect with AGNEX */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
                 <span
@@ -424,7 +478,25 @@ export default function Contact() {
               >
                 DISCOVERY_REF: {referenceId || `AGX-${Math.floor(100000 + Math.random() * 900000)}`} // STATUS: QUEUED_FOR_ARCHITECT_REVIEW
               </div>
-              <div>
+              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <a
+                  href={siteConfig.links.whatsappWithText}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary"
+                  aria-label="Continue on WhatsApp with AGNEX Technology"
+                  onClick={() => trackEvent('whatsapp_click', { location: 'contact_success' })}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    minHeight: '44px',
+                    padding: '0.875rem 1.75rem'
+                  }}
+                >
+                  <WhatsAppIcon size={16} />
+                  <span>Continue on WhatsApp →</span>
+                </a>
                 <button
                   type="button"
                   onClick={() => {
@@ -445,6 +517,7 @@ export default function Contact() {
                     });
                   }}
                   className="btn btn-secondary"
+                  style={{ minHeight: '44px' }}
                 >
                   Submit Another Inquiry
                 </button>
@@ -466,7 +539,7 @@ export default function Contact() {
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  marginBottom: '2.5rem',
+                  marginBottom: '2rem',
                   borderBottom: '1px solid var(--border-color)',
                   paddingBottom: '1.25rem'
                 }}
@@ -509,6 +582,54 @@ export default function Contact() {
                     }}
                   />
                 </div>
+              </div>
+
+              {/* Fast-Track Official WhatsApp Callout */}
+              <div
+                style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: '1rem',
+                  padding: '1rem 1.25rem',
+                  backgroundColor: 'var(--agnex-base-raised)',
+                  border: '1px solid var(--border-color)',
+                  borderRadius: 'var(--radius-xs)',
+                  marginBottom: '2rem'
+                }}
+              >
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.2rem' }}>
+                    <WhatsAppIcon size={16} style={{ color: 'var(--agnex-accent)' }} />
+                    <span style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-white)' }}>
+                      Start a Conversation on WhatsApp
+                    </span>
+                  </div>
+                  <p style={{ margin: 0, fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>
+                    Tell us what you're building. We'll take it from there.
+                  </p>
+                </div>
+                <a
+                  href={siteConfig.links.whatsappWithText}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary contact-whatsapp-direct"
+                  aria-label="Continue on WhatsApp with AGNEX Technology"
+                  onClick={() => trackEvent('whatsapp_click', { location: 'contact_form_helper' })}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    fontSize: 'var(--text-xs)',
+                    padding: '0.5rem 1rem',
+                    minHeight: '44px'
+                  }}
+                >
+                  <WhatsAppIcon size={14} style={{ color: 'var(--agnex-accent)' }} />
+                  <span>Continue on WhatsApp</span>
+                  <span style={{ color: 'var(--agnex-accent)', fontWeight: 700 }}>→</span>
+                </a>
               </div>
 
               {errorMessage && (
@@ -876,7 +997,8 @@ export default function Contact() {
       </section>
 
       <style>{`
-        .contact-phone-pill:hover {
+        .contact-phone-pill:hover,
+        .contact-whatsapp-pill:hover {
           border-color: var(--agnex-accent) !important;
           background-color: var(--agnex-black) !important;
           color: var(--agnex-white) !important;
@@ -884,6 +1006,10 @@ export default function Contact() {
         .contact-social-pill:hover {
           color: var(--agnex-white) !important;
           transform: translateY(-1px);
+        }
+        .contact-whatsapp-direct:hover {
+          border-color: var(--agnex-accent) !important;
+          color: var(--agnex-white) !important;
         }
       `}</style>
     </>

@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import AgnexLogo from '../brand/AgnexLogo';
+import { WhatsAppIcon } from '../brand/SocialIcons';
+import { siteConfig } from '../../config/site';
+import { trackEvent } from '../../utils/analytics';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -270,17 +273,49 @@ export default function Navbar() {
             })}
           </ul>
 
-          <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
             <Link
               to="/contact"
               onClick={() => setMobileMenuOpen(false)}
               className="btn btn-primary"
-              style={{ width: '100%', padding: '1rem' }}
+              style={{ width: '100%', padding: '0.875rem' }}
             >
               <span>Start a Project</span>
               <span style={{ color: 'var(--agnex-accent)', fontWeight: 700 }}>→</span>
             </Link>
-            <div style={{ textAlign: 'center', fontSize: 'var(--text-xs)', color: 'var(--agnex-steel)' }}>
+
+            {/* Compact Official WhatsApp Mobile Action */}
+            <a
+              href={siteConfig.links.whatsappWithText}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                trackEvent('whatsapp_click', { location: 'mobile_nav' });
+                setMobileMenuOpen(false);
+              }}
+              aria-label="Chat with AGNEX Technology on WhatsApp"
+              className="btn btn-secondary mobile-whatsapp-cta"
+              style={{
+                width: '100%',
+                minHeight: '44px',
+                padding: '0.75rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.5rem',
+                fontSize: 'var(--text-sm)',
+                fontWeight: 500,
+                color: 'var(--agnex-white)',
+                borderColor: 'var(--border-color)',
+                backgroundColor: 'rgba(255, 255, 255, 0.03)'
+              }}
+            >
+              <WhatsAppIcon size={16} style={{ color: 'var(--agnex-accent)' }} />
+              <span>Chat on WhatsApp</span>
+              <span style={{ color: 'var(--agnex-steel)' }}>→</span>
+            </a>
+
+            <div style={{ textAlign: 'center', fontSize: 'var(--text-xs)', color: 'var(--agnex-steel)', marginTop: '0.25rem' }}>
               Ideas, engineered into impact.
             </div>
           </div>

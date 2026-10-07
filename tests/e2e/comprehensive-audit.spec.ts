@@ -246,4 +246,63 @@ test.describe('Automated Platform Diagnostics & Bug Audit', () => {
 
     expect(orgSchema).toBeDefined();
   });
+
+  test('Official WhatsApp Integration Directive Audit', async ({ page }) => {
+    // 1. Audit Home Page WhatsApp Placements
+    await page.goto('/', { waitUntil: 'networkidle' });
+
+    // Footer WhatsApp links
+    const footerWhatsAppLinks = page.locator('footer a[href*="wa.me/917598341607"]');
+    expect(await footerWhatsAppLinks.count()).toBeGreaterThanOrEqual(2);
+    await expect(footerWhatsAppLinks.first()).toBeVisible();
+    await expect(page.locator('footer:has-text("Chat on WhatsApp →")')).toBeVisible();
+
+    // Homepage Closing CTA WhatsApp Button
+    const closingCtaWhatsApp = page.locator('#cta-whatsapp');
+    await expect(closingCtaWhatsApp).toBeVisible();
+    await expect(closingCtaWhatsApp).toContainText('Chat on WhatsApp');
+    await expect(closingCtaWhatsApp).toHaveAttribute('href', /wa\.me\/917598341607/);
+
+    // 2. Audit Mobile Nav Drawer WhatsApp Button
+    await page.setViewportSize({ width: 375, height: 812 });
+    const mobileToggle = page.locator('button.mobile-toggle');
+    await mobileToggle.click();
+
+    const mobileWhatsAppBtn = page.locator('.mobile-whatsapp-cta');
+    await expect(mobileWhatsAppBtn).toBeVisible();
+    await expect(mobileWhatsAppBtn).toContainText('Chat on WhatsApp');
+    const mobileWhatsAppBox = await mobileWhatsAppBtn.boundingBox();
+    expect(mobileWhatsAppBox).not.toBeNull();
+    if (mobileWhatsAppBox) {
+      expect(mobileWhatsAppBox.height).toBeGreaterThanOrEqual(44);
+    }
+    await mobileToggle.click();
+
+    // 3. Audit Contact Page WhatsApp Placements
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('/contact', { waitUntil: 'networkidle' });
+
+    // Hero strip WhatsApp
+    const heroWhatsApp = page.locator('.contact-whatsapp-pill');
+    await expect(heroWhatsApp).toBeVisible();
+    await expect(heroWhatsApp).toContainText('+91 75983 41607');
+    await expect(heroWhatsApp).toContainText('Chat on WhatsApp →');
+    await expect(heroWhatsApp).toHaveAttribute('href', /wa\.me\/917598341607/);
+
+    // Form callout WhatsApp
+    await expect(page.locator('text=Start a Conversation on WhatsApp').first()).toBeVisible();
+    await expect(page.locator("text=Tell us what you're building. We'll take it from there.").first()).toBeVisible();
+    const continueWhatsAppBtn = page.locator('.contact-whatsapp-direct');
+    await expect(continueWhatsAppBtn).toBeVisible();
+    await expect(continueWhatsAppBtn).toContainText('Continue on WhatsApp');
+    await expect(continueWhatsAppBtn).toHaveAttribute('href', /wa\.me\/917598341607/);
+
+    // 4. Mobile touch targets on Contact page
+    await page.setViewportSize({ width: 375, height: 812 });
+    const heroWhatsAppBox = await heroWhatsApp.boundingBox();
+    expect(heroWhatsAppBox).not.toBeNull();
+    if (heroWhatsAppBox) {
+      expect(heroWhatsAppBox.height).toBeGreaterThanOrEqual(44);
+    }
+  });
 });

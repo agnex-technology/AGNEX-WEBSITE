@@ -19,6 +19,10 @@ export const siteConfig = {
   ogImage: `${SITE_URL}/brand/agnex-og.png`,
   phone: '+91 75983 41607',
   phoneTel: 'tel:+917598341607',
+  whatsapp: '+91 75983 41607',
+  whatsappLink: 'https://wa.me/917598341607',
+  whatsappMessageLink:
+    'https://wa.me/917598341607?text=Hello%20AGNEX%20Technology%2C%20I%27d%20like%20to%20discuss%20a%20project.',
   social: {
     linkedin: 'https://www.linkedin.com/company/agnex-technology',
     instagram: 'https://www.instagram.com/agnextechnology'
@@ -27,6 +31,9 @@ export const siteConfig = {
     linkedin: 'https://www.linkedin.com/company/agnex-technology',
     instagram: 'https://www.instagram.com/agnextechnology',
     phone: 'tel:+917598341607',
+    whatsapp: 'https://wa.me/917598341607',
+    whatsappWithText:
+      'https://wa.me/917598341607?text=Hello%20AGNEX%20Technology%2C%20I%27d%20like%20to%20discuss%20a%20project.',
     consultation: `${SITE_URL}/contact`,
     capabilities: `${SITE_URL}/expertise`,
     work: `${SITE_URL}/work`

@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import AgnexLogo from '../brand/AgnexLogo';
-import { LinkedInIcon, InstagramIcon, PhoneIcon } from '../brand/SocialIcons';
+import { LinkedInIcon, InstagramIcon, PhoneIcon, WhatsAppIcon } from '../brand/SocialIcons';
 import { siteConfig } from '../../config/site';
+import { trackEvent } from '../../utils/analytics';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -241,6 +242,30 @@ export default function Footer() {
                   <span>Instagram</span>
                 </a>
               </li>
+              <li>
+                <a
+                  href={siteConfig.links.whatsappWithText}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('whatsapp_click', { location: 'footer_connect' })}
+                  className="footer-social-link"
+                  aria-label="Chat with AGNEX Technology on WhatsApp"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.625rem',
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: 'var(--text-sm)',
+                    color: 'var(--text-muted)',
+                    textDecoration: 'none',
+                    minHeight: '44px',
+                    transition: 'color 200ms ease, transform 200ms ease'
+                  }}
+                >
+                  <WhatsAppIcon size={16} />
+                  <span>WhatsApp</span>
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -286,6 +311,35 @@ export default function Footer() {
                 <span>{siteConfig.phone}</span>
               </a>
 
+              <a
+                href={siteConfig.links.whatsappWithText}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent('whatsapp_click', { location: 'footer_contact' })}
+                className="footer-phone-link footer-whatsapp-cta"
+                aria-label="Chat with AGNEX Technology on WhatsApp"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.625rem',
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: 'var(--text-sm)',
+                  fontWeight: 500,
+                  color: 'var(--agnex-white)',
+                  textDecoration: 'none',
+                  minHeight: '44px',
+                  padding: '0.4rem 0.75rem',
+                  backgroundColor: 'var(--agnex-base)',
+                  border: '1px solid var(--border-color)',
+                  borderRadius: 'var(--radius-xs)',
+                  width: 'fit-content',
+                  transition: 'border-color 200ms ease, color 200ms ease, background-color 200ms ease'
+                }}
+              >
+                <WhatsAppIcon size={16} style={{ color: 'var(--agnex-accent)' }} />
+                <span>Chat on WhatsApp →</span>
+              </a>
+
               <p
                 style={{
                   fontSize: 'var(--text-xs)',
@@ -294,7 +348,7 @@ export default function Footer() {
                   margin: 0
                 }}
               >
-                Direct engineering desk. Mobile dialer enabled.
+                Direct engineering desk & WhatsApp messaging.
               </p>
             </div>
           </div>
