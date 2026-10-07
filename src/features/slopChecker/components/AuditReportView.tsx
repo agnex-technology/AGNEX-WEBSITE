@@ -298,6 +298,7 @@ export const AuditReportView: React.FC<AuditReportViewProps> = ({ report, onRese
           <ScoreCard scoreData={contentQuality} onClick={() => setActiveScoreModal(contentQuality)} />
           <ScoreCard scoreData={originality} onClick={() => setActiveScoreModal(originality)} />
           <ScoreCard scoreData={seo} onClick={() => setActiveScoreModal(seo)} />
+          <ScoreCard scoreData={readability} onClick={() => setActiveScoreModal(readability)} />
           <ScoreCard scoreData={technicalHealth} onClick={() => setActiveScoreModal(technicalHealth)} />
         </div>
       </div>

@@ -57,7 +57,7 @@ export function validateAndSanitizeUrl(rawInput: string): ValidationResult {
   const ipv4Regex = /^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/;
   const ipMatch = hostname.match(ipv4Regex);
   if (ipMatch) {
-    const [_, o1, o2, o3, o4] = ipMatch.map(Number);
+    const [, o1, o2, o3, o4] = ipMatch.map(Number);
     if (o1 > 255 || o2 > 255 || o3 > 255 || o4 > 255) {
       return { isValid: false, error: 'Invalid IPv4 address.' };
     }

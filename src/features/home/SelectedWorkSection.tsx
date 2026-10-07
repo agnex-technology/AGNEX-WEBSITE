@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { projectsData } from '../work/projectsData';
 import ComparisonMatrix from '../work/components/ComparisonMatrix';

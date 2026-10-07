@@ -124,7 +124,7 @@ export interface AnalyzedContentSignals {
  * Analyzes clean extracted text from a web page for AI-slop indicators,
  * original voice markers, lexical diversity, and information density.
  */
-export function analyzePageText(plainText: string, title: string = ''): AnalyzedContentSignals {
+export function analyzePageText(plainText: string, _title: string = ''): AnalyzedContentSignals {
   const clean = plainText.replace(/\s+/g, ' ').trim();
   const words = clean.toLowerCase().match(/\b[a-z0-9_-]+\b/g) || [];
   const wordCount = words.length;

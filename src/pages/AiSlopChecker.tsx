@@ -8,6 +8,7 @@ import { getDemoAuditReport } from '../features/slopChecker/demoData';
 import { FullAuditReport } from '../features/slopChecker/types';
 import { AuditReportView } from '../features/slopChecker/components/AuditReportView';
 import { computeTransparentScores } from '../features/slopChecker/scoringEngine';
+import { detectDuplicateClusters } from '../features/slopChecker/duplicateDetector';
 import { Helmet } from 'react-helmet-async';
 
 export default function AiSlopChecker() {
