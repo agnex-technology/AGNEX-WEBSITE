@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import router from './router';
 import ErrorBoundary from './components/layout/ErrorBoundary';
+import { LocalizationProvider } from './localization/LocalizationContext';
 import { initAnalytics } from './utils/analytics';
 
 const App: React.FC = () => {
@@ -11,7 +12,9 @@ const App: React.FC = () => {
 
   return (
     <ErrorBoundary>
-      <RouterProvider router={router} />
+      <LocalizationProvider>
+        <RouterProvider router={router} />
+      </LocalizationProvider>
     </ErrorBoundary>
   );
 };

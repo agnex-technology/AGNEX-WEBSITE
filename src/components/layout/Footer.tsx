@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import AgnexLogo from '../brand/AgnexLogo';
 import { LinkedInIcon, InstagramIcon, WhatsAppIcon } from '../brand/SocialIcons';
 import { siteConfig } from '../../config/site';
+import { CountrySwitcher } from '../localization/CountrySwitcher';
 
 export default function Footer() {
   const currentYear = 2026;
@@ -278,17 +279,27 @@ export default function Footer() {
             flexWrap: 'wrap',
             justifyContent: 'space-between',
             alignItems: 'center',
-            gap: '1rem'
+            gap: '1.25rem'
           }}
         >
           <div
             style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 'var(--text-2xs)',
-              color: 'var(--text-muted)'
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1.5rem',
+              flexWrap: 'wrap'
             }}
           >
-            © {currentYear} AGNEX Technology. All rights reserved.
+            <span
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: 'var(--text-2xs)',
+                color: 'var(--text-muted)'
+              }}
+            >
+              © {currentYear} AGNEX Technology. All rights reserved.
+            </span>
+            <CountrySwitcher variant="footer" />
           </div>
           <div
             style={{

@@ -83,7 +83,7 @@ export default function BrandPhilosophySection() {
                 margin: 0
               }}
             >
-              We blueprint, build, and evolve digital foundations that solve concrete operational bottlenecks. When systems connect seamlessly, teams reclaim cognitive focus, latency collapses, and businesses scale without fragility.
+              We blueprint, build, and evolve digital foundations that solve concrete operational bottlenecks. When systems connect reliably without synchronization failures, teams reclaim cognitive focus, latency collapses, and businesses scale without fragility.
             </p>
           </div>
         </div>

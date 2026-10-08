@@ -148,7 +148,7 @@ export default function About() {
                 margin: 0
               }}
             >
-              AGNEX is a technology and engineering company that transforms ideas and business challenges into practical digital solutions. We exist to build software that moves companies forward.
+              Headquartered in Tamil Nadu, India, AGNEX Technology is an engineering firm that builds custom software systems, bespoke ERPs, and deterministic AI automation for Indian businesses and international scaleups. We exist to build software that solves real operational bottlenecks.
             </p>
           </ScrollFade>
         </Container>

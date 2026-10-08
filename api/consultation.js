@@ -36,6 +36,7 @@ export default async function handler(req, res) {
       name,
       workEmail,
       company,
+      country,
       phone,
       website,
       needHelpWith,
@@ -96,6 +97,7 @@ export default async function handler(req, res) {
       name: name.trim(),
       workEmail: workEmail.trim().toLowerCase(),
       company: company.trim(),
+      country: country ? String(country).trim() : 'India',
       phone: phone ? String(phone).trim() : null,
       website: website ? String(website).trim() : null,
       needHelpWith: Array.isArray(needHelpWith) ? needHelpWith : [needHelpWith].filter(Boolean),
@@ -143,6 +145,7 @@ export default async function handler(req, res) {
                 <tr><td style="padding: 8px 0; color: #64748B; width: 140px;">Name:</td><td style="padding: 8px 0; color: #0C1C29; font-weight: 600;">${leadPayload.name}</td></tr>
                 <tr><td style="padding: 8px 0; color: #64748B;">Work Email:</td><td style="padding: 8px 0; color: #017AEF; font-weight: 600;"><a href="mailto:${leadPayload.workEmail}">${leadPayload.workEmail}</a></td></tr>
                 <tr><td style="padding: 8px 0; color: #64748B;">Company:</td><td style="padding: 8px 0; color: #0C1C29; font-weight: 600;">${leadPayload.company}</td></tr>
+                <tr><td style="padding: 8px 0; color: #64748B;">Country / Region:</td><td style="padding: 8px 0; color: #0C1C29; font-weight: 600;">${leadPayload.country}</td></tr>
                 <tr><td style="padding: 8px 0; color: #64748B;">Phone:</td><td style="padding: 8px 0; color: #0C1C29;">${leadPayload.phone || 'Not provided'}</td></tr>
                 <tr><td style="padding: 8px 0; color: #64748B;">Timeline:</td><td style="padding: 8px 0; color: #0C1C29;">${leadPayload.timeline}</td></tr>
                 <tr><td style="padding: 8px 0; color: #64748B;">Budget:</td><td style="padding: 8px 0; color: #0C1C29;">${leadPayload.budgetRange || 'Not specified'}</td></tr>

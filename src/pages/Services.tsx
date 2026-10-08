@@ -580,7 +580,7 @@ export default function Services() {
               </p>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: 'var(--text-xs)', color: 'var(--agnex-navy)', fontWeight: 500 }}>
                 <li>✓ Senior engineers only</li>
-                <li>✓ Seamless sprint & workflow integration</li>
+                <li>✓ Direct sprint integration into your Jira/GitHub workflows</li>
                 <li>✓ Flexible scale-up capacity</li>
               </ul>
             </div>

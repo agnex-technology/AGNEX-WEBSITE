@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import AgnexLogo from '../brand/AgnexLogo';
+import { CountrySwitcher } from '../localization/CountrySwitcher';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -153,6 +154,9 @@ export default function Navbar() {
             })}
           </ul>
 
+          {/* Regional Country & Currency Switcher */}
+          <CountrySwitcher variant="navbar" />
+
           {/* Primary Action Button */}
           <Link
             to="/contact"
@@ -277,7 +281,11 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <div style={{ marginTop: '2rem' }}>
+          <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-muted)' }}>REGION:</span>
+              <CountrySwitcher variant="navbar" />
+            </div>
             <Link
               to="/contact"
               onClick={() => setMobileMenuOpen(false)}

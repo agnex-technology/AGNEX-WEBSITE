@@ -674,7 +674,7 @@ export const projectsData: ProjectCaseStudy[] = [
         decision: 'Schema-Driven Findings Format',
         rationale:
           'Enforces structured JSON schemas for every vulnerability finding, ensuring consistency before future SIEM/XDR integrations.',
-        impact: 'Seamless future interoperability with standard CVE and CWE vulnerability taxonomies.'
+        impact: 'Native schema interoperability with standard CVE and CWE vulnerability taxonomies.'
       }
     ],
     technologies: [

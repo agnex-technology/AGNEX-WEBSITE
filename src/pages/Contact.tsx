@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import ScrollFade from '../components/motion/ScrollFade';
 import { LinkedInIcon, InstagramIcon, PhoneIcon, WhatsAppIcon } from '../components/brand/SocialIcons';
 import { siteConfig } from '../config/site';
 import { trackEvent } from '../utils/analytics';
 import { Container, SectionLabel, TechnicalLabel } from '../components/primitives';
+import { useLocalization } from '../localization/LocalizationContext';
+import { CountryCode } from '../localization/types';
+import { COUNTRIES } from '../localization/countries';
 
 interface FormData {
   needHelpWith: string[];
@@ -14,6 +17,7 @@ interface FormData {
   name: string;
   workEmail: string;
   company: string;
+  country: string;
   phone: string;
   website: string;
   preferredContactMethod: string;
@@ -21,6 +25,7 @@ interface FormData {
 }
 
 export default function Contact() {
+  const { country, setCountry, allCountries, isIndia } = useLocalization();
   const [currentStep, setCurrentStep] = useState<1 | 2>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -28,19 +33,33 @@ export default function Contact() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
 
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<FormData>(() => ({
     needHelpWith: [],
     description: '',
     timeline: '1 - 3 months',
-    budgetRange: '$25,000 - $50,000',
+    budgetRange: country.budgetTiers[1]
+      ? `${country.budgetTiers[1].label} (${country.budgetTiers[1].range})`
+      : `${country.budgetTiers[0]?.label || ''} (${country.budgetTiers[0]?.range || ''})`,
     name: '',
     workEmail: '',
     company: '',
+    country: country.name,
     phone: '',
     website: '',
     preferredContactMethod: 'Email',
     honeypot: ''
-  });
+  }));
+
+  // Keep country and budget synchronized if country changes
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      country: country.name,
+      budgetRange: country.budgetTiers[1]
+        ? `${country.budgetTiers[1].label} (${country.budgetTiers[1].range})`
+        : `${country.budgetTiers[0]?.label || ''} (${country.budgetTiers[0]?.range || ''})`
+    }));
+  }, [country.code]);
 
   const helpOptions = [
     { id: 'digital', label: '01 — Digital Platforms (Web / Mobile Apps)' },
@@ -137,6 +156,7 @@ export default function Contact() {
           name: formData.name,
           workEmail: formData.workEmail,
           company: formData.company,
+          country: formData.country || country.name,
           phone: formData.phone,
           website: formData.website,
           preferredContactMethod: formData.preferredContactMethod,
@@ -272,7 +292,7 @@ export default function Contact() {
                 borderTop: '1px solid var(--border-color)'
               }}
             >
-              {/* Direct Phone Option */}
+              {/* Direct Line Option */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
                 <span
                   style={{
@@ -284,12 +304,12 @@ export default function Contact() {
                     fontWeight: 700
                   }}
                 >
-                  Direct Line:
+                  {isIndia ? 'Direct Line:' : 'Global Desk:'}
                 </span>
                 <a
                   href={siteConfig.links.phone}
                   className="contact-phone-pill"
-                  aria-label={`Call AGNEX Technology at ${siteConfig.phone}`}
+                  aria-label={`Call AGNEX Technology at ${country.phoneFormat}`}
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -308,8 +328,44 @@ export default function Contact() {
                   }}
                 >
                   <PhoneIcon size={15} style={{ color: 'var(--agnex-blue)' }} />
-                  <span>{siteConfig.phone}</span>
+                  <span>{country.phoneFormat}</span>
                 </a>
+              </div>
+
+              {/* Region & Timezone Indicator */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 'var(--text-xs)',
+                    color: 'var(--text-muted)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.06em',
+                    fontWeight: 700
+                  }}
+                >
+                  Active Market:
+                </span>
+                <div
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 'var(--text-xs)',
+                    fontWeight: 600,
+                    color: 'var(--agnex-navy)',
+                    padding: '0.5rem 0.875rem',
+                    backgroundColor: 'var(--agnex-canvas-subtle)',
+                    border: '1px solid var(--border-strong)',
+                    borderRadius: 'var(--radius-xs)',
+                    minHeight: '44px'
+                  }}
+                >
+                  <span>{country.name}</span>
+                  <span style={{ color: 'var(--text-muted)' }}>·</span>
+                  <span style={{ color: 'var(--agnex-blue)' }}>{country.timeZoneLabel}</span>
+                </div>
               </div>
 
               {/* Official WhatsApp Channel */}
@@ -518,10 +574,13 @@ export default function Contact() {
                       needHelpWith: [],
                       description: '',
                       timeline: '1 - 3 months',
-                      budgetRange: '$25,000 - $50,000',
+                      budgetRange: country.budgetTiers[1]
+                        ? `${country.budgetTiers[1].label} (${country.budgetTiers[1].range})`
+                        : `${country.budgetTiers[0]?.label || ''} (${country.budgetTiers[0]?.range || ''})`,
                       name: '',
                       workEmail: '',
                       company: '',
+                      country: country.name,
                       phone: '',
                       website: '',
                       preferredContactMethod: 'Email',
@@ -793,7 +852,7 @@ export default function Contact() {
 
                     <div>
                       <label htmlFor="budgetRange" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '0.5rem' }}>
-                        Anticipated Budget Range
+                        Anticipated Budget Range ({country.currencySymbol.trim()} · {country.name})
                       </label>
                       <select
                         id="budgetRange"
@@ -802,11 +861,15 @@ export default function Contact() {
                         value={formData.budgetRange}
                         onChange={handleInputChange}
                       >
-                        <option value="$15,000 - $25,000">$15,000 - $25,000</option>
-                        <option value="$25,000 - $50,000">$25,000 - $50,000</option>
-                        <option value="$50,000 - $100,000">$50,000 - $100,000</option>
-                        <option value="$100,000+">$100,000+</option>
-                        <option value="Flexible / Needs Estimation">Flexible / Needs Estimation</option>
+                        {country.budgetTiers.map((tier) => {
+                          const val = `${tier.label} (${tier.range})`;
+                          return (
+                            <option key={tier.id} value={val}>
+                              {val}
+                            </option>
+                          );
+                        })}
+                        <option value="Flexible / Needs Technical Scoping">Flexible / Needs Technical Scoping</option>
                       </select>
                     </div>
                   </div>
@@ -904,18 +967,33 @@ export default function Contact() {
                     </div>
 
                     <div>
-                      <label htmlFor="website" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '0.5rem' }}>
-                        Company Website (Optional)
+                      <label htmlFor="country" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '0.5rem' }}>
+                        Operational Region / Country
                       </label>
-                      <input
-                        type="url"
-                        id="website"
-                        name="website"
-                        className="agnex-input"
-                        placeholder="https://company.com"
-                        value={formData.website}
-                        onChange={handleInputChange}
-                      />
+                      <select
+                        id="country"
+                        name="country"
+                        className="agnex-select"
+                        value={country.code}
+                        onChange={(e) => {
+                          const selected = e.target.value as CountryCode;
+                          setCountry(selected);
+                          const cfg = COUNTRIES[selected];
+                          setFormData((prev) => ({
+                            ...prev,
+                            country: cfg.name,
+                            budgetRange: cfg.budgetTiers[1]
+                              ? `${cfg.budgetTiers[1].label} (${cfg.budgetTiers[1].range})`
+                              : `${cfg.budgetTiers[0]?.label || ''} (${cfg.budgetTiers[0]?.range || ''})`
+                          }));
+                        }}
+                      >
+                        {allCountries.map((c) => (
+                          <option key={c.code} value={c.code}>
+                            {c.name} ({c.marketLabel})
+                          </option>
+                        ))}
+                      </select>
                     </div>
                   </div>
 
@@ -924,19 +1002,24 @@ export default function Contact() {
                       display: 'grid',
                       gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
                       gap: '1.5rem',
-                      marginBottom: '2.5rem'
+                      marginBottom: '1.5rem'
                     }}
                   >
                     <div>
-                      <label htmlFor="phone" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '0.5rem' }}>
-                        Phone Number (Optional)
-                      </label>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                        <label htmlFor="phone" style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-navy)' }}>
+                          Phone Number (Optional)
+                        </label>
+                        <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
+                          Prefix: {country.dialCode}
+                        </span>
+                      </div>
                       <input
                         type="tel"
                         id="phone"
                         name="phone"
                         className="agnex-input"
-                        placeholder="+91 75983 41607"
+                        placeholder={country.phoneFormat}
                         value={formData.phone}
                         onChange={handleInputChange}
                       />
@@ -958,6 +1041,45 @@ export default function Contact() {
                         <option value="Phone Call">Phone Call</option>
                         <option value="WhatsApp">WhatsApp</option>
                       </select>
+                    </div>
+                  </div>
+
+                  <div style={{ marginBottom: '1.5rem' }}>
+                    <label htmlFor="website" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '0.5rem' }}>
+                      Company Website (Optional)
+                    </label>
+                    <input
+                      type="url"
+                      id="website"
+                      name="website"
+                      className="agnex-input"
+                      placeholder="https://company.com"
+                      value={formData.website}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  {/* Regional Invoicing & Commercial Framework Banner */}
+                  <div
+                    style={{
+                      padding: '1.25rem',
+                      backgroundColor: 'var(--agnex-canvas-subtle)',
+                      border: '1px solid var(--border-strong)',
+                      borderRadius: 'var(--radius-sm)',
+                      marginBottom: '1.25rem',
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '0.875rem'
+                    }}
+                  >
+                    <div style={{ fontSize: '1.25rem', lineHeight: 1 }}>
+                      {isIndia ? '🇮🇳' : '🌐'}
+                    </div>
+                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
+                      <strong style={{ color: 'var(--agnex-navy)' }}>
+                        {isIndia ? 'India Operations & Tax Invoicing:' : `${country.name} Commercial Framework:`}
+                      </strong>{' '}
+                      {country.businessContext.invoicingLabel} ({country.businessContext.taxLabel}). {country.businessContext.workflowContext} Typical production delivery: {country.businessContext.turnaround}
                     </div>
                   </div>
 

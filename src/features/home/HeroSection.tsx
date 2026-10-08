@@ -4,8 +4,11 @@ import gsap from 'gsap';
 import AgnexLogo from '../../components/brand/AgnexLogo';
 import HeroEngineeringSystem from '../../components/visuals/HeroEngineeringSystem';
 import { MagneticButton } from '../../components/motion/MagneticButton';
+import { useLocalization } from '../../localization/LocalizationContext';
+import { siteConfig } from '../../config/site';
 
 export default function HeroSection() {
+  const { country } = useLocalization();
   const heroRef = useRef<HTMLElement>(null);
   const brandRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
@@ -135,7 +138,7 @@ export default function HeroSection() {
             </h1>
 
             <div style={{ fontSize: 'var(--text-xl)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '1.25rem', lineHeight: 1.3 }}>
-              Custom Software, AI & Digital Engineering for Ambitious Businesses.
+              {country.heroTagline}
             </div>
 
             {/* 03. Supporting Statement */}
@@ -150,7 +153,7 @@ export default function HeroSection() {
                   fontWeight: 400
                 }}
               >
-                From web and mobile applications to intelligent automation and scalable cloud systems, AGNEX Technology designs and builds digital products that solve real business problems.
+                {country.supportingMessage}
               </p>
             </div>
 
@@ -167,13 +170,32 @@ export default function HeroSection() {
             >
               <MagneticButton>
                 <Link to="/contact" className="btn btn-primary" id="hero-start-project" data-cursor="cta">
-                  <span>Start a Project</span>
+                  <span>{country.contactCta}</span>
                   <span className="btn-arrow" style={{ fontWeight: 700 }}>→</span>
                 </Link>
               </MagneticButton>
               <Link to="/services" className="btn btn-secondary" id="hero-explore-services" data-cursor="hover">
                 <span>Explore Services</span>
               </Link>
+              {country.showWhatsApp && (
+                <a
+                  href={siteConfig.whatsappMessageLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    color: '#0F766E',
+                    borderColor: '#99F6E4',
+                    backgroundColor: '#F0FDFA'
+                  }}
+                >
+                  <span style={{ color: '#0D9488' }}>💬</span>
+                  <span>WhatsApp</span>
+                </a>
+              )}
             </div>
 
             {/* 05. 4 Pillars System Coordinates */}

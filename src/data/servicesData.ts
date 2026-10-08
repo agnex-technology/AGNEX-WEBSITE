@@ -160,7 +160,7 @@ export const servicesData: Record<string, ServiceDetailItem> = {
     discipline: 'DIGITAL',
     title: 'Mobile Application Engineering',
     headline: 'Native & Cross-Platform iOS & Android Applications Built for Scale',
-    description: 'We design and develop high-performance mobile applications that deliver smooth 60fps animations, robust offline synchronization, and seamless device hardware integration.',
+    description: 'We design and develop high-performance mobile applications that deliver smooth 60fps animations, robust offline synchronization, and deterministic hardware integration (BLE, NFC, camera, biometric auth).',
     overview: 'Mobile applications require meticulous attention to memory management, background battery consumption, intermittent network connectivity, and operating system human interface guidelines. AGNEX engineers cross-platform mobile solutions using React Native and TypeScript, delivering near-native performance while maintaining a single, unified codebase.',
     problemsSolved: [
       {
@@ -349,7 +349,7 @@ export const servicesData: Record<string, ServiceDetailItem> = {
       },
       {
         question: 'What happens if we need new features in a year?',
-        answer: 'Because we build clean, modular TypeScript codebases with standard documentation, your internal team or AGNEX can extend the system seamlessly without rewriting the foundation.'
+        answer: 'Because we build clean, modular TypeScript codebases with standard documentation, your internal team or AGNEX can extend the system incrementally without rewriting the foundation.'
       }
     ]
   },
