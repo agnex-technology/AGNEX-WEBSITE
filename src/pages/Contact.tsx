@@ -64,9 +64,104 @@ export default function Contact() {
     }));
   }, [country.code]);
 
-  // Route & commercial tier parameter integration (e.g. /contact?tier=start|build|engineer|custom)
+  // Route & commercial tier/service parameter integration (e.g. /contact?service=websites or /contact?tier=custom)
   useEffect(() => {
+    const service = searchParams.get('service');
     const tier = searchParams.get('tier');
+
+    if (service) {
+      if (service === 'websites') {
+        setFormData((prev) => ({
+          ...prev,
+          needHelpWith: ['01 — Digital Platforms (Web / Mobile Apps)'],
+          budgetRange: country.budgetTiers[0]
+            ? `${country.budgetTiers[0].label} (${country.budgetTiers[0].range})`
+            : prev.budgetRange,
+          description: prev.description || 'Requirement: Custom responsive website architecture.'
+        }));
+      } else if (service === 'creative-websites') {
+        setFormData((prev) => ({
+          ...prev,
+          needHelpWith: ['01 — Digital Platforms (Web / Mobile Apps)'],
+          budgetRange: country.budgetTiers[1]
+            ? `${country.budgetTiers[1].label} (${country.budgetTiers[1].range})`
+            : prev.budgetRange,
+          description: prev.description || 'Requirement: Premium / Creative website flagship with custom UX.'
+        }));
+      } else if (service === 'ecommerce') {
+        setFormData((prev) => ({
+          ...prev,
+          needHelpWith: ['01 — Digital Platforms (Web / Mobile Apps)'],
+          budgetRange: country.budgetTiers[0]
+            ? `${country.budgetTiers[0].label} (${country.budgetTiers[0].range})`
+            : prev.budgetRange,
+          description: prev.description || 'Requirement: E-commerce digital storefront & checkout systems.'
+        }));
+      } else if (service === 'web-apps') {
+        setFormData((prev) => ({
+          ...prev,
+          needHelpWith: ['01 — Digital Platforms (Web / Mobile Apps)'],
+          budgetRange: country.budgetTiers[2]
+            ? `${country.budgetTiers[2].label} (${country.budgetTiers[2].range})`
+            : prev.budgetRange,
+          description: prev.description || 'Requirement: Custom web application & client portal architecture.'
+        }));
+      } else if (service === 'mobile-apps') {
+        setFormData((prev) => ({
+          ...prev,
+          needHelpWith: ['01 — Digital Platforms (Web / Mobile Apps)'],
+          budgetRange: country.budgetTiers[2]
+            ? `${country.budgetTiers[2].label} (${country.budgetTiers[2].range})`
+            : prev.budgetRange,
+          description: prev.description || 'Requirement: Mobile application (iOS / Android) engineering.'
+        }));
+      } else if (service === 'business-automation') {
+        setFormData((prev) => ({
+          ...prev,
+          needHelpWith: ['03 — Intelligence & AI Automation'],
+          budgetRange: country.budgetTiers[0]
+            ? `${country.budgetTiers[0].label} (${country.budgetTiers[0].range})`
+            : prev.budgetRange,
+          description: prev.description || 'Requirement: Deterministic business automation pipelines.'
+        }));
+      } else if (service === 'crm-erp') {
+        setFormData((prev) => ({
+          ...prev,
+          needHelpWith: ['02 — Business Systems (ERP, CRM, Workflows)'],
+          budgetRange: country.budgetTiers[2]
+            ? `${country.budgetTiers[2].label} (${country.budgetTiers[2].range})`
+            : prev.budgetRange,
+          description: prev.description || 'Requirement: Bespoke CRM / ERP business software system.'
+        }));
+      } else if (service === 'ai-systems') {
+        setFormData((prev) => ({
+          ...prev,
+          needHelpWith: ['03 — Intelligence & AI Automation'],
+          budgetRange: country.budgetTiers[1]
+            ? `${country.budgetTiers[1].label} (${country.budgetTiers[1].range})`
+            : prev.budgetRange,
+          description: prev.description || 'Requirement: Enterprise AI models & intelligent data systems.'
+        }));
+      } else if (service === 'api-integration') {
+        setFormData((prev) => ({
+          ...prev,
+          needHelpWith: ['04 — Architecture, APIs & Cloud Modernization'],
+          budgetRange: country.budgetTiers[0]
+            ? `${country.budgetTiers[0].label} (${country.budgetTiers[0].range})`
+            : prev.budgetRange,
+          description: prev.description || 'Requirement: API gateways and system integrations.'
+        }));
+      } else if (service === 'custom-engineering') {
+        setFormData((prev) => ({
+          ...prev,
+          needHelpWith: ['04 — Architecture, APIs & Cloud Modernization'],
+          budgetRange: 'Flexible / Needs Technical Scoping',
+          description: prev.description || 'Requirement: Custom engineering & complex systems architecture.'
+        }));
+      }
+      return;
+    }
+
     if (!tier) return;
 
     if (tier === 'start') {

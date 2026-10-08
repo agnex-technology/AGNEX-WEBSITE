@@ -16,9 +16,10 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     heroTagline: 'Custom Software, AI & Digital Engineering for Indian Businesses.',
     supportingMessage: 'We design and build bespoke ERP systems, double-entry inventory ledgers, mobile applications, and AI automation that solve real operational bottlenecks.',
     budgetTiers: [
-      { id: 'in_tier_1', label: '₹5 Lakhs – ₹15 Lakhs', range: 'Focused MVP / Workflow System' },
-      { id: 'in_tier_2', label: '₹15 Lakhs – ₹40 Lakhs', range: 'Full Custom ERP / Production SaaS' },
-      { id: 'in_tier_3', label: '₹40 Lakhs+', range: 'Enterprise Backbone & Continuous Sprints' }
+      { id: 'in_tier_1', label: '₹35,000 – ₹75,000', range: 'Websites & Foundation Presence' },
+      { id: 'in_tier_2', label: '₹75,000 – ₹1,50,000', range: 'Creative Websites / AI / Automation' },
+      { id: 'in_tier_3', label: '₹1,50,000 – ₹5,00,000', range: 'Web Apps / Mobile Apps / CRM / ERP' },
+      { id: 'in_tier_4', label: '₹5,00,000+', range: 'Custom Enterprise Engineering' }
     ],
     typicalEngagements: [
       'Bespoke ERP & multi-warehouse inventory systems',
@@ -59,9 +60,10 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     heroTagline: 'India-Based Engineering. Built for Ambitious US Companies.',
     supportingMessage: 'We engineer high-performance web applications, autonomous AI agents, and resilient cloud backbones with senior architectural ownership and zero vendor lock-in.',
     budgetTiers: [
-      { id: 'us_tier_1', label: '$10,000 – $25,000', range: 'Targeted System Module / MVP' },
-      { id: 'us_tier_2', label: '$25,000 – $60,000', range: 'Full Production Platform / SaaS' },
-      { id: 'us_tier_3', label: '$60,000+', range: 'Complex Enterprise Architecture' }
+      { id: 'us_tier_1', label: '$500 – $1,500', range: 'Websites & Foundation Presence' },
+      { id: 'us_tier_2', label: '$1,500 – $3,500', range: 'Creative Web / Automation / AI' },
+      { id: 'us_tier_3', label: '$3,500 – $10,000', range: 'Custom Web Apps / Mobile / ERP' },
+      { id: 'us_tier_4', label: '$10,000+', range: 'Custom Enterprise Engineering' }
     ],
     typicalEngagements: [
       'Multi-tenant B2B SaaS engineering (Next.js & Node.js/Python)',
@@ -101,9 +103,10 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     heroTagline: 'India-Based Engineering. Built for UK & European Businesses.',
     supportingMessage: 'We engineer robust digital systems, GDPR-conscious software architectures, and automated cloud workflows that solve genuine operational problems.',
     budgetTiers: [
-      { id: 'gb_tier_1', label: '£8,000 – £20,000', range: 'Focused System / Prototype' },
-      { id: 'gb_tier_2', label: '£20,000 – £50,000', range: 'Full Platform / Custom System' },
-      { id: 'gb_tier_3', label: '£50,000+', range: 'Enterprise Systems & Cloud Architecture' }
+      { id: 'gb_tier_1', label: '£400 – £1,200', range: 'Websites & Foundation Presence' },
+      { id: 'gb_tier_2', label: '£1,200 – £3,000', range: 'Creative Web / Automation / AI' },
+      { id: 'gb_tier_3', label: '£3,000 – £8,000', range: 'Custom Web Apps / Mobile / ERP' },
+      { id: 'gb_tier_4', label: '£8,000+', range: 'Custom Enterprise Engineering' }
     ],
     typicalEngagements: [
       'GDPR-conscious relational platforms and access audit controls',
@@ -143,9 +146,10 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     heroTagline: 'Engineering Custom Software & AI Systems for Middle East Enterprises.',
     supportingMessage: 'High-performance ERP backbones, logistics dispatch platforms, and intelligent automation built for rapid regional commercial expansion.',
     budgetTiers: [
-      { id: 'ae_tier_1', label: 'AED 35,000 – AED 90,000', range: 'Targeted Operations MVP' },
-      { id: 'ae_tier_2', label: 'AED 90,000 – AED 220,000', range: 'Full ERP / Commercial Platform' },
-      { id: 'ae_tier_3', label: 'AED 220,000+', range: 'Enterprise Logistics & Cloud Backbone' }
+      { id: 'ae_tier_1', label: 'AED 1,500 – AED 4,000', range: 'Websites & Foundation Presence' },
+      { id: 'ae_tier_2', label: 'AED 4,000 – AED 9,000', range: 'Creative Web / Automation / AI' },
+      { id: 'ae_tier_3', label: 'AED 9,000 – AED 25,000', range: 'Custom Web Apps / Mobile / ERP' },
+      { id: 'ae_tier_4', label: 'AED 25,000+', range: 'Custom Enterprise Engineering' }
     ],
     typicalEngagements: [
       'Cross-border freight and radial fleet dispatch applications',
@@ -185,9 +189,10 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     heroTagline: 'India-Based Engineering. Built for APAC Technology Teams.',
     supportingMessage: 'We engineer high-availability cloud platforms, secure transactional ledgers, and intelligent automation for Southeast Asian technology companies.',
     budgetTiers: [
-      { id: 'sg_tier_1', label: 'S$14,000 – S$35,000', range: 'Core System MVP' },
-      { id: 'sg_tier_2', label: 'S$35,000 – S$85,000', range: 'Production SaaS / Full Platform' },
-      { id: 'sg_tier_3', label: 'S$85,000+', range: 'Enterprise Cloud Infrastructure' }
+      { id: 'sg_tier_1', label: 'S$600 – S$1,800', range: 'Websites & Foundation Presence' },
+      { id: 'sg_tier_2', label: 'S$1,800 – S$4,500', range: 'Creative Web / Automation / AI' },
+      { id: 'sg_tier_3', label: 'S$4,500 – S$12,000', range: 'Custom Web Apps / Mobile / ERP' },
+      { id: 'sg_tier_4', label: 'S$12,000+', range: 'Custom Enterprise Engineering' }
     ],
     typicalEngagements: [
       'High-concurrency API microservices and event queues',
@@ -227,9 +232,10 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     heroTagline: 'India-Based Engineering. Built for Australian Businesses.',
     supportingMessage: 'Custom software, mobile applications, and cloud systems engineered for reliability, code sovereignty, and clean operational integration.',
     budgetTiers: [
-      { id: 'au_tier_1', label: 'A$15,000 – A$40,000', range: 'Focused System / Prototype' },
-      { id: 'au_tier_2', label: 'A$40,000 – A$95,000', range: 'Production Platform / SaaS' },
-      { id: 'au_tier_3', label: 'A$95,000+', range: 'Enterprise Scale & Cloud Architecture' }
+      { id: 'au_tier_1', label: 'A$700 – A$2,000', range: 'Websites & Foundation Presence' },
+      { id: 'au_tier_2', label: 'A$2,000 – A$5,000', range: 'Creative Web / Automation / AI' },
+      { id: 'au_tier_3', label: 'A$5,000 – A$15,000', range: 'Custom Web Apps / Mobile / ERP' },
+      { id: 'au_tier_4', label: 'A$15,000+', range: 'Custom Enterprise Engineering' }
     ],
     typicalEngagements: [
       'Field service and mobile inspection applications',
@@ -269,9 +275,10 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     heroTagline: 'India-Based Engineering. Built for Canadian Businesses.',
     supportingMessage: 'We engineer custom business software, secure web applications, and autonomous AI pipelines with senior architectural ownership and zero vendor lock-in.',
     budgetTiers: [
-      { id: 'ca_tier_1', label: 'CA$14,000 – CA$35,000', range: 'Targeted System Module' },
-      { id: 'ca_tier_2', label: 'CA$35,000 – CA$80,000', range: 'Full Production Platform' },
-      { id: 'ca_tier_3', label: 'CA$80,000+', range: 'Enterprise Infrastructure' }
+      { id: 'ca_tier_1', label: 'CA$700 – CA$2,000', range: 'Websites & Foundation Presence' },
+      { id: 'ca_tier_2', label: 'CA$2,000 – CA$5,000', range: 'Creative Web / Automation / AI' },
+      { id: 'ca_tier_3', label: 'CA$5,000 – CA$14,000', range: 'Custom Web Apps / Mobile / ERP' },
+      { id: 'ca_tier_4', label: 'CA$14,000+', range: 'Custom Enterprise Engineering' }
     ],
     typicalEngagements: [
       'B2B SaaS platform development with Next.js & TypeScript',
@@ -311,9 +318,10 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     heroTagline: 'India-Based Engineering. Built for German & European Enterprises.',
     supportingMessage: 'High-precision software engineering, GDPR-compliant database architectures, and deterministic automation for mid-market and enterprise companies.',
     budgetTiers: [
-      { id: 'de_tier_1', label: '€10.000 – €25.000', range: 'Fokussiertes System MVP' },
-      { id: 'de_tier_2', label: '€25.000 – €60.000', range: 'Produktionsplattform' },
-      { id: 'de_tier_3', label: '€60.000+', range: 'Unternehmensarchitektur' }
+      { id: 'de_tier_1', label: '€500 – €1.500', range: 'Websites & Digitale Basis' },
+      { id: 'de_tier_2', label: '€1.500 – €3.500', range: 'Kreative Websites / KI / Automatisierung' },
+      { id: 'de_tier_3', label: '€3.500 – €10.000', range: 'Web-Apps / Mobile Apps / ERP' },
+      { id: 'de_tier_4', label: '€10.000+', range: 'Maßgeschneiderte Unternehmensarchitektur' }
     ],
     typicalEngagements: [
       'DSGVO / GDPR-konforme relationale Datenbanken (PostgreSQL)',
@@ -353,9 +361,10 @@ export const COUNTRIES: Record<CountryCode, CountryConfig> = {
     heroTagline: 'India-Based Software Engineering for Businesses Worldwide.',
     supportingMessage: 'We engineer custom business software, high-performance web platforms, and intelligent AI automation with direct senior engineering ownership.',
     budgetTiers: [
-      { id: 'gl_tier_1', label: '$10,000 – $25,000', range: 'Targeted System / MVP' },
-      { id: 'gl_tier_2', label: '$25,000 – $60,000', range: 'Full Production Platform' },
-      { id: 'gl_tier_3', label: '$60,000+', range: 'Enterprise Scale Architecture' }
+      { id: 'gl_tier_1', label: '$500 – $1,500', range: 'Websites & Digital Foundation' },
+      { id: 'gl_tier_2', label: '$1,500 – $3,500', range: 'Creative Web / Automation / AI' },
+      { id: 'gl_tier_3', label: '$3,500 – $10,000', range: 'Custom Web Apps / Mobile / ERP' },
+      { id: 'gl_tier_4', label: '$10,000+', range: 'Custom Enterprise Engineering' }
     ],
     typicalEngagements: [
       'Custom business platforms and internal workflow tools',

@@ -45,13 +45,24 @@ Brand Concept:
 - Direct Contact / Phone: +91 75983 41607 (Voice & WhatsApp)
 - Email: agnextechnology@gmail.com
 
-## Commercial Framework & Starting Investments
-Prices are transparent baseline starting points, not rigid off-the-shelf packages. Final investment depends on architectural complexity, business logic, integrations, and performance thresholds.
-- **01 — START**: From ₹35,000 (Professional digital presence, up to ~5 pages, mobile optimization, technical SEO, performance, deployment).
-- **02 — BUILD (Recommended)**: From ₹75,000 (Custom digital products, 6–12+ screens, advanced interactions, CMS where needed, lead capture, APIs, performance, analytics).
-- **03 — ENGINEER**: From ₹1,50,000 (Custom web applications, dashboards, CRM, bespoke ERP modules, automation, RBAC, PostgreSQL, business logic).
-- **CUSTOM ENGINEERING**: Complex systems scoped around the actual problem with 100% code and IP ownership.
-- Pricing URL: https://agnextechnology.com/pricing
+## Commercial Framework & Starting Investments (Engineering Investment Map)
+Engineering doesn't come in one size. Prices are transparent starting points. Final scope is defined around the problem, complexity and outcome.
+- **Domain 01: DIGITAL PRODUCTS (05 Services, From ₹35K+)**
+  - 01 Websites: Starting from ₹35,000+ (Typical range: ₹35k–₹1.5L+)
+  - 02 Premium / Creative Websites: Starting from ₹75,000+ (Typical range: ₹75k–₹2.5L+)
+  - 03 E-commerce: Starting from ₹65,000+ (Typical range: ₹65k–₹2.5L+)
+  - 04 Web Applications: Starting from ₹1,25,000+ (Typical range: ₹1.25L–₹8L+)
+  - 05 Mobile Applications: Starting from ₹1,50,000+ (Typical range: ₹1.5L–₹8L+)
+- **Domain 02: BUSINESS SYSTEMS (02 Services, From ₹50K+)**
+  - 06 Business Automation: Starting from ₹50,000+ (Typical range: ₹50k–₹3L+)
+  - 07 CRM / ERP / Business Software: Starting from ₹1,50,000+ (Typical range: ₹1.5L–₹10L+)
+- **Domain 03: INTELLIGENT SYSTEMS (01 Service, From ₹75K+)**
+  - 08 AI / Intelligent Systems: Starting from ₹75,000+ (Typical range: ₹75k–₹5L+)
+- **Domain 04: ENGINEERING (02 Services, From ₹40K+)**
+  - 09 API / System Integration: Starting from ₹40,000+ (Typical range: ₹40k–₹3L+)
+  - 10 Custom Engineering: Starting from ₹75,000+ (Typical range: Scope-based)
+- **CUSTOM ENGINEERING**: Complex systems scoped around the actual problem with zero package constraints and 100% IP ownership.
+- Pricing / Investment Map URL: https://agnextechnology.com/pricing
 
 ## Featured Products & Tools
 - **AI Slop Website Auditor**: Enterprise website content quality and intelligence analyzer evaluating AI-generated content likelihood, AI-slop risk, originality, thin content, duplicate page clustering, SEO, and technical website health.

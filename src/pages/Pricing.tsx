@@ -5,16 +5,16 @@ export default function Pricing() {
   return (
     <>
       <Helmet>
-        <title>Pricing & Commercial Investment Framework | AGNEX Technology</title>
+        <title>Engineering Investment Map | AGNEX Technology</title>
         <meta
           name="description"
-          content="Explore AGNEX Technology's transparent commercial investment framework. Entry starting points for digital products (From ₹35K), intelligent systems (From ₹75K), and custom business engineering (From ₹1.5L)."
+          content="Engineering doesn't come in one size. Explore AGNEX Technology's transparent investment starting points across Digital Products (From ₹35K+), Business Systems (From ₹50K+), Intelligent Systems (From ₹75K+), and Engineering (From ₹40K+)."
         />
         <link rel="canonical" href="https://agnextechnology.com/pricing" />
-        <meta property="og:title" content="Pricing & Commercial Investment Framework | AGNEX Technology" />
+        <meta property="og:title" content="Engineering Investment Map | AGNEX Technology" />
         <meta
           property="og:description"
-          content="Transparent engineering starting points. Custom digital products, business systems, and scalable software architectures engineered for measurable ROI."
+          content="Engineering doesn't come in one size. Transparent starting points across digital products, business systems, intelligent AI, and custom engineering."
         />
         <meta property="og:url" content="https://agnextechnology.com/pricing" />
         <meta property="og:type" content="website" />

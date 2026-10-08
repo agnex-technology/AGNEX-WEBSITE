@@ -1,166 +1,215 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import ScrollFade from '../../components/motion/ScrollFade';
 import { Container, SectionLabel, TechnicalLabel } from '../../components/primitives';
 import { MagneticButton } from '../../components/motion/MagneticButton';
 import { useLocalization } from '../../localization/LocalizationContext';
 
-interface PricingTier {
-  id: 'start' | 'build' | 'engineer';
+interface ServiceItem {
   number: string;
   name: string;
-  startingPriceInr: string;
-  startingPriceDisplay: string;
-  internationalEstimate?: string;
-  recommended?: boolean;
+  startingPrice: string;
+  typicalRange: string;
+  description: string;
+  contactServiceParam: string;
+}
+
+interface EngineeringDomain {
+  id: string;
+  number: string;
+  title: string;
+  serviceCountLabel: string;
+  overviewStartingPrice: string;
   tagline: string;
-  targetAudience: string;
-  typicalScope: string[];
-  ctaLabel: string;
-  ctaParam: string;
-  isPrimaryCta?: boolean;
-  relatedServiceLabel: string;
-  relatedServiceUrl: string;
-  complexityLabel: string;
+  services: ServiceItem[];
 }
 
 export default function PricingSection() {
-  const { isIndia, country } = useLocalization();
+  const { isIndia } = useLocalization();
 
-  // Primary commercial levels adhering strictly to approved pricing framework
-  const pricingTiers: PricingTier[] = [
+  // The 4 major engineering domains with 10 approved services
+  const domains: EngineeringDomain[] = [
     {
-      id: 'start',
+      id: 'digital',
       number: '01',
-      name: 'START',
-      startingPriceInr: '₹35,000',
-      startingPriceDisplay: 'FROM ₹35,000',
-      internationalEstimate: isIndia ? undefined : '(~ $450 USD)',
-      recommended: false,
-      tagline: 'Professional digital presence for businesses that need a strong foundation.',
-      targetAudience: 'For businesses that need a professional digital presence.',
-      typicalScope: [
-        'Custom responsive website',
-        'Up to approximately 5 core pages',
-        'Mobile optimization (320px – 4K)',
-        'Contact / enquiry lead system',
-        'Basic technical SEO & semantic HTML',
-        'Performance optimization (< 1s load)',
-        'Production cloud deployment',
-        'Basic analytics & event tracking'
-      ],
-      ctaLabel: 'START A PROJECT',
-      ctaParam: 'start',
-      isPrimaryCta: false,
-      relatedServiceLabel: 'Digital Products (Web)',
-      relatedServiceUrl: '/services/web-development',
-      complexityLabel: 'LEVEL 01 // FOUNDATION'
+      title: 'DIGITAL PRODUCTS',
+      serviceCountLabel: '05 SERVICES',
+      overviewStartingPrice: 'FROM ₹35K+',
+      tagline: 'Websites, web applications, mobile applications & digital experiences.',
+      services: [
+        {
+          number: '01',
+          name: 'Websites',
+          startingPrice: '₹35,000+',
+          typicalRange: '₹35k–₹1.5L+',
+          description: 'Custom responsive websites engineered for speed, mobile ergonomics, and direct lead capture.',
+          contactServiceParam: 'websites'
+        },
+        {
+          number: '02',
+          name: 'Premium / Creative Websites',
+          startingPrice: '₹75,000+',
+          typicalRange: '₹75k–₹2.5L+',
+          description: 'Bespoke digital flagships featuring editorial typography, custom micro-interactions, and conversion UX.',
+          contactServiceParam: 'creative-websites'
+        },
+        {
+          number: '03',
+          name: 'E-commerce',
+          startingPrice: '₹65,000+',
+          typicalRange: '₹65k–₹2.5L+',
+          description: 'High-conversion storefronts, streamlined checkout architecture, automated inventory, and payment gateways.',
+          contactServiceParam: 'ecommerce'
+        },
+        {
+          number: '04',
+          name: 'Web Applications',
+          startingPrice: '₹1,25,000+',
+          typicalRange: '₹1.25L–₹8L+',
+          description: 'Interactive client portals, multi-tenant dashboards, high-throughput APIs, and stateful application suites.',
+          contactServiceParam: 'web-apps'
+        },
+        {
+          number: '05',
+          name: 'Mobile Applications',
+          startingPrice: '₹1,50,000+',
+          typicalRange: '₹1.5L–₹8L+',
+          description: 'Native and cross-platform iOS & Android mobile apps engineered for offline resilience and field dispatch.',
+          contactServiceParam: 'mobile-apps'
+        }
+      ]
     },
     {
-      id: 'build',
+      id: 'systems',
       number: '02',
-      name: 'BUILD',
-      startingPriceInr: '₹75,000',
-      startingPriceDisplay: 'FROM ₹75,000',
-      internationalEstimate: isIndia ? undefined : '(~ $950 USD)',
-      recommended: true,
-      tagline: 'Custom digital products and experiences for businesses ready to build beyond a standard website.',
-      targetAudience: 'For businesses that need a stronger digital product.',
-      typicalScope: [
-        'Custom UI/UX & design system',
-        '6–12+ pages or application screens',
-        'Advanced micro-interactions & motion',
-        'CMS / content management where required',
-        'Lead capture & email notifications',
-        'Third-party API & CRM integrations',
-        'Comprehensive technical SEO & schemas',
-        'Performance optimization & PWA caching',
-        'Product analytics & conversion funnel',
-        'Zero-downtime production deployment'
-      ],
-      ctaLabel: 'DISCUSS YOUR PROJECT',
-      ctaParam: 'build',
-      isPrimaryCta: true,
-      relatedServiceLabel: 'Digital Platforms & Intelligence',
-      relatedServiceUrl: '/services/custom-software',
-      complexityLabel: 'LEVEL 02 // RECOMMENDED'
+      title: 'BUSINESS SYSTEMS',
+      serviceCountLabel: '02 SERVICES',
+      overviewStartingPrice: 'FROM ₹50K+',
+      tagline: 'ERP, CRM, inventory, billing, workflow & custom business software.',
+      services: [
+        {
+          number: '06',
+          name: 'Business Automation',
+          startingPrice: '₹50,000+',
+          typicalRange: '₹50k–₹3L+',
+          description: 'Deterministic worker pipelines connecting operational databases, spreadsheets, document ingestion, and notifications.',
+          contactServiceParam: 'business-automation'
+        },
+        {
+          number: '07',
+          name: 'CRM / ERP / Business Software',
+          startingPrice: '₹1,50,000+',
+          typicalRange: '₹1.5L–₹10L+',
+          description: 'Bespoke enterprise ERP and CRM platforms eliminating recurring per-seat SaaS costs with zero double-entry friction.',
+          contactServiceParam: 'crm-erp'
+        }
+      ]
     },
     {
-      id: 'engineer',
+      id: 'intelligence',
       number: '03',
-      name: 'ENGINEER',
-      startingPriceInr: '₹1,50,000',
-      startingPriceDisplay: 'FROM ₹1,50,000',
-      internationalEstimate: isIndia ? undefined : '(~ $1,900 USD)',
-      recommended: false,
-      tagline: 'Custom applications, business systems and intelligent workflows where complexity demands engineering.',
-      targetAudience: 'For custom systems and applications.',
-      typicalScope: [
-        'Custom web applications & portals',
-        'Operational dashboards & telemetry',
-        'Custom CRM & pipeline tracking',
-        'Bespoke ERP & inventory modules',
-        'Deterministic business automation',
-        'High-throughput API integrations',
-        'Role-Based Access Control (RBAC)',
-        'ACID relational databases (PostgreSQL)',
-        'Asynchronous workflow systems & queues',
-        'Proprietary business logic & rules'
-      ],
-      ctaLabel: 'ENGINEER A SYSTEM',
-      ctaParam: 'engineer',
-      isPrimaryCta: false,
-      relatedServiceLabel: 'Business Systems & ERP',
-      relatedServiceUrl: '/services/erp-development',
-      complexityLabel: 'LEVEL 03 // HIGH COMPLEXITY'
+      title: 'INTELLIGENT SYSTEMS',
+      serviceCountLabel: '01 SERVICE',
+      overviewStartingPrice: 'FROM ₹75K+',
+      tagline: 'Targeted AI, private document retrieval & automated operational intelligence.',
+      services: [
+        {
+          number: '08',
+          name: 'AI / Intelligent Systems',
+          startingPrice: '₹75,000+',
+          typicalRange: '₹75k–₹5L+',
+          description: 'Governed enterprise AI models, deterministic document parsers, and private retrieval-augmented generation (RAG).',
+          contactServiceParam: 'ai-systems'
+        }
+      ]
+    },
+    {
+      id: 'engineering',
+      number: '04',
+      title: 'ENGINEERING',
+      serviceCountLabel: '02 SERVICES',
+      overviewStartingPrice: 'FROM ₹40K+',
+      tagline: 'API gateways, system integrations, cloud infrastructure & custom architecture.',
+      services: [
+        {
+          number: '09',
+          name: 'API / System Integration',
+          startingPrice: '₹40,000+',
+          typicalRange: '₹40k–₹3L+',
+          description: 'High-throughput REST & GraphQL API gateways, webhook reconciliations, third-party connectors, and data migration.',
+          contactServiceParam: 'api-integration'
+        },
+        {
+          number: '10',
+          name: 'Custom Engineering',
+          startingPrice: '₹75,000+',
+          typicalRange: 'Scope-based',
+          description: 'Bespoke technical architecture, high-concurrency systems, legacy modernization, and deep engineering engagements.',
+          contactServiceParam: 'custom-engineering'
+        }
+      ]
     }
   ];
 
-  // Compact service overview signals
-  const serviceSignals = [
-    {
-      category: 'DIGITAL PRODUCTS',
-      description: 'Websites / Web Apps / Mobile Apps',
-      starting: 'FROM ₹35K',
-      url: '/services/web-development'
-    },
-    {
-      category: 'BUSINESS SYSTEMS',
-      description: 'CRM / ERP / Workflow / Operations',
-      starting: 'FROM ₹1.5L',
-      url: '/services/erp-development'
-    },
-    {
-      category: 'INTELLIGENT SYSTEMS',
-      description: 'AI / Automation / Analytics',
-      starting: 'FROM ₹75K',
-      url: '/services/ai-development'
-    },
-    {
-      category: 'ENGINEERING',
-      description: 'APIs / Cloud / Integrations / Architecture',
-      starting: 'FROM ₹75K',
-      url: '/services/cloud-engineering'
-    }
-  ];
+  // Accordion expansion state: Domain 01 open by default for immediate context
+  const [expandedDomains, setExpandedDomains] = useState<Record<string, boolean>>({
+    digital: true,
+    systems: false,
+    intelligence: false,
+    engineering: false
+  });
+
+  // Track currently active / focused domain for the Blue Signal indicator
+  const [activeDomainId, setActiveDomainId] = useState<string>('digital');
+
+  const toggleDomain = (id: string) => {
+    setExpandedDomains((prev) => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+    setActiveDomainId(id);
+  };
+
+  const expandAll = () => {
+    setExpandedDomains({
+      digital: true,
+      systems: true,
+      intelligence: true,
+      engineering: true
+    });
+  };
+
+  const collapseAll = () => {
+    setExpandedDomains({
+      digital: false,
+      systems: false,
+      intelligence: false,
+      engineering: false
+    });
+  };
+
+  const activeIndex = domains.findIndex((d) => d.id === activeDomainId);
 
   return (
     <section
-      id="pricing"
+      id="investment"
+      className="agnex-section agnex-blueprint-grid"
       style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--agnex-canvas)',
         borderBottom: '1px solid var(--border-color)',
-        paddingTop: 'clamp(5rem, 8vw, 8rem)',
-        paddingBottom: 'clamp(5rem, 8vw, 8rem)',
+        paddingTop: 'clamp(5rem, 8vw, 8.5rem)',
+        paddingBottom: 'clamp(5rem, 8vw, 8.5rem)',
         position: 'relative',
         overflow: 'hidden'
       }}
-      className="agnex-blueprint-grid"
     >
+      {/* Retain #pricing anchor compatibility */}
+      <span id="pricing" style={{ position: 'absolute', top: 0, left: 0, visibility: 'hidden' }} />
+
       <Container>
         {/* ========================================================= */}
-        {/* 01. SECTION HEADER (Architectural Investment Map)         */}
+        {/* SECTION HEADER & POSITIONING                              */}
         {/* ========================================================= */}
-        <ScrollFade>
+        <div style={{ maxWidth: '980px', marginBottom: 'clamp(3rem, 5vw, 4.5rem)' }}>
           <div
             style={{
               display: 'flex',
@@ -168,854 +217,759 @@ export default function PricingSection() {
               alignItems: 'flex-start',
               flexWrap: 'wrap',
               gap: '1rem',
-              marginBottom: '1.75rem'
+              marginBottom: '1.25rem'
             }}
           >
-            <SectionLabel number="06" text="COMMERCIAL FRAMEWORK // INVESTMENT" />
-            <TechnicalLabel code="SYS//INVESTMENT_MAP" status="ACTIVE" />
+            <SectionLabel number="10" label="INVESTMENT" />
+            <TechnicalLabel code="SYS//COMMERCIAL_MAP_2026" status="ACTIVE" />
           </div>
 
-          <div style={{ maxWidth: '840px', marginBottom: '3.5rem' }}>
-            <h2
+          <h2
+            style={{
+              fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+              fontWeight: 800,
+              lineHeight: 1.04,
+              letterSpacing: 'var(--tracking-tight)',
+              color: 'var(--agnex-navy)',
+              margin: '0 0 1.25rem 0',
+              textTransform: 'uppercase'
+            }}
+          >
+            ENGINEERING DOESN'T COME IN ONE SIZE.
+          </h2>
+
+          <p
+            style={{
+              fontSize: 'clamp(1.1rem, 1.6vw, 1.35rem)',
+              color: 'var(--text-secondary)',
+              maxWidth: '780px',
+              lineHeight: 1.6,
+              margin: 0
+            }}
+          >
+            Our projects start from the following investment points. Final scope is defined around the problem, complexity and outcome.
+          </p>
+
+          {/* Quick controls: View Controls */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1.5rem',
+              marginTop: '1.75rem',
+              paddingTop: '1.25rem',
+              borderTop: '1px solid var(--border-color)'
+            }}
+          >
+            <span
               style={{
-                fontSize: 'clamp(2.5rem, 4.5vw, 4.25rem)',
-                fontWeight: 700,
-                lineHeight: 1.05,
-                letterSpacing: 'var(--tracking-tighter)',
-                color: 'var(--agnex-navy)',
-                margin: '0 0 1.25rem 0',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '11px',
+                color: 'var(--agnex-blue)',
+                fontWeight: 600,
+                letterSpacing: '0.08em',
                 textTransform: 'uppercase'
               }}
             >
-              PRICING / INVESTMENT
-            </h2>
+              {isIndia ? 'DOMESTIC GST INVOICING (₹ INR)' : 'INTERNATIONAL B2B COMMERCIAL INVOICING'}
+            </span>
 
-            <p
-              style={{
-                fontSize: 'var(--text-xl)',
-                color: 'var(--agnex-navy)',
-                fontWeight: 600,
-                lineHeight: 1.4,
-                margin: '0 0 1rem 0',
-                fontFamily: 'var(--font-sans)'
-              }}
-            >
-              "Every project starts with a problem worth solving."
-            </p>
-
-            <p
-              style={{
-                fontSize: 'var(--text-base)',
-                color: 'var(--text-secondary)',
-                lineHeight: 1.65,
-                margin: 0,
-                maxWidth: '720px'
-              }}
-            >
-              We do not compete on being the cheapest agency or sell rigid one-size-fits-all packages. 
-              These investments are transparent baseline starting points engineered around technical scope, architectural depth, and measurable commercial value.
-            </p>
-          </div>
-        </ScrollFade>
-
-        {/* ========================================================= */}
-        {/* 02. COMPACT SERVICE PRICE SIGNALS (Overview Strip)        */}
-        {/* ========================================================= */}
-        <ScrollFade delay={0.1}>
-          <div
-            style={{
-              backgroundColor: 'var(--agnex-canvas-subtle)',
-              border: '1px solid var(--border-strong)',
-              borderRadius: 'var(--radius-xs)',
-              marginBottom: '3.5rem',
-              overflow: 'hidden'
-            }}
-          >
-            <div
-              style={{
-                padding: '0.75rem 1.25rem',
-                backgroundColor: 'rgba(12, 28, 41, 0.03)',
-                borderBottom: '1px solid var(--border-color)',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-                gap: '0.5rem'
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: 'var(--text-2xs)',
-                  fontWeight: 700,
-                  color: 'var(--agnex-navy)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.08em'
-                }}
-              >
-                CORE DISCIPLINE STARTING SIGNALS // ENTRY VALUATION
-              </span>
-              <span
+            <div style={{ marginLeft: 'auto', display: 'flex', gap: '0.75rem' }}>
+              <button
+                type="button"
+                onClick={expandAll}
+                className="technical-btn"
                 style={{
                   fontFamily: 'var(--font-mono)',
                   fontSize: '11px',
-                  color: 'var(--text-muted)'
+                  background: 'none',
+                  border: '1px solid var(--border-color)',
+                  color: 'var(--agnex-navy)',
+                  padding: '0.35rem 0.75rem',
+                  cursor: 'pointer',
+                  borderRadius: 'var(--radius-xs)'
                 }}
               >
-                {isIndia ? 'DOMESTIC GST INVOICING (₹ INR)' : `${country.name} · BASELINE CONVERTIBLE`}
-              </span>
-            </div>
-
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))'
-              }}
-              className="price-signals-grid"
-            >
-              {serviceSignals.map((signal, idx) => (
-                <Link
-                  key={signal.category}
-                  to={signal.url}
-                  className="signal-cell-link"
-                  style={{
-                    padding: '1.25rem',
-                    textDecoration: 'none',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    gap: '0.5rem',
-                    transition: 'background-color 150ms ease',
-                    borderRight: idx < serviceSignals.length - 1 ? '1px solid var(--border-color)' : 'none',
-                    borderBottom: '1px solid var(--border-color)'
-                  }}
-                >
-                  <div>
-                    <div
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: 'var(--text-2xs)',
-                        fontWeight: 700,
-                        color: 'var(--agnex-blue)',
-                        letterSpacing: '0.06em',
-                        marginBottom: '0.25rem'
-                      }}
-                    >
-                      {signal.category}
-                    </div>
-                    <div
-                      style={{
-                        fontSize: 'var(--text-xs)',
-                        color: 'var(--text-secondary)',
-                        lineHeight: 1.4
-                      }}
-                    >
-                      {signal.description}
-                    </div>
-                  </div>
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'baseline',
-                      justifyContent: 'space-between',
-                      marginTop: '0.5rem',
-                      paddingTop: '0.5rem',
-                      borderTop: '1px dashed var(--border-color)'
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: 'var(--text-sm)',
-                        fontWeight: 700,
-                        color: 'var(--agnex-navy)'
-                      }}
-                    >
-                      {signal.starting}
-                    </span>
-                    <span
-                      style={{
-                        fontSize: '11px',
-                        color: 'var(--agnex-blue)',
-                        fontWeight: 600
-                      }}
-                    >
-                      Spec →
-                    </span>
-                  </div>
-                </Link>
-              ))}
+                EXPAND ALL
+              </button>
+              <button
+                type="button"
+                onClick={collapseAll}
+                className="technical-btn"
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '11px',
+                  background: 'none',
+                  border: '1px solid var(--border-color)',
+                  color: 'var(--text-muted)',
+                  padding: '0.35rem 0.75rem',
+                  cursor: 'pointer',
+                  borderRadius: 'var(--radius-xs)'
+                }}
+              >
+                COLLAPSE ALL
+              </button>
             </div>
           </div>
-        </ScrollFade>
-
-        {/* ========================================================= */}
-        {/* 03. CONTINUOUS BLUE SIGNAL ARCHITECTURAL LINE             */}
-        {/* ========================================================= */}
-        <div
-          aria-hidden="true"
-          style={{
-            position: 'relative',
-            height: '24px',
-            marginBottom: '1rem',
-            display: 'flex',
-            alignItems: 'center'
-          }}
-          className="blue-signal-track-wrapper"
-        >
-          {/* Subtle horizontal track */}
-          <div
-            style={{
-              position: 'absolute',
-              left: 0,
-              right: 0,
-              height: '1px',
-              backgroundColor: 'rgba(1, 122, 239, 0.2)'
-            }}
-          />
-          {/* Active Signal Vector Line */}
-          <div
-            style={{
-              position: 'absolute',
-              left: '5%',
-              width: '90%',
-              height: '2px',
-              background: 'linear-gradient(90deg, rgba(1, 122, 239, 0.1) 0%, rgba(1, 122, 239, 0.9) 50%, rgba(1, 122, 239, 0.3) 100%)'
-            }}
-            className="blue-signal-line"
-          />
-          {/* Milestone Node 01 (START) */}
-          <div
-            style={{
-              position: 'absolute',
-              left: '16%',
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              backgroundColor: 'var(--agnex-navy)',
-              border: '2px solid #FFFFFF',
-              boxShadow: '0 0 0 1px var(--agnex-blue)'
-            }}
-          />
-          {/* Milestone Node 02 (BUILD - RECOMMENDED PULSE) */}
-          <div
-            style={{
-              position: 'absolute',
-              left: '50%',
-              width: '12px',
-              height: '12px',
-              borderRadius: '50%',
-              backgroundColor: 'var(--agnex-blue)',
-              border: '2px solid #FFFFFF',
-              boxShadow: '0 0 0 3px rgba(1, 122, 239, 0.35)',
-              transform: 'translateX(-50%)'
-            }}
-            className="blue-signal-pulse-node"
-          />
-          {/* Milestone Node 03 (ENGINEER) */}
-          <div
-            style={{
-              position: 'absolute',
-              right: '16%',
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              backgroundColor: 'var(--agnex-navy)',
-              border: '2px solid #FFFFFF',
-              boxShadow: '0 0 0 1px var(--agnex-blue)'
-            }}
-          />
         </div>
 
         {/* ========================================================= */}
-        {/* 04. PRIMARY PACKAGE STRUCTURE (01 START, 02 BUILD, 03 ENGINEER) */}
+        {/* BLUE SIGNAL TRAVERSAL & DOMAINS CONTAINER                 */}
         {/* ========================================================= */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '1.75rem',
-            alignItems: 'stretch',
-            marginBottom: '4rem'
-          }}
-          className="pricing-tiers-grid"
-        >
-          {pricingTiers.map((tier, idx) => {
-            const isRec = tier.recommended;
-            return (
-              <ScrollFade key={tier.id} delay={0.08 * idx}>
-                <div
-                  style={{
-                    backgroundColor: isRec ? '#FFFFFF' : 'var(--agnex-canvas-subtle)',
-                    border: isRec ? '2px solid var(--agnex-blue)' : '1px solid var(--border-strong)',
-                    borderRadius: 'var(--radius-sm)',
-                    padding: 'clamp(1.75rem, 3vw, 2.5rem)',
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    position: 'relative',
-                    boxShadow: isRec
-                      ? '0 12px 32px -8px rgba(1, 122, 239, 0.16), 0 4px 12px rgba(12, 28, 41, 0.04)'
-                      : 'var(--shadow-subtle)',
-                    transition: 'border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease'
-                  }}
-                  className={`pricing-card ${isRec ? 'pricing-card-recommended' : ''}`}
-                >
-                  {/* Top Signal Indicator for Recommended BUILD Level */}
-                  {isRec && (
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: '-13px',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        backgroundColor: 'var(--agnex-navy)',
-                        color: '#FFFFFF',
-                        border: '1px solid var(--agnex-blue)',
-                        padding: '0.25rem 0.875rem',
-                        borderRadius: 'var(--radius-xs)',
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '10px',
-                        fontWeight: 700,
-                        letterSpacing: '0.1em',
-                        textTransform: 'uppercase',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.4rem',
-                        boxShadow: '0 2px 8px rgba(1, 122, 239, 0.25)',
-                        whiteSpace: 'nowrap'
-                      }}
-                    >
-                      <span
-                        style={{
-                          width: '6px',
-                          height: '6px',
-                          borderRadius: '50%',
-                          backgroundColor: 'var(--agnex-blue)'
-                        }}
-                      />
-                      RECOMMENDED
-                    </div>
-                  )}
-
-                  <div>
-                    {/* Level Coordinates & Hierarchy Header */}
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        marginBottom: '1rem',
-                        paddingBottom: '0.75rem',
-                        borderBottom: '1px solid var(--border-color)'
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontFamily: 'var(--font-mono)',
-                          fontSize: 'var(--text-xs)',
-                          fontWeight: 700,
-                          color: isRec ? 'var(--agnex-blue)' : 'var(--text-muted)',
-                          letterSpacing: '0.06em'
-                        }}
-                      >
-                        {tier.complexityLabel}
-                      </span>
-                      <span
-                        style={{
-                          fontFamily: 'var(--font-mono)',
-                          fontSize: 'var(--text-xs)',
-                          fontWeight: 700,
-                          color: 'var(--agnex-navy)'
-                        }}
-                      >
-                        LEVEL // {tier.number}
-                      </span>
-                    </div>
-
-                    {/* Level Title */}
-                    <h3
-                      style={{
-                        fontSize: 'clamp(1.75rem, 2.5vw, 2.25rem)',
-                        fontWeight: 700,
-                        color: 'var(--agnex-navy)',
-                        marginBottom: '0.5rem',
-                        letterSpacing: 'var(--tracking-tight)',
-                        textTransform: 'uppercase'
-                      }}
-                    >
-                      {tier.name}
-                    </h3>
-
-                    {/* Starting Investment Display */}
-                    <div
-                      style={{
-                        marginBottom: '1.25rem',
-                        display: 'flex',
-                        alignItems: 'baseline',
-                        flexWrap: 'wrap',
-                        gap: '0.5rem'
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontSize: 'clamp(1.75rem, 2.5vw, 2.25rem)',
-                          fontWeight: 700,
-                          fontFamily: 'var(--font-sans)',
-                          color: isRec ? 'var(--agnex-blue)' : 'var(--agnex-navy)',
-                          letterSpacing: '-0.02em',
-                          lineHeight: 1
-                        }}
-                      >
-                        {tier.startingPriceDisplay}
-                      </span>
-                      {tier.internationalEstimate && (
-                        <span
-                          style={{
-                            fontFamily: 'var(--font-mono)',
-                            fontSize: 'var(--text-xs)',
-                            color: 'var(--text-muted)',
-                            fontWeight: 500
-                          }}
-                        >
-                          {tier.internationalEstimate}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Headline / Subtitle Summary */}
-                    <p
-                      style={{
-                        fontSize: 'var(--text-sm)',
-                        color: 'var(--agnex-navy)',
-                        fontWeight: 600,
-                        lineHeight: 1.5,
-                        marginBottom: '0.75rem'
-                      }}
-                    >
-                      {tier.tagline}
-                    </p>
-
-                    <p
-                      style={{
-                        fontSize: 'var(--text-xs)',
-                        color: 'var(--text-secondary)',
-                        lineHeight: 1.5,
-                        marginBottom: '1.75rem'
-                      }}
-                    >
-                      {tier.targetAudience}
-                    </p>
-
-                    {/* Typical Scope Header */}
-                    <div
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '11px',
-                        fontWeight: 700,
-                        color: 'var(--text-muted)',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.08em',
-                        marginBottom: '0.875rem'
-                      }}
-                    >
-                      TYPICAL SCOPE MAY INCLUDE:
-                    </div>
-
-                    {/* Scope Items List */}
-                    <ul
-                      style={{
-                        listStyle: 'none',
-                        padding: 0,
-                        margin: '0 0 2rem 0',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '0.6rem'
-                      }}
-                    >
-                      {tier.typicalScope.map((item, i) => (
-                        <li
-                          key={i}
-                          style={{
-                            fontSize: 'var(--text-xs)',
-                            color: 'var(--agnex-navy)',
-                            display: 'flex',
-                            alignItems: 'flex-start',
-                            gap: '0.6rem',
-                            lineHeight: 1.45
-                          }}
-                        >
-                          <span
-                            style={{
-                              color: isRec ? 'var(--agnex-blue)' : 'rgba(12, 28, 41, 0.45)',
-                              fontWeight: 700,
-                              lineHeight: 1.3
-                            }}
-                          >
-                            ✓
-                          </span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Card Bottom: Call to Action + Routing Connection */}
-                  <div
-                    style={{
-                      paddingTop: '1.5rem',
-                      borderTop: '1px solid var(--border-color)',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '0.875rem'
-                    }}
-                  >
-                    {isRec ? (
-                      <MagneticButton>
-                        <Link
-                          to={`/contact?tier=${tier.ctaParam}`}
-                          className="btn btn-primary"
-                          style={{
-                            width: '100%',
-                            justifyContent: 'center',
-                            padding: '0.875rem 1.5rem',
-                            minHeight: '48px',
-                            fontWeight: 700
-                          }}
-                          data-cursor="cta"
-                        >
-                          <span>{tier.ctaLabel}</span>
-                          <span className="btn-arrow" style={{ fontWeight: 700 }}>→</span>
-                        </Link>
-                      </MagneticButton>
-                    ) : (
-                      <Link
-                        to={`/contact?tier=${tier.ctaParam}`}
-                        className="btn btn-secondary"
-                        style={{
-                          width: '100%',
-                          justifyContent: 'center',
-                          padding: '0.875rem 1.5rem',
-                          minHeight: '48px',
-                          fontWeight: 600,
-                          backgroundColor: '#FFFFFF'
-                        }}
-                      >
-                        <span>{tier.ctaLabel}</span>
-                        <span className="btn-arrow">→</span>
-                      </Link>
-                    )}
-
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        fontSize: '11px',
-                        fontFamily: 'var(--font-mono)',
-                        color: 'var(--text-muted)'
-                      }}
-                    >
-                      <span>Capability:</span>
-                      <Link
-                        to={tier.relatedServiceUrl}
-                        style={{
-                          color: 'var(--agnex-blue)',
-                          textDecoration: 'none',
-                          fontWeight: 600
-                        }}
-                        className="pricing-sublink"
-                      >
-                        {tier.relatedServiceLabel} →
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </ScrollFade>
-            );
-          })}
-        </div>
-
-        {/* ========================================================= */}
-        {/* 05. SEPARATE FULL-WIDTH SECTION: CUSTOM ENGINEERING       */}
-        {/* ========================================================= */}
-        <ScrollFade delay={0.2}>
+        <div className="investment-map-layout" style={{ position: 'relative' }}>
+          {/* Desktop Blue Signal Vector Spine */}
           <div
+            className="blue-signal-spine-desktop"
+            aria-hidden="true"
             style={{
-              backgroundColor: '#FFFFFF',
-              border: '1px solid var(--border-strong)',
-              borderRadius: 'var(--radius-sm)',
-              padding: 'clamp(2.5rem, 5vw, 4rem)',
-              marginBottom: '3.5rem',
-              position: 'relative',
-              boxShadow: 'var(--shadow-subtle)'
+              position: 'absolute',
+              left: '-28px',
+              top: '12px',
+              bottom: '12px',
+              width: '24px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center'
             }}
-            className="custom-engineering-banner"
           >
-            {/* Top Signal Entry Accent */}
+            {/* The continuous vertical vector line */}
             <div
               style={{
                 position: 'absolute',
                 top: 0,
-                left: 0,
-                right: 0,
-                height: '3px',
-                background: 'linear-gradient(90deg, var(--agnex-blue) 0%, rgba(1, 122, 239, 0.4) 60%, transparent 100%)'
+                bottom: 0,
+                width: '2px',
+                backgroundColor: 'rgba(1, 122, 239, 0.2)',
+                left: '50%',
+                transform: 'translateX(-50%)'
               }}
             />
 
+            {/* Active Moving Signal Line Segment */}
             <div
               style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(12, 1fr)',
-                gap: 'clamp(2rem, 4vw, 3.5rem)',
-                alignItems: 'center'
+                position: 'absolute',
+                width: '2px',
+                backgroundColor: 'var(--agnex-blue)',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                top: `${(Math.max(0, activeIndex) / (domains.length - 1)) * 80}%`,
+                height: '20%',
+                transition: 'top 350ms cubic-bezier(0.16, 1, 0.3, 1)',
+                boxShadow: '0 0 10px rgba(1, 122, 239, 0.6)'
               }}
-              className="custom-eng-grid"
-            >
-              {/* Left Column: Core Architecture Proposition */}
-              <div
-                style={{
-                  gridColumn: 'span 7'
-                }}
-                className="custom-eng-col-left"
-              >
+            />
+
+            {/* 4 Technical Domain Nodes */}
+            {domains.map((dom, idx) => {
+              const isActive = activeDomainId === dom.id;
+              const isDomainExpanded = !!expandedDomains[dom.id];
+              return (
                 <div
+                  key={dom.id}
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.75rem',
-                    marginBottom: '1rem'
+                    position: 'absolute',
+                    top: `${(idx / (domains.length - 1)) * 96}%`,
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: isActive || isDomainExpanded ? '12px' : '8px',
+                    height: isActive || isDomainExpanded ? '12px' : '8px',
+                    borderRadius: '50%',
+                    backgroundColor: isActive || isDomainExpanded ? 'var(--agnex-blue)' : '#FFFFFF',
+                    border: `2px solid ${isActive || isDomainExpanded ? '#FFFFFF' : 'var(--agnex-navy)'}`,
+                    boxShadow: isActive || isDomainExpanded ? '0 0 0 2px var(--agnex-blue)' : 'none',
+                    transition: 'all 250ms ease',
+                    zIndex: 2
                   }}
-                >
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: 'var(--text-xs)',
-                      padding: '0.2rem 0.6rem',
-                      borderRadius: 'var(--radius-xs)',
-                      backgroundColor: 'var(--agnex-navy)',
-                      color: '#FFFFFF',
-                      fontWeight: 700,
-                      letterSpacing: '0.08em'
-                    }}
-                  >
-                    CUSTOM ARCHITECTURE
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: 'var(--text-xs)',
-                      color: 'var(--agnex-blue)',
-                      fontWeight: 600
-                    }}
-                  >
-                    ZERO PACKAGE CONSTRAINTS
-                  </span>
-                </div>
-
-                <h3
-                  style={{
-                    fontSize: 'clamp(2rem, 3.5vw, 3rem)',
-                    fontWeight: 700,
-                    color: 'var(--agnex-navy)',
-                    lineHeight: 1.1,
-                    letterSpacing: 'var(--tracking-tight)',
-                    margin: '0 0 1rem 0',
-                    textTransform: 'uppercase'
-                  }}
-                >
-                  CUSTOM ENGINEERING
-                </h3>
-
-                <p
-                  style={{
-                    fontSize: 'var(--text-lg)',
-                    color: 'var(--agnex-navy)',
-                    fontWeight: 600,
-                    lineHeight: 1.45,
-                    marginBottom: '1rem'
-                  }}
-                >
-                  Complex systems don't fit inside a package.
-                </p>
-
-                <p
-                  style={{
-                    fontSize: 'var(--text-base)',
-                    color: 'var(--text-secondary)',
-                    lineHeight: 1.65,
-                    margin: '0 0 2rem 0',
-                    maxWidth: '560px'
-                  }}
-                >
-                  Tell us what you're trying to build. We'll scope the architecture, timeline and investment around the actual problem.
-                </p>
-
-                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-                  <MagneticButton>
-                    <Link
-                      to="/contact?tier=custom"
-                      className="btn btn-primary"
-                      style={{ padding: '0.875rem 2.25rem', minHeight: '48px', fontWeight: 700 }}
-                      data-cursor="cta"
-                    >
-                      <span>START A PROJECT</span>
-                      <span className="btn-arrow" style={{ fontWeight: 700 }}>→</span>
-                    </Link>
-                  </MagneticButton>
-
-                  <Link
-                    to="/work"
-                    className="btn btn-secondary"
-                    style={{ padding: '0.875rem 1.75rem', minHeight: '48px', fontWeight: 600 }}
-                  >
-                    <span>View Engineering Proof</span>
-                  </Link>
-                </div>
-              </div>
-
-              {/* Right Column: Architectural Guarantees & Non-Package Signals */}
-              <div
-                style={{
-                  gridColumn: 'span 5'
-                }}
-                className="custom-eng-col-right"
-              >
-                <div
-                  style={{
-                    backgroundColor: 'var(--agnex-canvas-subtle)',
-                    border: '1px solid var(--border-strong)',
-                    borderRadius: 'var(--radius-xs)',
-                    padding: '1.75rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '1.25rem'
-                  }}
-                >
-                  <div
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: 'var(--text-xs)',
-                      fontWeight: 700,
-                      color: 'var(--agnex-navy)',
-                      letterSpacing: '0.06em',
-                      paddingBottom: '0.75rem',
-                      borderBottom: '1px solid var(--border-color)',
-                      textTransform: 'uppercase'
-                    }}
-                  >
-                    CUSTOM SYSTEM OPERATIONAL SIGNALS
-                  </div>
-
-                  <div>
-                    <div style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--agnex-navy)', marginBottom: '0.2rem' }}>
-                      01 // BESPOKE TECHNICAL DISCOVERY
-                    </div>
-                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                      Architectural assessment of data schemas, concurrency thresholds, and third-party API dependencies before any contract commitment.
-                    </div>
-                  </div>
-
-                  <div>
-                    <div style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--agnex-navy)', marginBottom: '0.2rem' }}>
-                      02 // 100% CODE & IP OWNERSHIP
-                    </div>
-                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                      Full intellectual property assignment upon delivery. Zero recurring seat taxes, proprietary runtime locks, or closed ecosystem lock-in.
-                    </div>
-                  </div>
-
-                  <div>
-                    <div style={{ fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--agnex-navy)', marginBottom: '0.2rem' }}>
-                      03 // DETERMINISTIC SPRINT ROADMAPS
-                    </div>
-                    <div style={{ fontSize: '11px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                      Milestone-gated staging drops with bi-weekly demonstrations. No speculative scope estimates or fabricated deadlines.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                  title={`Signal Marker ${dom.number} — ${dom.title}`}
+                />
+              );
+            })}
           </div>
-        </ScrollFade>
+
+          {/* ========================================================= */}
+          {/* THE 4 EXPANDABLE EDITORIAL DOMAINS                        */}
+          {/* ========================================================= */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            {domains.map((domain) => {
+              const isExpanded = !!expandedDomains[domain.id];
+              const isFocused = activeDomainId === domain.id;
+
+              return (
+                <div
+                  key={domain.id}
+                  id={`domain-${domain.id}`}
+                  className={`investment-domain-card ${isExpanded ? 'is-expanded' : ''} ${isFocused ? 'is-active-signal' : ''}`}
+                  onMouseEnter={() => setActiveDomainId(domain.id)}
+                  style={{
+                    backgroundColor: isExpanded ? '#FAFBFD' : '#FFFFFF',
+                    border: isExpanded ? '1px solid var(--agnex-blue)' : '1px solid var(--border-color)',
+                    borderLeft: isExpanded ? '4px solid var(--agnex-blue)' : '4px solid transparent',
+                    boxShadow: isExpanded ? '0 8px 30px rgba(1, 122, 239, 0.08)' : 'var(--shadow-subtle)',
+                    transition: 'border-color 200ms ease, background-color 200ms ease, box-shadow 200ms ease',
+                    borderRadius: 'var(--radius-xs)',
+                    overflow: 'hidden'
+                  }}
+                >
+                  {/* Domain Header Accordion Trigger */}
+                  <button
+                    type="button"
+                    onClick={() => toggleDomain(domain.id)}
+                    aria-expanded={isExpanded}
+                    aria-controls={`domain-panel-${domain.id}`}
+                    className="domain-header-btn"
+                    style={{
+                      width: '100%',
+                      background: 'none',
+                      border: 'none',
+                      padding: 'clamp(1.5rem, 2.5vw, 2.25rem)',
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                      gap: '1.25rem'
+                    }}
+                  >
+                    {/* Left: Number, Title, Count & Tagline */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(1rem, 2vw, 2rem)', flex: 1, minWidth: 0 }}>
+                      {/* Monospace Level Identifier */}
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: 'clamp(1.1rem, 1.8vw, 1.5rem)',
+                          fontWeight: 700,
+                          color: isExpanded ? 'var(--agnex-blue)' : 'var(--text-muted)',
+                          lineHeight: 1
+                        }}
+                      >
+                        {domain.number}
+                      </span>
+
+                      <div style={{ minWidth: 0 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap' }}>
+                          <h3
+                            style={{
+                              margin: 0,
+                              fontFamily: 'var(--font-display)',
+                              fontSize: 'clamp(1.25rem, 2.2vw, 1.85rem)',
+                              fontWeight: 700,
+                              color: 'var(--agnex-navy)',
+                              letterSpacing: 'var(--tracking-tight)',
+                              textTransform: 'uppercase'
+                            }}
+                          >
+                            {domain.title}
+                          </h3>
+
+                          {/* Service Count Badge */}
+                          <span
+                            style={{
+                              fontFamily: 'var(--font-mono)',
+                              fontSize: '11px',
+                              fontWeight: 700,
+                              letterSpacing: '0.08em',
+                              padding: '0.2rem 0.6rem',
+                              backgroundColor: isExpanded ? 'var(--agnex-blue-pale)' : 'rgba(12, 28, 41, 0.05)',
+                              color: isExpanded ? 'var(--agnex-blue)' : 'var(--text-muted)',
+                              borderRadius: 'var(--radius-xs)',
+                              whiteSpace: 'nowrap'
+                            }}
+                          >
+                            {domain.serviceCountLabel}
+                          </span>
+                        </div>
+
+                        {/* Domain Tagline */}
+                        <p
+                          style={{
+                            margin: '0.35rem 0 0 0',
+                            fontSize: 'var(--text-xs)',
+                            color: 'var(--text-secondary)',
+                            fontFamily: 'var(--font-sans)',
+                            lineHeight: 1.4
+                          }}
+                          className="domain-tagline-text"
+                        >
+                          {domain.tagline}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Right: Abbreviated Starting Price & Action Indicator */}
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 'clamp(1rem, 2vw, 2.5rem)',
+                        flexShrink: 0
+                      }}
+                    >
+                      <div style={{ textAlign: 'right' }}>
+                        <span
+                          style={{
+                            display: 'block',
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: '10px',
+                            color: 'var(--text-muted)',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.08em',
+                            marginBottom: '2px'
+                          }}
+                        >
+                          STARTING POINT
+                        </span>
+                        <span
+                          style={{
+                            fontFamily: 'var(--font-mono)',
+                            fontSize: 'clamp(1.2rem, 2vw, 1.65rem)',
+                            fontWeight: 800,
+                            color: isExpanded ? 'var(--agnex-blue)' : 'var(--agnex-navy)',
+                            letterSpacing: '-0.02em',
+                            lineHeight: 1
+                          }}
+                        >
+                          {domain.overviewStartingPrice}
+                        </span>
+                      </div>
+
+                      {/* Explore Arrow Indicator */}
+                      <div
+                        style={{
+                          width: '40px',
+                          height: '40px',
+                          borderRadius: 'var(--radius-xs)',
+                          backgroundColor: isExpanded ? 'var(--agnex-navy)' : 'rgba(12, 28, 41, 0.04)',
+                          color: isExpanded ? '#FFFFFF' : 'var(--agnex-navy)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '14px',
+                          fontWeight: 700,
+                          transition: 'all 200ms ease',
+                          transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)'
+                        }}
+                        aria-hidden="true"
+                      >
+                        →
+                      </div>
+                    </div>
+                  </button>
+
+                  {/* Expanded Editorial Content Drawer */}
+                  <div
+                    id={`domain-panel-${domain.id}`}
+                    role="region"
+                    aria-label={`${domain.title} Services`}
+                    style={{
+                      display: isExpanded ? 'block' : 'none',
+                      borderTop: '1px solid var(--border-color)',
+                      padding: 'clamp(1.5rem, 2.5vw, 2.5rem)',
+                      backgroundColor: '#FFFFFF'
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        marginBottom: '1.5rem',
+                        paddingBottom: '0.75rem',
+                        borderBottom: '1px dashed var(--border-color)'
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: '11px',
+                          color: 'var(--agnex-blue)',
+                          fontWeight: 600,
+                          letterSpacing: '0.08em',
+                          textTransform: 'uppercase'
+                        }}
+                      >
+                        APPROVED ARCHITECTURAL STARTING POINTS // {domain.services.length} CORE CAPABILITIES
+                      </span>
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: '11px',
+                          color: 'var(--text-muted)'
+                        }}
+                      >
+                        INDIVIDUAL SCOPING APPLIES
+                      </span>
+                    </div>
+
+                    {/* Sub-services Grid */}
+                    <div
+                      style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                        gap: '1.25rem'
+                      }}
+                    >
+                      {domain.services.map((svc) => (
+                        <div
+                          key={svc.number}
+                          style={{
+                            border: '1px solid var(--border-color)',
+                            padding: '1.5rem',
+                            borderRadius: 'var(--radius-xs)',
+                            backgroundColor: '#FAFBFD',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-between',
+                            gap: '1.25rem',
+                            transition: 'border-color 150ms ease, box-shadow 150ms ease'
+                          }}
+                          className="service-breakdown-card"
+                        >
+                          <div>
+                            {/* Service Number & Name */}
+                            <div
+                              style={{
+                                display: 'flex',
+                                alignItems: 'baseline',
+                                gap: '0.5rem',
+                                marginBottom: '0.75rem'
+                              }}
+                            >
+                              <span
+                                style={{
+                                  fontFamily: 'var(--font-mono)',
+                                  fontSize: 'var(--text-xs)',
+                                  color: 'var(--agnex-blue)',
+                                  fontWeight: 700
+                                }}
+                              >
+                                {svc.number} —
+                              </span>
+                              <h4
+                                style={{
+                                  margin: 0,
+                                  fontFamily: 'var(--font-sans)',
+                                  fontSize: 'var(--text-base)',
+                                  fontWeight: 700,
+                                  color: 'var(--agnex-navy)'
+                                }}
+                              >
+                                {svc.name}
+                              </h4>
+                            </div>
+
+                            {/* Prominent Starting Price */}
+                            <div style={{ marginBottom: '0.5rem' }}>
+                              <span
+                                style={{
+                                  display: 'block',
+                                  fontFamily: 'var(--font-mono)',
+                                  fontSize: '10px',
+                                  color: 'var(--text-muted)',
+                                  textTransform: 'uppercase',
+                                  letterSpacing: '0.08em',
+                                  marginBottom: '2px'
+                                }}
+                              >
+                                STARTING PRICE
+                              </span>
+                              <div
+                                style={{
+                                  fontFamily: 'var(--font-mono)',
+                                  fontSize: 'var(--text-2xl)',
+                                  fontWeight: 800,
+                                  color: 'var(--agnex-navy)',
+                                  letterSpacing: '-0.02em',
+                                  lineHeight: 1
+                                }}
+                              >
+                                {svc.startingPrice}
+                              </div>
+                            </div>
+
+                            {/* Secondary Typical Project Range */}
+                            <div
+                              style={{
+                                padding: '0.4rem 0.6rem',
+                                backgroundColor: '#FFFFFF',
+                                border: '1px solid var(--border-color)',
+                                borderRadius: 'var(--radius-xs)',
+                                width: 'fit-content',
+                                marginBottom: '1rem'
+                              }}
+                            >
+                              <span
+                                style={{
+                                  fontFamily: 'var(--font-mono)',
+                                  fontSize: '11px',
+                                  color: 'var(--text-secondary)'
+                                }}
+                              >
+                                Typical project range: <strong style={{ color: 'var(--agnex-navy)' }}>{svc.typicalRange}</strong>
+                              </span>
+                            </div>
+
+                            {/* Technical Description */}
+                            <p
+                              style={{
+                                margin: 0,
+                                fontSize: 'var(--text-xs)',
+                                color: 'var(--text-secondary)',
+                                lineHeight: 1.55
+                              }}
+                            >
+                              {svc.description}
+                            </p>
+                          </div>
+
+                          {/* Direct Service Scope CTA Link */}
+                          <div style={{ paddingTop: '0.75rem', borderTop: '1px dashed var(--border-color)' }}>
+                            <Link
+                              to={`/contact?service=${svc.contactServiceParam}`}
+                              style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '0.4rem',
+                                fontFamily: 'var(--font-mono)',
+                                fontSize: '11px',
+                                fontWeight: 700,
+                                color: 'var(--agnex-blue)',
+                                textDecoration: 'none',
+                                letterSpacing: '0.04em',
+                                textTransform: 'uppercase'
+                              }}
+                              className="service-scope-link"
+                            >
+                              <span>DISCUSS SCOPE</span>
+                              <span style={{ transition: 'transform 150ms ease' }}>→</span>
+                            </Link>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
 
         {/* ========================================================= */}
-        {/* 06. IMPORTANT PRICING DISCLAIMER (Concise, Subtle)        */}
+        {/* CUSTOM ENGINEERING (FULL-WIDTH SEPARATE SECTION)          */}
         {/* ========================================================= */}
         <div
           style={{
-            padding: '1.25rem 1.5rem',
-            backgroundColor: 'var(--agnex-canvas-subtle)',
-            border: '1px solid var(--border-color)',
+            marginTop: 'clamp(3.5rem, 6vw, 5.5rem)',
+            backgroundColor: 'var(--agnex-navy)',
+            color: '#FFFFFF',
+            border: '1px solid rgba(1, 122, 239, 0.4)',
             borderRadius: 'var(--radius-xs)',
-            fontSize: 'var(--text-xs)',
-            color: 'var(--text-secondary)',
-            lineHeight: 1.6,
-            maxWidth: '960px',
-            margin: '0 auto'
+            padding: 'clamp(2.5rem, 5vw, 4.5rem)',
+            position: 'relative',
+            overflow: 'hidden'
           }}
-          className="pricing-disclaimer"
+          className="custom-engineering-banner"
         >
-          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem' }}>
-            <span style={{ color: 'var(--agnex-blue)', fontWeight: 700, fontSize: '14px', lineHeight: 1 }}>ℹ</span>
-            <div>
-              <strong style={{ color: 'var(--agnex-navy)' }}>Commercial Framework Note:</strong> All prices are starting points. 
-              Final pricing depends on scope, complexity, integrations, content and delivery requirements. 
-              Domain, hosting, paid third-party services and applicable taxes are billed separately unless included in the proposal.
+          {/* Subtle architectural grid lines inside banner */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              width: '320px',
+              height: '100%',
+              opacity: 0.1,
+              backgroundImage: 'linear-gradient(to right, #017AEF 1px, transparent 1px), linear-gradient(to bottom, #017AEF 1px, transparent 1px)',
+              backgroundSize: '24px 24px',
+              pointerEvents: 'none'
+            }}
+          />
+
+          <div
+            style={{
+              position: 'relative',
+              zIndex: 1,
+              display: 'grid',
+              gridTemplateColumns: 'repeat(12, 1fr)',
+              gap: 'clamp(2rem, 4vw, 3.5rem)',
+              alignItems: 'center'
+            }}
+          >
+            <div style={{ gridColumn: 'span 12' }} className="custom-eng-text-col">
+              <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '11px',
+                  color: 'var(--agnex-blue)',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  marginBottom: '1rem',
+                  backgroundColor: 'rgba(1, 122, 239, 0.12)',
+                  padding: '0.25rem 0.75rem',
+                  borderRadius: 'var(--radius-xs)'
+                }}
+              >
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--agnex-blue)' }} />
+                <span>UNCONSTRAINED ARCHITECTURE</span>
+              </div>
+
+              <h3
+                style={{
+                  fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                  fontWeight: 800,
+                  letterSpacing: 'var(--tracking-tight)',
+                  color: '#FFFFFF',
+                  margin: '0 0 1rem 0',
+                  textTransform: 'uppercase'
+                }}
+              >
+                CUSTOM ENGINEERING
+              </h3>
+
+              <p
+                style={{
+                  fontSize: 'clamp(1.15rem, 1.8vw, 1.4rem)',
+                  color: '#FFFFFF',
+                  fontWeight: 500,
+                  lineHeight: 1.5,
+                  margin: '0 0 0.85rem 0',
+                  maxWidth: '780px'
+                }}
+              >
+                Complex systems don't fit inside a package.
+              </p>
+
+              <p
+                style={{
+                  fontSize: 'var(--text-base)',
+                  color: 'rgba(255, 255, 255, 0.75)',
+                  lineHeight: 1.6,
+                  margin: '0 0 2rem 0',
+                  maxWidth: '720px'
+                }}
+              >
+                Tell us what you're trying to build. We'll scope the architecture, timeline and investment around the actual problem.
+              </p>
+
+              <div>
+                <MagneticButton>
+                  <Link
+                    to="/contact?tier=custom"
+                    className="btn btn-primary"
+                    style={{
+                      padding: '1rem 2.5rem',
+                      fontSize: 'var(--text-sm)',
+                      letterSpacing: '0.06em',
+                      textTransform: 'uppercase',
+                      backgroundColor: 'var(--agnex-blue)',
+                      color: '#FFFFFF',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.75rem'
+                    }}
+                  >
+                    <span>START A PROJECT</span>
+                    <span className="btn-arrow" style={{ fontWeight: 700 }}>→</span>
+                  </Link>
+                </MagneticButton>
+              </div>
             </div>
+          </div>
+        </div>
+
+        {/* ========================================================= */}
+        {/* PRICING DISCLAIMER & COMMERCIAL NOTES                     */}
+        {/* ========================================================= */}
+        <div
+          style={{
+            marginTop: '3rem',
+            paddingTop: '2rem',
+            borderTop: '1px solid var(--border-color)',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1.5rem'
+          }}
+        >
+          <div>
+            <p
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '11px',
+                color: 'var(--text-muted)',
+                lineHeight: 1.6,
+                margin: 0
+              }}
+            >
+              <strong style={{ color: 'var(--agnex-navy)' }}>Commercial Framework Note:</strong> All prices are starting points. Final pricing depends on scope, complexity, integrations, content and delivery requirements.
+            </p>
+          </div>
+          <div>
+            <p
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '11px',
+                color: 'var(--text-muted)',
+                lineHeight: 1.6,
+                margin: 0
+              }}
+            >
+              <strong style={{ color: 'var(--agnex-navy)' }}>Third-Party Infrastructure:</strong> Domain, hosting, paid third-party services and applicable taxes are billed separately unless included in the proposal.
+            </p>
           </div>
         </div>
       </Container>
 
-      {/* Responsive & Subtle Interaction CSS */}
+      {/* Scoped CSS for responsive styling & micro-interactions */}
       <style>{`
-        .pricing-card:hover {
-          transform: translateY(-2px);
-          border-color: var(--agnex-navy) !important;
-        }
-        .pricing-card-recommended:hover {
+        .investment-domain-card:hover {
           border-color: var(--agnex-blue) !important;
-          box-shadow: 0 16px 40px -8px rgba(1, 122, 239, 0.22) !important;
-        }
-        .signal-cell-link:hover {
-          background-color: #FFFFFF !important;
-        }
-        .pricing-sublink:hover {
-          text-decoration: underline !important;
         }
 
-        @keyframes signalPulse {
-          0%, 100% {
-            box-shadow: 0 0 0 3px rgba(1, 122, 239, 0.25);
-          }
-          50% {
-            box-shadow: 0 0 0 7px rgba(1, 122, 239, 0.1);
-          }
-        }
-        .blue-signal-pulse-node {
-          animation: signalPulse 2.8s ease-in-out infinite;
+        .investment-domain-card:hover .domain-header-btn .domain-tagline-text {
+          color: var(--agnex-navy);
         }
 
-        /* Mobile Layout & Stacking */
-        @media (max-width: 992px) {
-          .pricing-tiers-grid {
-            grid-template-columns: 1fr !important;
-            gap: 2rem !important;
-          }
-          .custom-eng-col-left,
-          .custom-eng-col-right {
-            grid-column: span 12 !important;
-          }
-          .blue-signal-track-wrapper {
+        .service-breakdown-card:hover {
+          border-color: var(--agnex-blue) !important;
+          box-shadow: 0 4px 16px rgba(1, 122, 239, 0.08);
+        }
+
+        .service-breakdown-card:hover .service-scope-link span:last-child {
+          transform: translateX(4px);
+        }
+
+        @media (max-width: 991px) {
+          .blue-signal-spine-desktop {
             display: none !important;
           }
         }
 
         @media (max-width: 640px) {
-          .price-signals-grid {
-            grid-template-columns: 1fr !important;
+          .domain-header-btn {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+          }
+          .domain-header-btn > div:last-child {
+            width: 100%;
+            justify-content: space-between;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px dashed var(--border-color);
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .blue-signal-spine-desktop div,
+          .investment-domain-card,
+          .service-breakdown-card,
+          .service-scope-link span {
+            transition: none !important;
+            transform: none !important;
           }
         }
       `}</style>
