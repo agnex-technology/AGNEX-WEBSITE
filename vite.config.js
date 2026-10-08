@@ -8,8 +8,8 @@ import { createHtmlPlugin } from 'vite-plugin-html';
 
 let headContent = fs.readFileSync(resolve(__dirname, 'components/partials/head.html'), 'utf-8');
 headContent = headContent
-  .replace(/{{title}}/g, "AGNEX Technology | Engineering What's Next.")
-  .replace(/{{description}}/g, 'AGNEX is a technology and engineering company that transforms ideas and business challenges into practical digital solutions.')
+  .replace(/{{title}}/g, "AGNEX Technology | Custom Software, AI & Digital Engineering")
+  .replace(/{{description}}/g, 'AGNEX Technology designs and builds web applications, mobile products, business systems, AI-powered automation and scalable cloud solutions that solve real business problems.')
   .replace(/{{path}}/g, '/');
 
 export default defineConfig({

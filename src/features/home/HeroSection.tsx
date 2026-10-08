@@ -103,6 +103,21 @@ export default function HeroSection() {
             </div>
 
             {/* 02. Master Architectural Statement */}
+            <div style={{ marginBottom: '1rem' }}>
+              <span
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 'var(--text-xs)',
+                  color: 'var(--agnex-blue)',
+                  fontWeight: 700,
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase'
+                }}
+              >
+                CUSTOM SOFTWARE, AI & DIGITAL ENGINEERING
+              </span>
+            </div>
+
             <h1
               ref={headlineRef}
               style={{
@@ -111,7 +126,7 @@ export default function HeroSection() {
                 lineHeight: 1.02,
                 letterSpacing: 'var(--tracking-tighter)',
                 color: 'var(--agnex-navy)',
-                marginBottom: '1.75rem',
+                marginBottom: '1.25rem',
                 textTransform: 'uppercase'
               }}
             >
@@ -119,19 +134,23 @@ export default function HeroSection() {
               <span style={{ color: 'var(--agnex-navy)' }}>WHAT'S NEXT.</span>
             </h1>
 
+            <div style={{ fontSize: 'var(--text-xl)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '1.25rem', lineHeight: 1.3 }}>
+              Custom Software, AI & Digital Engineering for Ambitious Businesses.
+            </div>
+
             {/* 03. Supporting Statement */}
             <div ref={statementRef} style={{ marginBottom: '2.5rem' }}>
               <p
                 style={{
-                  fontSize: 'var(--text-md)',
+                  fontSize: 'var(--text-base)',
                   color: 'var(--text-secondary)',
                   lineHeight: 1.65,
-                  maxWidth: '560px',
+                  maxWidth: '580px',
                   margin: 0,
                   fontWeight: 400
                 }}
               >
-                We design and engineer digital products, business systems and intelligent technology for problems that don't fit inside a template.
+                From web and mobile applications to intelligent automation and scalable cloud systems, AGNEX Technology designs and builds digital products that solve real business problems.
               </p>
             </div>
 
@@ -152,8 +171,8 @@ export default function HeroSection() {
                   <span className="btn-arrow" style={{ fontWeight: 700 }}>→</span>
                 </Link>
               </MagneticButton>
-              <Link to="/work" className="btn btn-secondary" id="hero-explore-work" data-cursor="hover">
-                <span>Explore Our Work</span>
+              <Link to="/services" className="btn btn-secondary" id="hero-explore-services" data-cursor="hover">
+                <span>Explore Services</span>
               </Link>
             </div>
 

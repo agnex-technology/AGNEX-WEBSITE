@@ -6,12 +6,29 @@ import { siteConfig } from '../../config/site';
 export default function Footer() {
   const currentYear = 2026;
 
-  const navLinks = [
-    { label: 'Work', href: '/work' },
-    { label: 'Capabilities', href: '/expertise' },
-    { label: 'Approach', href: '/#approach' },
-    { label: 'About', href: '/company' },
+  const servicesList = [
+    { label: 'Web Development', href: '/services/web-development' },
+    { label: 'Mobile Applications', href: '/services/mobile-app-development' },
+    { label: 'Custom Software', href: '/services/custom-software' },
+    { label: 'ERP Development', href: '/services/erp-development' },
+    { label: 'CRM Development', href: '/services/crm-development' },
+    { label: 'AI & Agents', href: '/services/ai-development' },
+    { label: 'Business Automation', href: '/services/business-automation' },
+    { label: 'Cloud Engineering', href: '/services/cloud-engineering' }
+  ];
+
+  const companyLinks = [
+    { label: 'Services', href: '/services' },
+    { label: 'Solutions', href: '/solutions' },
+    { label: 'Industries', href: '/industries' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' }
+  ];
+
+  const legalLinks = [
+    { label: 'Privacy Policy', href: '/privacy-policy' },
+    { label: 'Terms of Service', href: '/terms' }
   ];
 
   return (
@@ -25,20 +42,20 @@ export default function Footer() {
       }}
     >
       <div className="agnex-container">
-        {/* Main Footer Layout */}
+        {/* Main Footer Grid */}
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(12, 1fr)',
-            gap: 'clamp(2rem, 4vw, 4rem)',
+            gap: 'clamp(2rem, 3.5vw, 3.5rem)',
             marginBottom: '4rem'
           }}
         >
-          {/* Brand Info */}
+          {/* Col 1: Brand Info */}
           <div
             style={{
               gridColumn: 'span 12',
-              maxWidth: '460px'
+              maxWidth: '380px'
             }}
             className="footer-brand-col"
           >
@@ -61,20 +78,55 @@ export default function Footer() {
                 fontSize: 'var(--text-sm)',
                 color: 'var(--text-secondary)',
                 lineHeight: 1.6,
-                margin: 0
+                marginBottom: '1.5rem'
               }}
             >
-              AGNEX is a technology and engineering company that transforms complex business challenges and opportunities into practical digital systems.
+              AGNEX Technology designs and builds custom software, business systems, AI-powered automation and scalable cloud solutions that solve real business problems.
             </p>
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+              <a
+                href={siteConfig.social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="AGNEX LinkedIn"
+                style={{ color: 'var(--text-muted)', transition: 'color 0.2s ease' }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--agnex-blue)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
+              >
+                <LinkedInIcon size={18} />
+              </a>
+              <a
+                href={siteConfig.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="AGNEX Instagram"
+                style={{ color: 'var(--text-muted)', transition: 'color 0.2s ease' }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--agnex-blue)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
+              >
+                <InstagramIcon size={18} />
+              </a>
+              <a
+                href={siteConfig.whatsappMessageLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="AGNEX WhatsApp"
+                style={{ color: 'var(--text-muted)', transition: 'color 0.2s ease' }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--agnex-blue)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
+              >
+                <WhatsAppIcon size={18} />
+              </a>
+            </div>
           </div>
 
-          {/* Navigation Links */}
+          {/* Col 2: Services */}
           <div
             style={{
               gridColumn: 'span 6',
-              maxWidth: '240px'
+              maxWidth: '220px'
             }}
-            className="footer-nav-col"
+            className="footer-col"
           >
             <div
               style={{
@@ -87,25 +139,16 @@ export default function Footer() {
                 marginBottom: '1.25rem'
               }}
             >
-              Navigation
+              Services
             </div>
-            <ul
-              style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: 0,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.85rem'
-              }}
-            >
-              {navLinks.map((item) => (
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {servicesList.map((item) => (
                 <li key={item.label}>
                   <Link
                     to={item.href}
                     style={{
                       fontFamily: 'var(--font-sans)',
-                      fontSize: 'var(--text-sm)',
+                      fontSize: 'var(--text-xs)',
                       color: 'var(--text-secondary)',
                       textDecoration: 'none',
                       transition: 'color 0.2s ease'
@@ -120,13 +163,13 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Connect & Social */}
+          {/* Col 3: Solutions & Company */}
           <div
             style={{
               gridColumn: 'span 6',
-              maxWidth: '240px'
+              maxWidth: '200px'
             }}
-            className="footer-connect-col"
+            className="footer-col"
           >
             <div
               style={{
@@ -139,105 +182,89 @@ export default function Footer() {
                 marginBottom: '1.25rem'
               }}
             >
-              Connect
+              Architecture
             </div>
-            <ul
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {companyLinks.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    to={item.href}
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: 'var(--text-xs)',
+                      color: 'var(--text-secondary)',
+                      textDecoration: 'none',
+                      transition: 'color 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--agnex-blue)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 4: Verified Contact & Legal */}
+          <div
+            style={{
+              gridColumn: 'span 12',
+              maxWidth: '280px'
+            }}
+            className="footer-legal-col"
+          >
+            <div
               style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: 0,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.85rem'
+                fontFamily: 'var(--font-mono)',
+                fontSize: 'var(--text-2xs)',
+                fontWeight: 600,
+                color: 'var(--agnex-navy)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.12em',
+                marginBottom: '1.25rem'
               }}
             >
-              <li>
-                <a
-                  href={siteConfig.social.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: 'var(--text-sm)',
-                    color: 'var(--text-secondary)',
-                    textDecoration: 'none',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    transition: 'color 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--agnex-blue)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
-                >
-                  <LinkedInIcon size={16} />
-                  <span>LinkedIn</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={siteConfig.social.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: 'var(--text-sm)',
-                    color: 'var(--text-secondary)',
-                    textDecoration: 'none',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    transition: 'color 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--agnex-blue)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
-                >
-                  <InstagramIcon size={16} />
-                  <span>Instagram</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/agnex-technology"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: 'var(--text-sm)',
-                    color: 'var(--text-secondary)',
-                    textDecoration: 'none',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    transition: 'color 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--agnex-blue)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
-                >
-                  <span>GitHub</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href={siteConfig.whatsappMessageLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    fontFamily: 'var(--font-sans)',
-                    fontSize: 'var(--text-sm)',
-                    color: 'var(--text-secondary)',
-                    textDecoration: 'none',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    transition: 'color 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--agnex-blue)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
-                >
-                  <WhatsAppIcon size={16} />
-                  <span>WhatsApp</span>
-                </a>
-              </li>
+              Direct Contact
+            </div>
+            <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem', fontFamily: 'var(--font-mono)' }}>
+              <div>Phone: +91 75983 41607</div>
+              <div>Email: agnextechnology@gmail.com</div>
+              <div>Location: Coimbatore, India</div>
+            </div>
+
+            <div
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: 'var(--text-2xs)',
+                fontWeight: 600,
+                color: 'var(--agnex-navy)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.12em',
+                marginBottom: '0.85rem'
+              }}
+            >
+              Legal & Trust
+            </div>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+              {legalLinks.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    to={item.href}
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: 'var(--text-xs)',
+                      color: 'var(--text-muted)',
+                      textDecoration: 'none',
+                      transition: 'color 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--agnex-blue)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -273,8 +300,8 @@ export default function Footer() {
               gap: '1.5rem'
             }}
           >
+            <span>DIGITAL · SYSTEMS · INTELLIGENCE · ENGINEERING</span>
             <span>SYS//PRODUCTION</span>
-            <span>ENGINEERING WHAT'S NEXT</span>
           </div>
         </div>
       </div>
@@ -282,12 +309,12 @@ export default function Footer() {
       <style>{`
         @media (min-width: 768px) {
           .footer-brand-col {
-            grid-column: span 6 !important;
+            grid-column: span 4 !important;
           }
-          .footer-nav-col {
-            grid-column: span 3 !important;
+          .footer-col {
+            grid-column: span 2.5 !important;
           }
-          .footer-connect-col {
+          .footer-legal-col {
             grid-column: span 3 !important;
           }
         }

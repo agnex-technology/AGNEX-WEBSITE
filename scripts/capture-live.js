@@ -7,18 +7,25 @@ async function capture() {
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const page = await context.newPage();
   
-  console.log('Navigating to live site...');
-  await page.goto('https://agnex-technology.vercel.app', { waitUntil: 'networkidle', timeout: 30000 });
-  await page.waitForTimeout(2000);
+  const pagesToCapture = [
+    { name: 'home_live.png', url: 'https://agnex-technology.vercel.app/' },
+    { name: 'work_live.png', url: 'https://agnex-technology.vercel.app/work' },
+    { name: 'casestudy_rda_live.png', url: 'https://agnex-technology.vercel.app/work/rda' },
+    { name: 'expertise_live.png', url: 'https://agnex-technology.vercel.app/expertise' },
+    { name: 'company_live.png', url: 'https://agnex-technology.vercel.app/company' },
+    { name: 'contact_live.png', url: 'https://agnex-technology.vercel.app/contact' }
+  ];
 
-  console.log('Capturing hero...');
-  await page.screenshot({ path: path.join(artifactDir, 'hero_live.png'), fullPage: false });
-
-  console.log('Capturing full page...');
-  await page.screenshot({ path: path.join(artifactDir, 'fullpage_live.png'), fullPage: true });
+  for (const item of pagesToCapture) {
+    console.log(`Navigating to ${item.url}...`);
+    await page.goto(item.url, { waitUntil: 'networkidle', timeout: 35000 });
+    await page.waitForTimeout(1500);
+    console.log(`Capturing ${item.name}...`);
+    await page.screenshot({ path: path.join(artifactDir, item.name), fullPage: false });
+  }
 
   await browser.close();
-  console.log('Done!');
+  console.log('All live snapshots captured successfully!');
 }
 
 capture().catch(err => {

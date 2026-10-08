@@ -51,10 +51,11 @@ export default function Navbar() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { label: 'Work', href: '/work' },
-    { label: 'Capabilities', href: '/expertise' },
-    { label: 'Approach', href: '/#approach' },
-    { label: 'About', href: '/company' },
+    { label: 'Services', href: '/services' },
+    { label: 'Solutions', href: '/solutions' },
+    { label: 'Industries', href: '/industries' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' }
   ];
 

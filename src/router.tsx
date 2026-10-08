@@ -4,11 +4,16 @@ import RootLayout from './components/layout/RootLayout';
 
 // Lazy-loaded page components for optimal bundle splitting
 const Home = lazy(() => import('./pages/Home'));
-const Services = lazy(() => import('./pages/Services')); // Will be AGNEX Expertise
-const Portfolio = lazy(() => import('./pages/Portfolio')); // Will be AGNEX Work
+const Services = lazy(() => import('./pages/Services'));
+const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
+const Solutions = lazy(() => import('./pages/Solutions'));
+const Industries = lazy(() => import('./pages/Industries'));
+const Portfolio = lazy(() => import('./pages/Portfolio'));
 const CaseStudy = lazy(() => import('./pages/CaseStudy'));
-const About = lazy(() => import('./pages/About')); // Will be AGNEX Company
+const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const Terms = lazy(() => import('./pages/Terms'));
 const Insights = lazy(() => import('./pages/Insights'));
 const AiSlopChecker = lazy(() => import('./pages/AiSlopChecker'));
 const NotFound404 = lazy(() => import('./pages/NotFound404'));
@@ -57,7 +62,25 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      // Target AGNEX Information Architecture: /expertise
+
+      // 01 — SERVICES ARCHITECTURE (/services & 8 dedicated deep dives)
+      {
+        path: 'services',
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <Services />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'services/:slug',
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <ServiceDetail />
+          </Suspense>
+        ),
+      },
+      // Backward-compatibility alias: /expertise -> /services
       {
         path: 'expertise',
         element: (
@@ -66,13 +89,44 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      // Backwards-compatible alias: /services -> /expertise
+
+      // 02 — BUSINESS SOLUTIONS (/solutions)
       {
-        path: 'services',
-        element: <Navigate to="/expertise" replace />,
+        path: 'solutions',
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <Solutions />
+          </Suspense>
+        ),
       },
 
-      // Target AGNEX Information Architecture: /work
+      // 03 — INDUSTRIES (/industries)
+      {
+        path: 'industries',
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <Industries />
+          </Suspense>
+        ),
+      },
+
+      // 04 — PROJECTS & CASE STUDIES (/projects & /work)
+      {
+        path: 'projects',
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <Portfolio />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'projects/:id',
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <CaseStudy />
+          </Suspense>
+        ),
+      },
       {
         path: 'work',
         element: (
@@ -89,10 +143,9 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      // Backwards-compatible alias: /portfolio -> /work
       {
         path: 'portfolio',
-        element: <Navigate to="/work" replace />,
+        element: <Navigate to="/projects" replace />,
       },
       {
         path: 'portfolio/:id',
@@ -103,7 +156,15 @@ const router = createBrowserRouter([
         ),
       },
 
-      // Target AGNEX Information Architecture: /company
+      // 05 — ABOUT COMPANY (/about & /company)
+      {
+        path: 'about',
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <About />
+          </Suspense>
+        ),
+      },
       {
         path: 'company',
         element: (
@@ -112,18 +173,31 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      // Backwards-compatible alias: /about -> /company
-      {
-        path: 'about',
-        element: <Navigate to="/company" replace />,
-      },
 
-      // Target AGNEX Information Architecture: /contact
+      // 06 — CONTACT (/contact)
       {
         path: 'contact',
         element: (
           <Suspense fallback={<RouteLoader />}>
             <Contact />
+          </Suspense>
+        ),
+      },
+
+      // 07 — LEGAL POLICIES (/privacy-policy & /terms)
+      {
+        path: 'privacy-policy',
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <PrivacyPolicy />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'terms',
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <Terms />
           </Suspense>
         ),
       },
@@ -138,7 +212,7 @@ const router = createBrowserRouter([
         ),
       },
 
-      // Agnex Technology — Website Intelligence Tool: /ai-slop-checker
+      // Website Intelligence Tool: /ai-slop-checker
       {
         path: 'ai-slop-checker',
         element: (
@@ -162,3 +236,4 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
+

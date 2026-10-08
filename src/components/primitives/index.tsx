@@ -165,7 +165,7 @@ export const TechnicalLine: React.FC<TechnicalLineProps> = ({
 
 /* --- 05. BUTTON --- */
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'outline';
   withArrow?: boolean;
   to?: string;
   className?: string;
@@ -174,7 +174,8 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
   ({ variant = 'primary', withArrow = false, to, className = '', children, ...props }, ref) => {
-    const classNames = `btn btn-${variant} ${className}`;
+    const variantClass = variant === 'outline' ? 'secondary' : variant;
+    const classNames = `btn btn-${variantClass} ${className}`;
     const content = (
       <>
         <span>{children}</span>
