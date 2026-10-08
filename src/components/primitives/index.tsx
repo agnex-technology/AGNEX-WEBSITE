@@ -27,7 +27,8 @@ Container.displayName = 'Container';
 /* --- 02. SECTION LABEL --- */
 export interface SectionLabelProps {
   number?: string;
-  label: string;
+  label?: string;
+  text?: string;
   className?: string;
   accentColor?: string;
 }
@@ -35,9 +36,11 @@ export interface SectionLabelProps {
 export const SectionLabel: React.FC<SectionLabelProps> = ({
   number,
   label,
+  text,
   className = '',
   accentColor
 }) => {
+  const displayLabel = label || text || '';
   return (
     <div
       className={`tech-label ${className}`}
@@ -70,7 +73,7 @@ export const SectionLabel: React.FC<SectionLabelProps> = ({
           textTransform: 'uppercase'
         }}
       >
-        {label}
+        {displayLabel}
       </span>
       <span
         style={{
@@ -88,12 +91,14 @@ export const SectionLabel: React.FC<SectionLabelProps> = ({
 export interface TechnicalLabelProps {
   code: string;
   detail?: string;
+  status?: string;
   className?: string;
 }
 
 export const TechnicalLabel: React.FC<TechnicalLabelProps> = ({
   code,
   detail,
+  status,
   className = ''
 }) => {
   return (
@@ -111,6 +116,7 @@ export const TechnicalLabel: React.FC<TechnicalLabelProps> = ({
       <span style={{ color: 'var(--agnex-blue)' }}>SYS//</span>
       <span>{code}</span>
       {detail && <span style={{ opacity: 0.7 }}>::{detail}</span>}
+      {status && <span style={{ color: 'var(--agnex-blue)', fontWeight: 600 }}>[{status}]</span>}
     </div>
   );
 };
@@ -251,5 +257,88 @@ export const Badge: React.FC<BadgeProps> = ({
       )}
       {label}
     </span>
+  );
+};
+
+/* --- 07. TECHNICAL MARKER (ARCHITECTURAL CROSSHAIR) --- */
+export interface TechnicalMarkerProps {
+  label?: string;
+  className?: string;
+}
+
+export const TechnicalMarker: React.FC<TechnicalMarkerProps> = ({ label, className = '' }) => {
+  return (
+    <div
+      className={`tech-marker ${className}`}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '0.35rem',
+        fontFamily: 'var(--font-mono)',
+        fontSize: 'var(--text-3xs)',
+        color: 'var(--text-muted)',
+        letterSpacing: '0.05em'
+      }}
+    >
+      <span style={{ color: 'var(--agnex-blue)', fontWeight: 600 }}>+</span>
+      {label && <span>{label}</span>}
+    </div>
+  );
+};
+
+/* --- 08. SIGNAL NODE --- */
+export interface SignalNodeProps {
+  active?: boolean;
+  size?: number;
+  className?: string;
+}
+
+export const SignalNode: React.FC<SignalNodeProps> = ({
+  active = true,
+  size = 6,
+  className = ''
+}) => {
+  return (
+    <span
+      className={`signal-node ${className}`}
+      style={{
+        display: 'inline-block',
+        width: `${size}px`,
+        height: `${size}px`,
+        borderRadius: '50%',
+        backgroundColor: active ? 'var(--agnex-blue)' : 'var(--agnex-navy)',
+        boxShadow: active ? '0 0 0 2px var(--agnex-blue-pale)' : 'none',
+        transition: 'all 0.25s ease'
+      }}
+    />
+  );
+};
+
+/* --- 09. IMAGE FRAME (BLUEPRINT CORNER TICKS) --- */
+export interface ImageFrameProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const ImageFrame: React.FC<ImageFrameProps> = ({ children, className = '', ...props }) => {
+  return (
+    <div
+      className={`agnex-image-frame ${className}`}
+      style={{
+        position: 'relative',
+        backgroundColor: 'var(--agnex-canvas-subtle)',
+        border: '1px solid var(--border-strong)',
+        padding: '1px',
+        overflow: 'hidden'
+      }}
+      {...props}
+    >
+      {/* Corner Ticks */}
+      <span style={{ position: 'absolute', top: 0, left: 0, width: '6px', height: '6px', borderTop: '2px solid var(--agnex-blue)', borderLeft: '2px solid var(--agnex-blue)', zIndex: 2 }} />
+      <span style={{ position: 'absolute', top: 0, right: 0, width: '6px', height: '6px', borderTop: '2px solid var(--agnex-blue)', borderRight: '2px solid var(--agnex-blue)', zIndex: 2 }} />
+      <span style={{ position: 'absolute', bottom: 0, left: 0, width: '6px', height: '6px', borderBottom: '2px solid var(--agnex-blue)', borderLeft: '2px solid var(--agnex-blue)', zIndex: 2 }} />
+      <span style={{ position: 'absolute', bottom: 0, right: 0, width: '6px', height: '6px', borderBottom: '2px solid var(--agnex-blue)', borderRight: '2px solid var(--agnex-blue)', zIndex: 2 }} />
+      {children}
+    </div>
   );
 };

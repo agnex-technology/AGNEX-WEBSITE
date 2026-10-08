@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import AgnexLogo from '../components/brand/AgnexLogo';
 import ScrollFade from '../components/motion/ScrollFade';
 import AgnexXSymbol from '../components/visuals/AgnexXSymbol';
+import { Container, SectionLabel, TechnicalLabel } from '../components/primitives';
 
 export default function About() {
   const values = [
@@ -109,26 +110,31 @@ export default function About() {
       {/* Hero Header */}
       <section
         style={{
-          padding: 'clamp(4rem, 6vw, 6rem) 0 3rem 0',
+          padding: 'clamp(5rem, 8vw, 7.5rem) 0 4rem 0',
           borderBottom: '1px solid var(--border-color)',
-          backgroundColor: 'var(--agnex-base)'
+          backgroundColor: '#FFFFFF',
+          position: 'relative'
         }}
-        className="agnex-grid-mesh"
+        className="agnex-blueprint-grid"
       >
-        <div className="agnex-container">
+        <Container>
           <ScrollFade>
-            <div style={{ marginBottom: '1.75rem' }}>
-              <AgnexLogo size="md" />
+            <div style={{ marginBottom: '2rem' }}>
+              <AgnexLogo size="md" variant="dark" />
             </div>
-            <div className="agnex-badge agnex-badge-accent" style={{ marginBottom: '1.5rem' }}>
-              04 // COMPANY PHILOSOPHY & DNA
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
+              <SectionLabel number="04" text="COMPANY PHILOSOPHY & DNA" />
+              <TechnicalLabel code="SYS//ABOUT_04" status="ACTIVE" />
             </div>
+
             <h1
               style={{
                 fontSize: 'clamp(2.75rem, 5vw, 4.5rem)',
-                lineHeight: 1.1,
+                lineHeight: 1.08,
                 marginBottom: '1.5rem',
-                color: 'var(--agnex-white)'
+                color: 'var(--agnex-navy)',
+                maxWidth: '920px',
+                letterSpacing: 'var(--tracking-tight)'
               }}
             >
               Ideas, engineered into impact.
@@ -136,20 +142,21 @@ export default function About() {
             <p
               style={{
                 fontSize: 'var(--text-lg)',
-                color: 'var(--text-muted)',
-                maxWidth: '720px',
-                lineHeight: 1.6
+                color: 'var(--text-secondary)',
+                maxWidth: '740px',
+                lineHeight: 1.6,
+                margin: 0
               }}
             >
               AGNEX is a technology and engineering company that transforms ideas and business challenges into practical digital solutions. We exist to build software that moves companies forward.
             </p>
           </ScrollFade>
-        </div>
+        </Container>
       </section>
 
       {/* The Brand Architecture Section */}
-      <section className="agnex-section" style={{ backgroundColor: 'var(--agnex-base-raised)', borderBottom: '1px solid var(--border-color)' }}>
-        <div className="agnex-container">
+      <section className="agnex-section agnex-section-subtle" style={{ borderBottom: '1px solid var(--border-color)' }}>
+        <Container>
           <div
             style={{
               display: 'grid',
@@ -160,13 +167,11 @@ export default function About() {
           >
             <ScrollFade>
               <div>
-                <div className="agnex-badge" style={{ marginBottom: '1rem' }}>
-                  The Anatomy of AGNEX
-                </div>
-                <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', marginBottom: '1.5rem', color: 'var(--agnex-white)' }}>
+                <SectionLabel number="FOUNDATION" text="THE ANATOMY OF AGNEX" />
+                <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', marginBottom: '1.5rem', color: 'var(--agnex-navy)' }}>
                   Engineering Foundation Meets Forward Progress.
                 </h2>
-                <p style={{ fontSize: 'var(--text-md)', color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '2rem' }}>
+                <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '2rem' }}>
                   Our name is not random. It is an intentional synthesis of the values that guide every system we design:
                 </p>
 
@@ -174,15 +179,16 @@ export default function About() {
                   <div
                     style={{
                       padding: '1.25rem',
-                      backgroundColor: 'var(--agnex-base)',
-                      border: '1px solid var(--border-color)',
-                      borderRadius: 'var(--radius-sm)'
+                      backgroundColor: '#FFFFFF',
+                      border: '1px solid var(--border-strong)',
+                      borderRadius: 'var(--radius-sm)',
+                      boxShadow: 'var(--shadow-subtle)'
                     }}
                   >
-                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-accent)', fontWeight: 700, marginBottom: '0.25rem' }}>
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-blue)', fontWeight: 700, marginBottom: '0.25rem' }}>
                       AG // ENGINEERING & FOUNDATION
                     </div>
-                    <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', margin: 0, lineHeight: 1.5 }}>
+                    <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
                       The bedrock of precision, computational discipline, structural security, and mathematical reliability.
                     </p>
                   </div>
@@ -190,15 +196,16 @@ export default function About() {
                   <div
                     style={{
                       padding: '1.25rem',
-                      backgroundColor: 'var(--agnex-base)',
-                      border: '1px solid var(--border-color)',
-                      borderRadius: 'var(--radius-sm)'
+                      backgroundColor: '#FFFFFF',
+                      border: '1px solid var(--border-strong)',
+                      borderRadius: 'var(--radius-sm)',
+                      boxShadow: 'var(--shadow-subtle)'
                     }}
                   >
-                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-white)', fontWeight: 700, marginBottom: '0.25rem' }}>
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-navy)', fontWeight: 700, marginBottom: '0.25rem' }}>
                       NEX // WHAT'S NEXT
                     </div>
-                    <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', margin: 0, lineHeight: 1.5 }}>
+                    <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
                       Continuous forward movement, modern technological evolution, and building the digital capabilities our clients need tomorrow.
                     </p>
                   </div>
@@ -206,15 +213,16 @@ export default function About() {
                   <div
                     style={{
                       padding: '1.25rem',
-                      backgroundColor: 'var(--agnex-base)',
-                      border: '1px solid var(--agnex-accent-border)',
-                      borderRadius: 'var(--radius-sm)'
+                      backgroundColor: '#FFFFFF',
+                      border: '1px solid var(--agnex-blue)',
+                      borderRadius: 'var(--radius-sm)',
+                      boxShadow: '0 4px 12px rgba(1, 122, 239, 0.1)'
                     }}
                   >
-                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-accent)', fontWeight: 700, marginBottom: '0.25rem' }}>
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-blue)', fontWeight: 700, marginBottom: '0.25rem' }}>
                       X // THE ACTIVE INTERSECTION
                     </div>
-                    <p style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-white)', margin: 0, lineHeight: 1.5 }}>
+                    <p style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-navy)', margin: 0, lineHeight: 1.5, fontWeight: 500 }}>
                       The dynamic point where <strong>Technology × People × Ideas</strong> converge to create tangible commercial value.
                     </p>
                   </div>
@@ -229,21 +237,22 @@ export default function About() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   padding: '3rem 2rem',
-                  border: '1px solid var(--border-color)',
-                  borderRadius: 'var(--radius-lg)',
-                  backgroundColor: 'var(--agnex-base)'
+                  border: '1px solid var(--border-strong)',
+                  borderRadius: 'var(--radius-sm)',
+                  backgroundColor: '#FFFFFF',
+                  boxShadow: 'var(--shadow-subtle)'
                 }}
               >
-                <AgnexXSymbol size={300} />
+                <AgnexXSymbol size={300} theme="light" />
               </div>
             </ScrollFade>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Mission & Vision */}
-      <section className="agnex-section" style={{ borderBottom: '1px solid var(--border-color)' }}>
-        <div className="agnex-container">
+      <section className="agnex-section" style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid var(--border-color)' }}>
+        <Container>
           <div
             style={{
               display: 'grid',
@@ -253,20 +262,22 @@ export default function About() {
           >
             <ScrollFade>
               <div
-                className="agnex-card"
                 style={{
-                  backgroundColor: 'var(--agnex-base-raised)',
+                  backgroundColor: 'var(--agnex-canvas-subtle)',
+                  border: '1px solid var(--border-strong)',
+                  borderRadius: 'var(--radius-sm)',
                   height: '100%',
-                  padding: 'clamp(2rem, 4vw, 3rem)'
+                  padding: 'clamp(2rem, 4vw, 3rem)',
+                  boxShadow: 'var(--shadow-subtle)'
                 }}
               >
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-accent)', marginBottom: '1rem' }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-blue)', marginBottom: '1rem', fontWeight: 700 }}>
                   OUR MISSION
                 </div>
-                <h2 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.25rem)', color: 'var(--agnex-white)', marginBottom: '1rem' }}>
+                <h2 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.25rem)', color: 'var(--agnex-navy)', marginBottom: '1rem' }}>
                   Engineer technology that moves businesses forward.
                 </h2>
-                <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-muted)', lineHeight: 1.7 }}>
+                <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
                   We exist to eliminate the friction between business ambition and technological execution. We build digital tools, custom systems, and automated workflows that transform complex challenges into effortless operations.
                 </p>
               </div>
@@ -274,40 +285,40 @@ export default function About() {
 
             <ScrollFade delay={0.15}>
               <div
-                className="agnex-card"
                 style={{
-                  backgroundColor: 'var(--agnex-base-raised)',
+                  backgroundColor: 'var(--agnex-canvas-subtle)',
+                  border: '1px solid var(--border-strong)',
+                  borderRadius: 'var(--radius-sm)',
                   height: '100%',
-                  padding: 'clamp(2rem, 4vw, 3rem)'
+                  padding: 'clamp(2rem, 4vw, 3rem)',
+                  boxShadow: 'var(--shadow-subtle)'
                 }}
               >
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-accent)', marginBottom: '1rem' }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-blue)', marginBottom: '1rem', fontWeight: 700 }}>
                   OUR VISION
                 </div>
-                <h2 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.25rem)', color: 'var(--agnex-white)', marginBottom: '1rem' }}>
+                <h2 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.25rem)', color: 'var(--agnex-navy)', marginBottom: '1rem' }}>
                   The trusted engineering partner for building the future.
                 </h2>
-                <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-muted)', lineHeight: 1.7 }}>
+                <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
                   To be recognized as the premier engineering firm where founders, executives, and operations leaders turn when they need software designed right the first time — devoid of hype, built to endure, and engineered for impact.
                 </p>
               </div>
             </ScrollFade>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Core Values */}
-      <section className="agnex-section" style={{ backgroundColor: 'var(--agnex-base-raised)', borderBottom: '1px solid var(--border-color)' }}>
-        <div className="agnex-container">
+      <section className="agnex-section agnex-section-subtle" style={{ borderBottom: '1px solid var(--border-color)' }}>
+        <Container>
           <ScrollFade>
             <div style={{ maxWidth: '640px', marginBottom: '4rem' }}>
-              <div className="agnex-badge" style={{ marginBottom: '1rem' }}>
-                Operational DNA
-              </div>
-              <h2 style={{ fontSize: 'var(--text-4xl)', marginBottom: '1rem' }}>
+              <SectionLabel number="DNA" text="OPERATIONAL VALUES" />
+              <h2 style={{ fontSize: 'var(--text-4xl)', color: 'var(--agnex-navy)', marginBottom: '1rem' }}>
                 Our Core Values
               </h2>
-              <p>
+              <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)' }}>
                 Five words that govern our engineering standards, our client relationships, and every line of code we ship.
               </p>
             </div>
@@ -323,51 +334,52 @@ export default function About() {
             {values.map((val, idx) => (
               <ScrollFade key={val.word} delay={0.08 * idx}>
                 <div
-                  className="agnex-card"
                   style={{
-                    backgroundColor: 'var(--agnex-base)',
+                    backgroundColor: '#FFFFFF',
+                    border: '1px solid var(--border-strong)',
+                    borderRadius: 'var(--radius-sm)',
                     padding: '2rem',
-                    height: '100%'
+                    height: '100%',
+                    boxShadow: 'var(--shadow-subtle)'
                   }}
                 >
                   <div
                     style={{
                       fontFamily: 'var(--font-mono)',
                       fontSize: 'var(--text-xs)',
-                      color: 'var(--agnex-accent)',
-                      marginBottom: '0.75rem'
+                      color: 'var(--agnex-blue)',
+                      marginBottom: '0.75rem',
+                      fontWeight: 700
                     }}
                   >
                     0{idx + 1}
                   </div>
-                  <h3 style={{ fontSize: 'var(--text-xl)', color: 'var(--agnex-white)', marginBottom: '0.25rem' }}>
+                  <h3 style={{ fontSize: 'var(--text-xl)', color: 'var(--agnex-navy)', marginBottom: '0.25rem' }}>
                     {val.word}
                   </h3>
-                  <div style={{ fontSize: 'var(--text-xs)', color: 'var(--agnex-steel)', marginBottom: '1rem', fontStyle: 'italic' }}>
+                  <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', marginBottom: '1rem', fontStyle: 'italic', fontWeight: 500 }}>
                     {val.tagline}
                   </div>
-                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                     {val.description}
                   </p>
                 </div>
               </ScrollFade>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Who We Partner With */}
-      <section className="agnex-section" style={{ borderBottom: '1px solid var(--border-color)' }}>
-        <div className="agnex-container">
+      <section className="agnex-section" style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid var(--border-color)' }}>
+        <Container>
           <ScrollFade>
             <div style={{ maxWidth: '640px', marginBottom: '4rem' }}>
-              <div className="agnex-badge" style={{ marginBottom: '1rem' }}>
-                Client Partnerships
-              </div>
-              <h2 style={{ fontSize: 'var(--text-4xl)', marginBottom: '1rem' }}>
+              <SectionLabel number="PARTNERS" text="CLIENT PARTNERSHIPS" />
+              <h2 style={{ fontSize: 'var(--text-4xl)', color: 'var(--agnex-navy)', marginBottom: '1rem' }}>
                 Who We Build For
               </h2>
-              <p>
+              <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)' }}>
                 We collaborate with organizations across growth stages who recognize that technology is their primary competitive differentiator.
               </p>
             </div>
@@ -383,41 +395,43 @@ export default function About() {
             {audienceGroups.map((group, idx) => (
               <ScrollFade key={idx} delay={0.1 * idx}>
                 <div
-                  className="agnex-card"
                   style={{
-                    backgroundColor: 'var(--agnex-base-raised)',
+                    backgroundColor: 'var(--agnex-canvas-subtle)',
+                    border: '1px solid var(--border-strong)',
+                    borderRadius: 'var(--radius-sm)',
                     padding: '2rem',
-                    height: '100%'
+                    height: '100%',
+                    boxShadow: 'var(--shadow-subtle)'
                   }}
                 >
-                  <h3 style={{ fontSize: 'var(--text-lg)', color: 'var(--agnex-white)', marginBottom: '0.75rem' }}>
+                  <h3 style={{ fontSize: 'var(--text-lg)', color: 'var(--agnex-navy)', marginBottom: '0.75rem' }}>
                     {group.group}
                   </h3>
-                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                     {group.need}
                   </p>
                 </div>
               </ScrollFade>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Conversion CTA */}
-      <section className="agnex-section" style={{ textAlign: 'center', backgroundColor: 'var(--agnex-base-raised)' }}>
-        <div className="agnex-container">
+      <section className="agnex-section agnex-section-subtle" style={{ textAlign: 'center' }}>
+        <Container>
           <ScrollFade>
             <div style={{ maxWidth: '680px', margin: '0 auto' }}>
-              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--agnex-white)', marginBottom: '1.25rem' }}>
+              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--agnex-navy)', marginBottom: '1.25rem' }}>
                 Ready to partner with AGNEX?
               </h2>
-              <p style={{ fontSize: 'var(--text-md)', color: 'var(--text-muted)', marginBottom: '2.5rem', lineHeight: 1.6 }}>
+              <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', marginBottom: '2.5rem', lineHeight: 1.6 }}>
                 Explore how our engineering team can help your business solve its most pressing technical bottlenecks.
               </p>
               <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
                 <Link to="/contact" className="btn btn-primary" style={{ padding: '0.875rem 2.25rem' }}>
                   <span>Start a Conversation</span>
-                  <span style={{ color: 'var(--agnex-accent)', fontWeight: 700 }}>→</span>
+                  <span className="btn-arrow" style={{ fontWeight: 700 }}>→</span>
                 </Link>
                 <Link to="/work" className="btn btn-secondary" style={{ padding: '0.875rem 2rem' }}>
                   <span>Review Our Work</span>
@@ -425,7 +439,7 @@ export default function About() {
               </div>
             </div>
           </ScrollFade>
-        </div>
+        </Container>
       </section>
     </>
   );

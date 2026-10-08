@@ -114,7 +114,7 @@ export default function AiSlopChecker() {
         <meta property="og:url" content="https://agnextechnology.com/ai-slop-checker" />
       </Helmet>
 
-      <main style={{ backgroundColor: 'var(--agnex-base, #0B0D10)', minHeight: '100vh', paddingTop: '100px', paddingBottom: '5rem' }}>
+      <main style={{ backgroundColor: '#FFFFFF', minHeight: '100vh', paddingTop: '100px', paddingBottom: '5rem' }}>
         <div className="agnex-container">
           {!report ? (
             <div style={{ maxWidth: '840px', margin: '0 auto' }}>
@@ -125,14 +125,15 @@ export default function AiSlopChecker() {
                     display: 'inline-block',
                     fontFamily: 'var(--font-mono, monospace)',
                     fontSize: '0.8rem',
-                    color: 'var(--agnex-accent, #00E5FF)',
+                    color: 'var(--agnex-blue)',
                     letterSpacing: '0.12em',
                     textTransform: 'uppercase',
                     padding: '0.3rem 0.8rem',
-                    backgroundColor: 'rgba(0, 229, 255, 0.08)',
-                    border: '1px solid rgba(0, 229, 255, 0.2)',
+                    backgroundColor: 'var(--agnex-blue-pale)',
+                    border: '1px solid rgba(1, 122, 239, 0.25)',
                     borderRadius: '999px',
-                    marginBottom: '1rem'
+                    marginBottom: '1rem',
+                    fontWeight: 600
                   }}
                 >
                   Agnex Technology · Website Intelligence
@@ -142,7 +143,7 @@ export default function AiSlopChecker() {
                   style={{
                     fontSize: 'clamp(2rem, 4vw, 3.25rem)',
                     fontWeight: 700,
-                    color: 'var(--agnex-white, #F7F8FA)',
+                    color: 'var(--agnex-navy)',
                     lineHeight: 1.15,
                     margin: '0 0 1rem 0'
                   }}
@@ -153,7 +154,7 @@ export default function AiSlopChecker() {
                 <p
                   style={{
                     fontSize: 'clamp(1rem, 1.8vw, 1.15rem)',
-                    color: 'var(--agnex-steel-light, #CBD5E1)',
+                    color: 'var(--text-secondary)',
                     lineHeight: 1.6,
                     maxWidth: '680px',
                     margin: '0 auto 1.5rem auto'
@@ -165,30 +166,30 @@ export default function AiSlopChecker() {
                 {/* Disclaimer Banner */}
                 <div
                   style={{
-                    backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                    border: '1px solid rgba(255, 255, 255, 0.08)',
+                    backgroundColor: 'var(--agnex-canvas-subtle)',
+                    border: '1px solid var(--border-strong)',
                     borderRadius: '6px',
                     padding: '0.75rem 1rem',
                     fontSize: '0.8rem',
-                    color: 'var(--agnex-steel, #7C8490)',
+                    color: 'var(--text-secondary)',
                     lineHeight: 1.5,
                     maxWidth: '640px',
                     margin: '0 auto',
                     textAlign: 'left'
                   }}
                 >
-                  <strong style={{ color: '#CBD5E1' }}>Analysis Methodology Notice:</strong> This auditor evaluates statistical language patterns, vocabulary repetition, and architectural cues to calculate <em>AI-generated content likelihood</em> and <em>AI-slop risk</em>. It does not definitively prove AI authorship.
+                  <strong style={{ color: 'var(--agnex-navy)' }}>Analysis Methodology Notice:</strong> This auditor evaluates statistical language patterns, vocabulary repetition, and architectural cues to calculate <em>AI-generated content likelihood</em> and <em>AI-slop risk</em>. It does not definitively prove AI authorship.
                 </div>
               </div>
 
               {/* URL Input Form Card */}
               <div
                 style={{
-                  backgroundColor: 'var(--agnex-base-raised, #12151B)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid var(--border-strong)',
                   borderRadius: '12px',
                   padding: '2rem',
-                  boxShadow: '0 16px 32px rgba(0, 0, 0, 0.4)',
+                  boxShadow: 'var(--shadow-subtle)',
                   marginBottom: '3rem'
                 }}
               >
@@ -199,7 +200,7 @@ export default function AiSlopChecker() {
                       display: 'block',
                       fontSize: '0.85rem',
                       fontWeight: 600,
-                      color: 'var(--agnex-white, #F7F8FA)',
+                      color: 'var(--agnex-navy)',
                       marginBottom: '0.5rem',
                       textTransform: 'uppercase',
                       letterSpacing: '0.05em'
@@ -219,17 +220,17 @@ export default function AiSlopChecker() {
                       style={{
                         flex: '1 1 280px',
                         padding: '0.85rem 1rem',
-                        backgroundColor: 'rgba(255, 255, 255, 0.04)',
-                        border: '1px solid rgba(255, 255, 255, 0.15)',
+                        backgroundColor: 'var(--agnex-canvas-subtle)',
+                        border: '1px solid var(--border-strong)',
                         borderRadius: '6px',
-                        color: '#F7F8FA',
+                        color: 'var(--agnex-navy)',
                         fontSize: '1rem',
                         fontFamily: 'var(--font-mono, monospace)',
                         outline: 'none',
                         transition: 'border-color 0.2s'
                       }}
-                      onFocus={(e) => (e.target.style.borderColor = 'var(--agnex-accent, #00E5FF)')}
-                      onBlur={(e) => (e.target.style.borderColor = 'rgba(255, 255, 255, 0.15)')}
+                      onFocus={(e) => (e.target.style.borderColor = 'var(--agnex-blue)')}
+                      onBlur={(e) => (e.target.style.borderColor = 'var(--border-strong)')}
                     />
 
                     <button

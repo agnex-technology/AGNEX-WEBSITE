@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { SectionLabel } from '../../../components/primitives';
 
 export default function ComparisonMatrix() {
   const matrixData = [
@@ -43,29 +44,28 @@ export default function ComparisonMatrix() {
   return (
     <div
       style={{
-        backgroundColor: 'var(--agnex-black)',
-        border: '1px solid var(--border-color)',
+        backgroundColor: '#FFFFFF',
+        border: '1px solid var(--border-strong)',
         borderRadius: 'var(--radius-sm)',
         padding: 'clamp(2rem, 4vw, 3.5rem)',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        boxShadow: 'var(--shadow-subtle)'
       }}
     >
       <div style={{ marginBottom: '2.5rem' }}>
-        <div className="agnex-badge" style={{ marginBottom: '0.875rem' }}>
-          Cross-Domain Engineering Matrix
-        </div>
+        <SectionLabel number="LEDGER" text="CROSS-DOMAIN ENGINEERING MATRIX" />
         <h3
           style={{
             fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
             fontWeight: 700,
-            color: 'var(--agnex-white)',
+            color: 'var(--agnex-navy)',
             marginBottom: '0.75rem',
             lineHeight: 1.2
           }}
         >
           Different problems. One engineering philosophy.
         </h3>
-        <p style={{ fontSize: 'var(--text-md)', color: 'var(--text-muted)', maxWidth: '680px', margin: 0, lineHeight: 1.6 }}>
+        <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', maxWidth: '680px', margin: 0, lineHeight: 1.6 }}>
           Whether orchestrating heavy-vehicle freight, mitigating cyber threats, or indexing statutory precedents, AGNEX engineers deterministic, auditable software systems designed around the problem.
         </p>
       </div>
@@ -82,23 +82,23 @@ export default function ComparisonMatrix() {
           }}
         >
           <thead>
-            <tr style={{ borderBottom: '1px solid var(--border-color)' }}>
-              <th style={{ padding: '0.875rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--agnex-steel)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+            <tr style={{ borderBottom: '2px solid var(--agnex-navy)', backgroundColor: 'var(--agnex-canvas-subtle)' }}>
+              <th style={{ padding: '0.875rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--agnex-navy)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
                 #
               </th>
-              <th style={{ padding: '0.875rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--agnex-steel)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+              <th style={{ padding: '0.875rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--agnex-navy)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
                 Project
               </th>
-              <th style={{ padding: '0.875rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--agnex-steel)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+              <th style={{ padding: '0.875rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--agnex-navy)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
                 Domain
               </th>
-              <th style={{ padding: '0.875rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--agnex-steel)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+              <th style={{ padding: '0.875rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--agnex-navy)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
                 Core Engineering
               </th>
-              <th style={{ padding: '0.875rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--agnex-steel)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+              <th style={{ padding: '0.875rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--agnex-navy)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
                 Architectural Pillar
               </th>
-              <th style={{ padding: '0.875rem 1rem', textAlign: 'right', fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--agnex-steel)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+              <th style={{ padding: '0.875rem 1rem', textAlign: 'right', fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--agnex-navy)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700 }}>
                 Action
               </th>
             </tr>
@@ -113,14 +113,14 @@ export default function ComparisonMatrix() {
                   transition: 'background-color 150ms ease'
                 }}
               >
-                <td style={{ padding: '1.25rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-accent)', fontWeight: 700 }}>
+                <td style={{ padding: '1.25rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-blue)', fontWeight: 700 }}>
                   {row.num}
                 </td>
                 <td style={{ padding: '1.25rem 1rem' }}>
-                  <div style={{ color: 'var(--agnex-white)', fontWeight: 600, fontSize: 'var(--text-sm)' }}>
+                  <div style={{ color: 'var(--agnex-navy)', fontWeight: 600, fontSize: 'var(--text-sm)' }}>
                     {row.project}
                   </div>
-                  <div style={{ color: 'var(--agnex-steel)', fontSize: 'var(--text-xs)' }}>
+                  <div style={{ color: 'var(--text-muted)', fontSize: 'var(--text-xs)' }}>
                     {row.title}
                   </div>
                 </td>
@@ -131,25 +131,26 @@ export default function ComparisonMatrix() {
                       fontSize: '11px',
                       padding: '0.2rem 0.5rem',
                       borderRadius: 'var(--radius-xs)',
-                      backgroundColor: 'var(--agnex-base)',
+                      backgroundColor: 'var(--agnex-canvas-subtle)',
                       border: '1px solid var(--border-color)',
-                      color: 'var(--agnex-steel-light)'
+                      color: 'var(--agnex-navy)',
+                      fontWeight: 500
                     }}
                   >
                     {row.domain}
                   </span>
                 </td>
-                <td style={{ padding: '1.25rem 1rem', color: 'var(--agnex-white)', fontSize: 'var(--text-sm)', fontWeight: 500 }}>
+                <td style={{ padding: '1.25rem 1rem', color: 'var(--agnex-navy)', fontSize: 'var(--text-sm)', fontWeight: 500 }}>
                   {row.core}
                 </td>
-                <td style={{ padding: '1.25rem 1rem', color: 'var(--text-muted)', fontSize: 'var(--text-xs)', maxWidth: '300px', lineHeight: 1.45 }}>
+                <td style={{ padding: '1.25rem 1rem', color: 'var(--text-secondary)', fontSize: 'var(--text-xs)', maxWidth: '300px', lineHeight: 1.45 }}>
                   {row.highlight}
                 </td>
                 <td style={{ padding: '1.25rem 1rem', textAlign: 'right' }}>
                   <Link
                     to={row.slug}
-                    className="agnex-link-accent"
-                    style={{ fontSize: 'var(--text-xs)', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}
+                    className="agnex-link"
+                    style={{ fontSize: 'var(--text-xs)', display: 'inline-flex', alignItems: 'center', gap: '0.25rem', color: 'var(--agnex-blue)', fontWeight: 600 }}
                   >
                     <span>View Spec</span>
                     <span>→</span>
@@ -163,7 +164,7 @@ export default function ComparisonMatrix() {
 
       <style>{`
         .matrix-row:hover {
-          background-color: var(--agnex-base-raised) !important;
+          background-color: var(--agnex-canvas-subtle) !important;
         }
       `}</style>
     </div>

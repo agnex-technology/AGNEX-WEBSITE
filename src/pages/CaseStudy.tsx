@@ -6,6 +6,7 @@ import RdaArchitectureDiagram from '../features/work/components/RdaArchitectureD
 import SkynetArchitectureDiagram from '../features/work/components/SkynetArchitectureDiagram';
 import LawGuideArchitectureDiagram from '../features/work/components/LawGuideArchitectureDiagram';
 import SentinelXArchitectureDiagram from '../features/work/components/SentinelXArchitectureDiagram';
+import { Container, SectionLabel, TechnicalLabel } from '../components/primitives';
 
 export default function CaseStudy() {
   const { id } = useParams<{ id: string }>();
@@ -14,10 +15,10 @@ export default function CaseStudy() {
   if (!project) {
     return (
       <div className="agnex-container" style={{ padding: '8rem 0', textAlign: 'center' }}>
-        <h1 style={{ fontSize: 'var(--text-3xl)', marginBottom: '1rem', color: 'var(--agnex-white)' }}>
+        <h1 style={{ fontSize: 'var(--text-3xl)', marginBottom: '1rem', color: 'var(--agnex-navy)' }}>
           Engineering Case Study Not Found
         </h1>
-        <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
           The requested system specification could not be located in the engineering archive.
         </p>
         <Link to="/work" className="btn btn-primary">
@@ -84,19 +85,20 @@ export default function CaseStudy() {
         </script>
       </Helmet>
 
-      <article style={{ backgroundColor: 'var(--agnex-base)' }}>
+      <article style={{ backgroundColor: '#FFFFFF' }}>
         {/* ========================================================= */}
         {/* 01 — OVERVIEW HEADER                                     */}
         {/* ========================================================= */}
         <header
           style={{
-            padding: 'clamp(4rem, 6vw, 6.5rem) 0 4rem 0',
+            padding: 'clamp(5rem, 8vw, 7.5rem) 0 4rem 0',
             borderBottom: '1px solid var(--border-color)',
-            backgroundColor: 'var(--agnex-base-raised)'
+            backgroundColor: '#FFFFFF',
+            position: 'relative'
           }}
-          className="agnex-grid-mesh"
+          className="agnex-blueprint-grid"
         >
-          <div className="agnex-container">
+          <Container>
             <ScrollFade>
               {/* Top Navigation Backlink */}
               <Link
@@ -105,11 +107,12 @@ export default function CaseStudy() {
                 style={{
                   fontSize: 'var(--text-xs)',
                   fontFamily: 'var(--font-mono)',
-                  color: 'var(--agnex-steel)',
+                  color: 'var(--text-secondary)',
                   marginBottom: '2rem',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.5rem'
+                  gap: '0.5rem',
+                  fontWeight: 600
                 }}
               >
                 <span>←</span>
@@ -123,30 +126,33 @@ export default function CaseStudy() {
                     fontFamily: 'var(--font-mono)',
                     fontSize: 'var(--text-xs)',
                     fontWeight: 700,
-                    color: 'var(--agnex-accent)',
-                    padding: '0.2rem 0.6rem',
-                    backgroundColor: 'var(--agnex-black)',
-                    border: '1px solid var(--agnex-accent-border)',
+                    color: 'var(--agnex-blue)',
+                    padding: '0.25rem 0.65rem',
+                    backgroundColor: 'var(--agnex-blue-pale)',
+                    border: '1px solid rgba(1, 122, 239, 0.25)',
                     borderRadius: 'var(--radius-xs)'
                   }}
                 >
                   CASE STUDY {project.number} // {project.domain.toUpperCase()}
                 </span>
 
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--agnex-steel)' }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-muted)' }}>
                   {project.category}
                 </span>
+
+                <TechnicalLabel code={`SPEC_${project.number}`} status="PRODUCTION" />
 
                 {project.statusBadge && (
                   <span
                     style={{
                       fontFamily: 'var(--font-mono)',
                       fontSize: '11px',
-                      color: '#EAB308',
-                      padding: '0.15rem 0.6rem',
-                      backgroundColor: 'rgba(234, 179, 8, 0.1)',
-                      border: '1px solid rgba(234, 179, 8, 0.35)',
-                      borderRadius: 'var(--radius-xs)'
+                      color: '#B45309',
+                      padding: '0.2rem 0.55rem',
+                      backgroundColor: '#FEF3C7',
+                      border: '1px solid #FCD34D',
+                      borderRadius: 'var(--radius-xs)',
+                      fontWeight: 600
                     }}
                   >
                     {project.statusBadge}
@@ -158,8 +164,8 @@ export default function CaseStudy() {
               <h1
                 style={{
                   fontSize: 'clamp(2.5rem, 5vw, 4.25rem)',
-                  lineHeight: 1.12,
-                  color: 'var(--agnex-white)',
+                  lineHeight: 1.1,
+                  color: 'var(--agnex-navy)',
                   marginBottom: '1.25rem',
                   maxWidth: '980px',
                   letterSpacing: 'var(--tracking-tight)'
@@ -171,7 +177,7 @@ export default function CaseStudy() {
               <p
                 style={{
                   fontSize: 'var(--text-xl)',
-                  color: 'var(--text-muted)',
+                  color: 'var(--text-secondary)',
                   lineHeight: 1.55,
                   maxWidth: '820px',
                   marginBottom: '2.5rem'
@@ -184,18 +190,18 @@ export default function CaseStudy() {
               {project.statusNote && (
                 <div
                   style={{
-                    backgroundColor: 'rgba(37, 99, 235, 0.08)',
-                    border: '1px solid var(--border-color)',
+                    backgroundColor: 'var(--agnex-blue-pale)',
+                    border: '1px solid rgba(1, 122, 239, 0.3)',
                     borderRadius: 'var(--radius-xs)',
                     padding: '1rem 1.25rem',
                     maxWidth: '820px',
                     marginBottom: '2.5rem',
                     fontSize: 'var(--text-xs)',
-                    color: 'var(--agnex-steel-light)',
+                    color: 'var(--agnex-navy)',
                     lineHeight: 1.55
                   }}
                 >
-                  <strong style={{ color: 'var(--agnex-white)' }}>FOUNDATION STATUS: </strong>
+                  <strong style={{ color: 'var(--agnex-blue)' }}>FOUNDATION STATUS: </strong>
                   {project.statusNote}
                 </div>
               )}
@@ -204,15 +210,16 @@ export default function CaseStudy() {
               {project.disclaimer && (
                 <div
                   style={{
-                    backgroundColor: 'rgba(234, 179, 8, 0.08)',
-                    border: '1px solid rgba(234, 179, 8, 0.3)',
+                    backgroundColor: '#FEF3C7',
+                    border: '1px solid #F59E0B',
                     borderRadius: 'var(--radius-xs)',
                     padding: '1rem 1.25rem',
                     maxWidth: '820px',
                     marginBottom: '2.5rem',
                     fontSize: 'var(--text-xs)',
-                    color: '#FDE047',
-                    lineHeight: 1.55
+                    color: '#92400E',
+                    lineHeight: 1.55,
+                    fontWeight: 500
                   }}
                 >
                   ⚖️ {project.disclaimer}
@@ -226,114 +233,112 @@ export default function CaseStudy() {
                   gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
                   gap: '1rem',
                   padding: '1.5rem',
-                  backgroundColor: 'var(--agnex-black)',
-                  border: '1px solid var(--border-color)',
-                  borderRadius: 'var(--radius-xs)'
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid var(--border-strong)',
+                  borderRadius: 'var(--radius-xs)',
+                  boxShadow: 'var(--shadow-subtle)'
                 }}
               >
                 <div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--agnex-steel)' }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--text-muted)' }}>
                     ARCHITECTURAL DOMAIN
                   </div>
-                  <div style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-white)', fontWeight: 600, marginTop: '2px' }}>
+                  <div style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-navy)', fontWeight: 600, marginTop: '2px' }}>
                     {project.domain}
                   </div>
                 </div>
 
                 <div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--agnex-steel)' }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--text-muted)' }}>
                     CORE FOCUS
                   </div>
-                  <div style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-white)', fontWeight: 600, marginTop: '2px' }}>
+                  <div style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-navy)', fontWeight: 600, marginTop: '2px' }}>
                     {project.coreEngineering}
                   </div>
                 </div>
 
                 <div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--agnex-steel)' }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--text-muted)' }}>
                     ENGINEERING METHOD
                   </div>
-                  <div style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-accent)', fontWeight: 600, marginTop: '2px' }}>
+                  <div style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-blue)', fontWeight: 600, marginTop: '2px' }}>
                     Understand → Evolve
                   </div>
                 </div>
 
                 <div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--agnex-steel)' }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-2xs)', color: 'var(--text-muted)' }}>
                     VERIFICATION
                   </div>
-                  <div style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-white)', fontWeight: 600, marginTop: '2px' }}>
+                  <div style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-navy)', fontWeight: 600, marginTop: '2px' }}>
                     Deterministic & Audited
                   </div>
                 </div>
               </div>
             </ScrollFade>
-          </div>
+          </Container>
         </header>
 
         {/* ========================================================= */}
         {/* 02 — THE CHALLENGE                                       */}
         {/* ========================================================= */}
-        <section className="agnex-section" style={{ borderBottom: '1px solid var(--border-color)' }}>
-          <div className="agnex-container">
+        <section className="agnex-section agnex-section-subtle" style={{ borderBottom: '1px solid var(--border-color)' }}>
+          <Container>
             <div style={{ maxWidth: '880px' }}>
-              <div className="agnex-badge" style={{ marginBottom: '1rem' }}>
-                02 // THE CHALLENGE
-              </div>
-              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-white)', marginBottom: '1.25rem' }}>
+              <SectionLabel number="02" text="THE CHALLENGE" />
+              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-navy)', marginBottom: '1.25rem' }}>
                 The Operational Problem
               </h2>
-              <p style={{ fontSize: 'var(--text-lg)', color: 'var(--text-muted)', lineHeight: 1.65, marginBottom: '2rem' }}>
+              <p style={{ fontSize: 'var(--text-lg)', color: 'var(--text-secondary)', lineHeight: 1.65, marginBottom: '2rem' }}>
                 {project.challenge.summary}
               </p>
 
               <div
                 style={{
-                  backgroundColor: 'var(--agnex-base-raised)',
-                  border: '1px solid var(--border-color)',
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid var(--border-strong)',
                   borderRadius: 'var(--radius-xs)',
                   padding: '1.75rem',
-                  marginBottom: '2rem'
+                  marginBottom: '2rem',
+                  boxShadow: 'var(--shadow-subtle)'
                 }}
               >
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--agnex-accent)', marginBottom: '0.875rem', textTransform: 'uppercase' }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--agnex-blue)', marginBottom: '0.875rem', textTransform: 'uppercase', fontWeight: 700 }}>
                   OPERATIONAL COORDINATION REQUIREMENTS
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.75rem' }}>
                   {project.challenge.coordinationPoints.map((point, idx) => (
                     <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                      <span style={{ color: 'var(--agnex-accent)', fontFamily: 'var(--font-mono)', fontSize: '12px' }}>↳</span>
-                      <span style={{ fontSize: 'var(--text-xs)', color: 'var(--agnex-steel-light)', lineHeight: 1.5 }}>{point}</span>
+                      <span style={{ color: 'var(--agnex-blue)', fontFamily: 'var(--font-mono)', fontSize: '12px' }}>↳</span>
+                      <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', lineHeight: 1.5 }}>{point}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div style={{ borderLeft: '3px solid var(--agnex-accent)', paddingLeft: '1.25rem' }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--agnex-steel)', marginBottom: '0.25rem' }}>
+              <div style={{ borderLeft: '3px solid var(--agnex-blue)', paddingLeft: '1.25rem' }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-muted)', marginBottom: '0.25rem', fontWeight: 600 }}>
                   TECHNICAL BOTTLENECK
                 </div>
-                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', margin: 0, lineHeight: 1.6 }}>
+                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.6 }}>
                   {project.challenge.technicalBottlenecks}
                 </p>
               </div>
             </div>
-          </div>
+          </Container>
         </section>
 
         {/* ========================================================= */}
         {/* 03 — THE APPROACH (AGNEX METHODOLOGY)                    */}
         {/* ========================================================= */}
-        <section className="agnex-section" style={{ backgroundColor: 'var(--agnex-black)', borderBottom: '1px solid var(--border-color)' }}>
-          <div className="agnex-container">
+        <section className="agnex-section" style={{ borderBottom: '1px solid var(--border-color)' }}>
+          <Container>
             <div style={{ marginBottom: '3rem' }}>
-              <div className="agnex-badge" style={{ marginBottom: '1rem' }}>
-                03 // THE APPROACH
-              </div>
-              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-white)', marginBottom: '0.75rem' }}>
+              <SectionLabel number="03" text="THE APPROACH" />
+              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-navy)', marginBottom: '0.75rem' }}>
                 The AGNEX Engineering Methodology
               </h2>
-              <p style={{ fontSize: 'var(--text-md)', color: 'var(--text-muted)', margin: 0 }}>
+              <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', margin: 0 }}>
                 Understand → Architect → Engineer → Integrate → Evolve
               </p>
             </div>
@@ -349,8 +354,8 @@ export default function CaseStudy() {
                 <div
                   key={m.phase}
                   style={{
-                    backgroundColor: 'var(--agnex-base-raised)',
-                    border: '1px solid var(--border-color)',
+                    backgroundColor: 'var(--agnex-canvas-subtle)',
+                    border: '1px solid var(--border-strong)',
                     borderRadius: 'var(--radius-xs)',
                     padding: '1.5rem',
                     display: 'flex',
@@ -358,34 +363,32 @@ export default function CaseStudy() {
                     gap: '0.625rem'
                   }}
                 >
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--agnex-accent)', fontWeight: 700 }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--agnex-blue)', fontWeight: 700 }}>
                     {m.phase}
                   </div>
-                  <div style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-white)', fontWeight: 600 }}>
+                  <div style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-navy)', fontWeight: 600 }}>
                     {m.title}
                   </div>
-                  <p style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', margin: 0, lineHeight: 1.55 }}>
+                  <p style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.55 }}>
                     {m.body}
                   </p>
                 </div>
               ))}
             </div>
-          </div>
+          </Container>
         </section>
 
         {/* ========================================================= */}
         {/* 04 — WHAT WE BUILT (SYSTEMS & CAPABILITIES)              */}
         {/* ========================================================= */}
-        <section className="agnex-section" style={{ borderBottom: '1px solid var(--border-color)' }}>
-          <div className="agnex-container">
+        <section className="agnex-section agnex-section-subtle" style={{ borderBottom: '1px solid var(--border-color)' }}>
+          <Container>
             <div style={{ maxWidth: '880px', marginBottom: '3rem' }}>
-              <div className="agnex-badge" style={{ marginBottom: '1rem' }}>
-                04 // WHAT WE BUILT
-              </div>
-              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-white)', marginBottom: '0.75rem' }}>
+              <SectionLabel number="04" text="WHAT WE BUILT" />
+              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-navy)', marginBottom: '0.75rem' }}>
                 Engineered Capabilities & Subsystems
               </h2>
-              <p style={{ fontSize: 'var(--text-md)', color: 'var(--text-muted)', margin: 0 }}>
+              <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', margin: 0 }}>
                 Every module was engineered around deterministic boundaries, operational auditing, and production safety.
               </p>
             </div>
@@ -399,46 +402,46 @@ export default function CaseStudy() {
                     alignItems: 'flex-start',
                     gap: '1rem',
                     padding: '1.25rem',
-                    backgroundColor: 'var(--agnex-base-raised)',
-                    border: '1px solid var(--border-color)',
-                    borderRadius: 'var(--radius-xs)'
+                    backgroundColor: '#FFFFFF',
+                    border: '1px solid var(--border-strong)',
+                    borderRadius: 'var(--radius-xs)',
+                    boxShadow: 'var(--shadow-subtle)'
                   }}
                 >
                   <span
                     style={{
                       fontFamily: 'var(--font-mono)',
                       fontSize: '11px',
-                      color: 'var(--agnex-accent)',
+                      color: 'var(--agnex-blue)',
                       padding: '0.2rem 0.5rem',
-                      backgroundColor: 'var(--agnex-black)',
+                      backgroundColor: 'var(--agnex-blue-pale)',
                       borderRadius: 'var(--radius-xs)',
-                      border: '1px solid var(--border-color)'
+                      border: '1px solid rgba(1, 122, 239, 0.25)',
+                      fontWeight: 700
                     }}
                   >
                     {(idx + 1).toString().padStart(2, '0')}
                   </span>
-                  <span style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-white)', lineHeight: 1.5, fontWeight: 500 }}>
+                  <span style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-navy)', lineHeight: 1.5, fontWeight: 500 }}>
                     {capability}
                   </span>
                 </div>
               ))}
             </div>
-          </div>
+          </Container>
         </section>
 
         {/* ========================================================= */}
         {/* 05 — ARCHITECTURE VISUALIZATION                          */}
         {/* ========================================================= */}
-        <section className="agnex-section" style={{ backgroundColor: 'var(--agnex-black)', borderBottom: '1px solid var(--border-color)' }}>
-          <div className="agnex-container">
+        <section className="agnex-section" style={{ borderBottom: '1px solid var(--border-color)' }}>
+          <Container>
             <div style={{ maxWidth: '880px', marginBottom: '2.5rem' }}>
-              <div className="agnex-badge" style={{ marginBottom: '1rem' }}>
-                05 // ARCHITECTURE
-              </div>
-              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-white)', marginBottom: '0.75rem' }}>
+              <SectionLabel number="05" text="ARCHITECTURE" />
+              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-navy)', marginBottom: '0.75rem' }}>
                 System Topology & Structural Flow
               </h2>
-              <p style={{ fontSize: 'var(--text-md)', color: 'var(--text-muted)', margin: 0 }}>
+              <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', margin: 0 }}>
                 {project.architecture.overview}
               </p>
             </div>
@@ -448,22 +451,20 @@ export default function CaseStudy() {
             {project.id === 'skynet' && <SkynetArchitectureDiagram />}
             {project.id === 'lawguide-ai' && <LawGuideArchitectureDiagram />}
             {project.id === 'sentinelx-ai' && <SentinelXArchitectureDiagram />}
-          </div>
+          </Container>
         </section>
 
         {/* ========================================================= */}
         {/* 06 — ENGINEERING DECISIONS                               */}
         {/* ========================================================= */}
-        <section className="agnex-section" style={{ borderBottom: '1px solid var(--border-color)' }}>
-          <div className="agnex-container">
+        <section className="agnex-section agnex-section-subtle" style={{ borderBottom: '1px solid var(--border-color)' }}>
+          <Container>
             <div style={{ maxWidth: '880px', marginBottom: '3rem' }}>
-              <div className="agnex-badge" style={{ marginBottom: '1rem' }}>
-                06 // ENGINEERING DECISIONS
-              </div>
-              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-white)', marginBottom: '0.75rem' }}>
+              <SectionLabel number="06" text="ENGINEERING DECISIONS" />
+              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-navy)', marginBottom: '0.75rem' }}>
                 Critical Architectural Trade-Offs
               </h2>
-              <p style={{ fontSize: 'var(--text-md)', color: 'var(--text-muted)', margin: 0 }}>
+              <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', margin: 0 }}>
                 Deliberate technical choices made to eliminate race conditions, optimize query latency, and protect integrity.
               </p>
             </div>
@@ -473,25 +474,27 @@ export default function CaseStudy() {
                 <div
                   key={idx}
                   style={{
-                    backgroundColor: 'var(--agnex-base-raised)',
-                    border: '1px solid var(--border-color)',
+                    backgroundColor: '#FFFFFF',
+                    border: '1px solid var(--border-strong)',
                     borderRadius: 'var(--radius-xs)',
-                    padding: 'clamp(1.5rem, 3vw, 2rem)'
+                    padding: 'clamp(1.5rem, 3vw, 2rem)',
+                    boxShadow: 'var(--shadow-subtle)'
                   }}
                 >
                   <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-                    <div style={{ fontSize: 'var(--text-lg)', fontWeight: 600, color: 'var(--agnex-white)' }}>
+                    <div style={{ fontSize: 'var(--text-lg)', fontWeight: 600, color: 'var(--agnex-navy)' }}>
                       {dec.decision}
                     </div>
                     <span
                       style={{
                         fontFamily: 'var(--font-mono)',
                         fontSize: '11px',
-                        color: 'var(--agnex-accent)',
+                        color: 'var(--agnex-blue)',
                         padding: '0.2rem 0.5rem',
-                        backgroundColor: 'var(--agnex-black)',
+                        backgroundColor: 'var(--agnex-blue-pale)',
                         borderRadius: 'var(--radius-xs)',
-                        border: '1px solid var(--border-color)'
+                        border: '1px solid rgba(1, 122, 239, 0.25)',
+                        fontWeight: 700
                       }}
                     >
                       DECISION {(idx + 1).toString().padStart(2, '0')}
@@ -500,19 +503,19 @@ export default function CaseStudy() {
 
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
                     <div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--agnex-steel)', marginBottom: '0.35rem', textTransform: 'uppercase' }}>
+                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-muted)', marginBottom: '0.35rem', textTransform: 'uppercase', fontWeight: 600 }}>
                         THE RATIONALE
                       </div>
-                      <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', margin: 0, lineHeight: 1.6 }}>
+                      <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.6 }}>
                         {dec.rationale}
                       </p>
                     </div>
 
                     <div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--agnex-accent)', marginBottom: '0.35rem', textTransform: 'uppercase' }}>
+                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--agnex-blue)', marginBottom: '0.35rem', textTransform: 'uppercase', fontWeight: 600 }}>
                         MEASURABLE ARCHITECTURAL IMPACT
                       </div>
-                      <p style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-steel-light)', margin: 0, lineHeight: 1.6 }}>
+                      <p style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-navy)', margin: 0, lineHeight: 1.6, fontWeight: 500 }}>
                         {dec.impact}
                       </p>
                     </div>
@@ -520,22 +523,20 @@ export default function CaseStudy() {
                 </div>
               ))}
             </div>
-          </div>
+          </Container>
         </section>
 
         {/* ========================================================= */}
         {/* 07 — TECHNOLOGY STACK                                    */}
         {/* ========================================================= */}
-        <section className="agnex-section" style={{ backgroundColor: 'var(--agnex-black)', borderBottom: '1px solid var(--border-color)' }}>
-          <div className="agnex-container">
+        <section className="agnex-section" style={{ borderBottom: '1px solid var(--border-color)' }}>
+          <Container>
             <div style={{ maxWidth: '880px', marginBottom: '3rem' }}>
-              <div className="agnex-badge" style={{ marginBottom: '1rem' }}>
-                07 // TECHNOLOGY STACK
-              </div>
-              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-white)', marginBottom: '0.75rem' }}>
+              <SectionLabel number="07" text="TECHNOLOGY STACK" />
+              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-navy)', marginBottom: '0.75rem' }}>
                 Production Technologies & Tools
               </h2>
-              <p style={{ fontSize: 'var(--text-md)', color: 'var(--text-muted)', margin: 0 }}>
+              <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', margin: 0 }}>
                 No decorative fluff. Every library and infrastructure primitive plays an active operational role.
               </p>
             </div>
@@ -545,13 +546,13 @@ export default function CaseStudy() {
                 <div
                   key={cat.category}
                   style={{
-                    backgroundColor: 'var(--agnex-base-raised)',
-                    border: '1px solid var(--border-color)',
+                    backgroundColor: 'var(--agnex-canvas-subtle)',
+                    border: '1px solid var(--border-strong)',
                     borderRadius: 'var(--radius-xs)',
                     padding: '1.5rem'
                   }}
                 >
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--agnex-accent)', marginBottom: '1rem', textTransform: 'uppercase' }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--agnex-blue)', marginBottom: '1rem', textTransform: 'uppercase', fontWeight: 700 }}>
                     {cat.category}
                   </div>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem' }}>
@@ -561,11 +562,12 @@ export default function CaseStudy() {
                         style={{
                           fontFamily: 'var(--font-mono)',
                           fontSize: '11px',
-                          color: 'var(--agnex-white)',
-                          backgroundColor: 'var(--agnex-black)',
-                          border: '1px solid var(--border-color)',
+                          color: 'var(--agnex-navy)',
+                          backgroundColor: '#FFFFFF',
+                          border: '1px solid var(--border-strong)',
                           padding: '0.3rem 0.65rem',
-                          borderRadius: 'var(--radius-xs)'
+                          borderRadius: 'var(--radius-xs)',
+                          fontWeight: 500
                         }}
                       >
                         {it}
@@ -575,22 +577,20 @@ export default function CaseStudy() {
                 </div>
               ))}
             </div>
-          </div>
+          </Container>
         </section>
 
         {/* ========================================================= */}
         {/* 08 — SYSTEM FLOW                                         */}
         {/* ========================================================= */}
-        <section className="agnex-section" style={{ borderBottom: '1px solid var(--border-color)' }}>
-          <div className="agnex-container">
+        <section className="agnex-section agnex-section-subtle" style={{ borderBottom: '1px solid var(--border-color)' }}>
+          <Container>
             <div style={{ maxWidth: '880px', marginBottom: '3rem' }}>
-              <div className="agnex-badge" style={{ marginBottom: '1rem' }}>
-                08 // SYSTEM FLOW
-              </div>
-              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-white)', marginBottom: '0.75rem' }}>
+              <SectionLabel number="08" text="SYSTEM FLOW" />
+              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-navy)', marginBottom: '0.75rem' }}>
                 {project.systemFlow.title}
               </h2>
-              <p style={{ fontSize: 'var(--text-md)', color: 'var(--text-muted)', margin: 0 }}>
+              <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', margin: 0 }}>
                 {project.systemFlow.description}
               </p>
             </div>
@@ -600,41 +600,40 @@ export default function CaseStudy() {
                 <div
                   key={st.step}
                   style={{
-                    backgroundColor: 'var(--agnex-base-raised)',
-                    border: '1px solid var(--border-color)',
+                    backgroundColor: '#FFFFFF',
+                    border: '1px solid var(--border-strong)',
                     borderRadius: 'var(--radius-xs)',
                     padding: '1.5rem',
-                    position: 'relative'
+                    position: 'relative',
+                    boxShadow: 'var(--shadow-subtle)'
                   }}
                 >
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--agnex-accent)', marginBottom: '0.5rem' }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', fontWeight: 700, color: 'var(--agnex-blue)', marginBottom: '0.5rem' }}>
                     STEP {st.step}
                   </div>
-                  <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-white)', marginBottom: '0.5rem' }}>
+                  <div style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '0.5rem' }}>
                     {st.title}
                   </div>
-                  <p style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', margin: 0, lineHeight: 1.55 }}>
+                  <p style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.55 }}>
                     {st.detail}
                   </p>
                 </div>
               ))}
             </div>
-          </div>
+          </Container>
         </section>
 
         {/* ========================================================= */}
         {/* 09 — SECURITY & RELIABILITY                              */}
         {/* ========================================================= */}
-        <section className="agnex-section" style={{ backgroundColor: 'var(--agnex-black)', borderBottom: '1px solid var(--border-color)' }}>
-          <div className="agnex-container">
+        <section className="agnex-section" style={{ borderBottom: '1px solid var(--border-color)' }}>
+          <Container>
             <div style={{ maxWidth: '880px', marginBottom: '3rem' }}>
-              <div className="agnex-badge" style={{ marginBottom: '1rem' }}>
-                09 // SECURITY & RELIABILITY
-              </div>
-              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-white)', marginBottom: '0.75rem' }}>
+              <SectionLabel number="09" text="SECURITY & RELIABILITY" />
+              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-navy)', marginBottom: '0.75rem' }}>
                 Operational Hardening & Guarantees
               </h2>
-              <p style={{ fontSize: 'var(--text-md)', color: 'var(--text-muted)', margin: 0 }}>
+              <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', margin: 0 }}>
                 Strict identity boundaries, encryption at rest and in transit, and immutable audit logs.
               </p>
             </div>
@@ -644,37 +643,35 @@ export default function CaseStudy() {
                 <div
                   key={idx}
                   style={{
-                    backgroundColor: 'var(--agnex-base-raised)',
-                    border: '1px solid var(--border-color)',
+                    backgroundColor: 'var(--agnex-canvas-subtle)',
+                    border: '1px solid var(--border-strong)',
                     borderRadius: 'var(--radius-xs)',
                     padding: '1.5rem'
                   }}
                 >
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--agnex-accent)', marginBottom: '0.35rem', textTransform: 'uppercase' }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--agnex-blue)', marginBottom: '0.35rem', textTransform: 'uppercase', fontWeight: 700 }}>
                     {sr.domain}
                   </div>
-                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-steel-light)', margin: 0, lineHeight: 1.55 }}>
+                  <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.55 }}>
                     {sr.implementation}
                   </p>
                 </div>
               ))}
             </div>
-          </div>
+          </Container>
         </section>
 
         {/* ========================================================= */}
         {/* 10 — EVOLUTION (NEXT ENGINEERING FRONTIER)               */}
         {/* ========================================================= */}
-        <section className="agnex-section" style={{ borderBottom: '1px solid var(--border-color)' }}>
-          <div className="agnex-container">
+        <section className="agnex-section agnex-section-subtle" style={{ borderBottom: '1px solid var(--border-color)' }}>
+          <Container>
             <div style={{ maxWidth: '880px', marginBottom: '3rem' }}>
-              <div className="agnex-badge" style={{ marginBottom: '1rem' }}>
-                10 // NEXT ENGINEERING FRONTIER
-              </div>
-              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-white)', marginBottom: '0.75rem' }}>
+              <SectionLabel number="10" text="NEXT ENGINEERING FRONTIER" />
+              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-navy)', marginBottom: '0.75rem' }}>
                 {project.evolution.label}
               </h2>
-              <p style={{ fontSize: 'var(--text-md)', color: 'var(--text-muted)', margin: 0 }}>
+              <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', margin: 0 }}>
                 Documented architectural expansion paths designed to preserve system durability as operational scale increases.
               </p>
             </div>
@@ -684,37 +681,39 @@ export default function CaseStudy() {
                 <div
                   key={idx}
                   style={{
-                    backgroundColor: 'var(--agnex-base-raised)',
-                    border: '1px solid var(--border-color)',
+                    backgroundColor: '#FFFFFF',
+                    border: '1px solid var(--border-strong)',
                     borderRadius: 'var(--radius-xs)',
-                    padding: '1.5rem'
+                    padding: '1.5rem',
+                    boxShadow: 'var(--shadow-subtle)'
                   }}
                 >
                   <span
                     style={{
                       fontFamily: 'var(--font-mono)',
                       fontSize: '11px',
-                      color: 'var(--agnex-steel)',
+                      color: 'var(--text-muted)',
                       padding: '0.15rem 0.5rem',
-                      backgroundColor: 'var(--agnex-black)',
+                      backgroundColor: 'var(--agnex-canvas-subtle)',
                       borderRadius: 'var(--radius-xs)',
                       border: '1px solid var(--border-color)',
                       display: 'inline-block',
-                      marginBottom: '0.75rem'
+                      marginBottom: '0.75rem',
+                      fontWeight: 600
                     }}
                   >
                     {ev.status.toUpperCase()}
                   </span>
-                  <div style={{ fontSize: 'var(--text-base)', fontWeight: 600, color: 'var(--agnex-white)', marginBottom: '0.5rem' }}>
+                  <div style={{ fontSize: 'var(--text-base)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '0.5rem' }}>
                     {ev.title}
                   </div>
-                  <p style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', margin: 0, lineHeight: 1.6 }}>
+                  <p style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.6 }}>
                     {ev.description}
                   </p>
                 </div>
               ))}
             </div>
-          </div>
+          </Container>
         </section>
 
         {/* ========================================================= */}
@@ -723,12 +722,12 @@ export default function CaseStudy() {
         <section
           className="agnex-section"
           style={{
-            backgroundColor: 'var(--agnex-black)',
+            backgroundColor: '#FFFFFF',
             borderBottom: '1px solid var(--border-color)',
             padding: '4rem 0'
           }}
         >
-          <div className="agnex-container">
+          <Container>
             <div
               style={{
                 display: 'flex',
@@ -736,20 +735,21 @@ export default function CaseStudy() {
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 gap: '2rem',
-                backgroundColor: 'var(--agnex-base-raised)',
-                border: '1px solid var(--border-color)',
+                backgroundColor: 'var(--agnex-canvas-subtle)',
+                border: '1px solid var(--border-strong)',
                 borderRadius: 'var(--radius-sm)',
-                padding: 'clamp(2rem, 4vw, 3.5rem)'
+                padding: 'clamp(2rem, 4vw, 3.5rem)',
+                boxShadow: 'var(--shadow-subtle)'
               }}
             >
               <div>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--agnex-steel)', marginBottom: '0.5rem' }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--agnex-blue)', marginBottom: '0.5rem', fontWeight: 700 }}>
                   NEXT ENGINEERING SPECIFICATION
                 </div>
-                <h3 style={{ fontSize: 'var(--text-2xl)', color: 'var(--agnex-white)', margin: 0 }}>
+                <h3 style={{ fontSize: 'var(--text-2xl)', color: 'var(--agnex-navy)', margin: 0 }}>
                   {nextProject.number} // {nextProject.title}
                 </h3>
-                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', margin: '0.5rem 0 0 0', maxWidth: '580px' }}>
+                <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', margin: '0.5rem 0 0 0', maxWidth: '580px' }}>
                   {nextProject.shortDescription}
                 </p>
               </div>
@@ -760,10 +760,10 @@ export default function CaseStudy() {
                 style={{ minHeight: '44px', padding: '0.875rem 1.75rem' }}
               >
                 <span>Read Next Case Study ({nextProject.name})</span>
-                <span className="btn-arrow" style={{ color: 'var(--agnex-accent)' }}>→</span>
+                <span className="btn-arrow" style={{ fontWeight: 700 }}>→</span>
               </Link>
             </div>
-          </div>
+          </Container>
         </section>
       </article>
     </>

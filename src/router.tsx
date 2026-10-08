@@ -26,7 +26,7 @@ const RouteLoader = () => (
       alignItems: 'center',
       justifyContent: 'center',
       gap: '1rem',
-      backgroundColor: 'var(--agnex-base)'
+      backgroundColor: 'var(--agnex-canvas)'
     }}
   >
     <img

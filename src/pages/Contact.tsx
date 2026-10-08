@@ -4,6 +4,7 @@ import ScrollFade from '../components/motion/ScrollFade';
 import { LinkedInIcon, InstagramIcon, PhoneIcon, WhatsAppIcon } from '../components/brand/SocialIcons';
 import { siteConfig } from '../config/site';
 import { trackEvent } from '../utils/analytics';
+import { Container, SectionLabel, TechnicalLabel } from '../components/primitives';
 
 interface FormData {
   needHelpWith: string[];
@@ -113,7 +114,6 @@ export default function Contact() {
 
     // Spam honeypot detection
     if (formData.honeypot) {
-      // Silently pretend success to bots
       setReferenceId(`AGX-${Math.floor(100000 + Math.random() * 900000)}`);
       setIsSuccess(true);
       return;
@@ -222,23 +222,28 @@ export default function Contact() {
       {/* Hero Header */}
       <section
         style={{
-          padding: 'clamp(4rem, 6vw, 6rem) 0 3rem 0',
+          padding: 'clamp(5rem, 8vw, 7.5rem) 0 4rem 0',
           borderBottom: '1px solid var(--border-color)',
-          backgroundColor: 'var(--agnex-base)'
+          backgroundColor: '#FFFFFF',
+          position: 'relative'
         }}
-        className="agnex-grid-mesh"
+        className="agnex-blueprint-grid"
       >
-        <div className="agnex-container">
+        <Container>
           <ScrollFade>
-            <div className="agnex-badge agnex-badge-accent" style={{ marginBottom: '1.5rem' }}>
-              03 // PROJECT DISCOVERY & CONSULTATION
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
+              <SectionLabel number="03" text="PROJECT DISCOVERY & INQUIRY" />
+              <TechnicalLabel code="SYS//CONSULT_03" status="ACTIVE" />
             </div>
+
             <h1
               style={{
                 fontSize: 'clamp(2.75rem, 5vw, 4.5rem)',
-                lineHeight: 1.1,
+                lineHeight: 1.08,
                 marginBottom: '1.25rem',
-                color: 'var(--agnex-white)'
+                color: 'var(--agnex-navy)',
+                maxWidth: '920px',
+                letterSpacing: 'var(--tracking-tight)'
               }}
             >
               Let's Engineer What's Next.
@@ -246,23 +251,24 @@ export default function Contact() {
             <p
               style={{
                 fontSize: 'var(--text-lg)',
-                color: 'var(--text-muted)',
-                maxWidth: '700px',
-                lineHeight: 1.6
+                color: 'var(--text-secondary)',
+                maxWidth: '740px',
+                lineHeight: 1.6,
+                margin: 0
               }}
             >
               Tell us what you're trying to build, improve or solve. You will receive direct architectural feedback and a realistic project roadmap from our engineering leads.
             </p>
 
-            {/* Official Direct Contact & Connect with AGNEX */}
+            {/* Official Direct Contact & Channels */}
             <div
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',
                 alignItems: 'center',
                 gap: 'clamp(1rem, 2.5vw, 2.5rem)',
-                marginTop: '2rem',
-                paddingTop: '1.75rem',
+                marginTop: '2.5rem',
+                paddingTop: '2rem',
                 borderTop: '1px solid var(--border-color)'
               }}
             >
@@ -272,9 +278,10 @@ export default function Contact() {
                   style={{
                     fontFamily: 'var(--font-mono)',
                     fontSize: 'var(--text-xs)',
-                    color: 'var(--agnex-steel)',
+                    color: 'var(--text-muted)',
                     textTransform: 'uppercase',
-                    letterSpacing: '0.06em'
+                    letterSpacing: '0.06em',
+                    fontWeight: 700
                   }}
                 >
                   Direct Line:
@@ -290,17 +297,17 @@ export default function Contact() {
                     fontFamily: 'var(--font-mono)',
                     fontSize: 'var(--text-sm)',
                     fontWeight: 600,
-                    color: 'var(--agnex-white)',
+                    color: 'var(--agnex-navy)',
                     textDecoration: 'none',
                     padding: '0.5rem 0.875rem',
-                    backgroundColor: 'var(--agnex-base-raised)',
-                    border: '1px solid var(--border-color)',
+                    backgroundColor: 'var(--agnex-canvas-subtle)',
+                    border: '1px solid var(--border-strong)',
                     borderRadius: 'var(--radius-xs)',
                     minHeight: '44px',
-                    transition: 'border-color 200ms ease, color 200ms ease, background-color 200ms ease'
+                    transition: 'all 200ms ease'
                   }}
                 >
-                  <PhoneIcon size={15} style={{ color: 'var(--agnex-accent)' }} />
+                  <PhoneIcon size={15} style={{ color: 'var(--agnex-blue)' }} />
                   <span>{siteConfig.phone}</span>
                 </a>
               </div>
@@ -311,9 +318,10 @@ export default function Contact() {
                   style={{
                     fontFamily: 'var(--font-mono)',
                     fontSize: 'var(--text-xs)',
-                    color: 'var(--agnex-steel)',
+                    color: 'var(--text-muted)',
                     textTransform: 'uppercase',
-                    letterSpacing: '0.06em'
+                    letterSpacing: '0.06em',
+                    fontWeight: 700
                   }}
                 >
                   WhatsApp:
@@ -332,24 +340,24 @@ export default function Contact() {
                     fontFamily: 'var(--font-mono)',
                     fontSize: 'var(--text-sm)',
                     fontWeight: 600,
-                    color: 'var(--agnex-white)',
+                    color: 'var(--agnex-navy)',
                     textDecoration: 'none',
                     padding: '0.5rem 0.875rem',
-                    backgroundColor: 'var(--agnex-base-raised)',
-                    border: '1px solid var(--border-color)',
+                    backgroundColor: 'var(--agnex-canvas-subtle)',
+                    border: '1px solid var(--border-strong)',
                     borderRadius: 'var(--radius-xs)',
                     minHeight: '44px',
-                    transition: 'border-color 200ms ease, color 200ms ease, background-color 200ms ease'
+                    transition: 'all 200ms ease'
                   }}
                 >
-                  <WhatsAppIcon size={15} style={{ color: 'var(--agnex-accent)' }} />
+                  <WhatsAppIcon size={15} style={{ color: '#10B981' }} />
                   <span>{siteConfig.whatsapp}</span>
                   <span
                     style={{
                       fontFamily: 'var(--font-sans)',
                       fontSize: 'var(--text-xs)',
-                      fontWeight: 600,
-                      color: 'var(--agnex-accent)',
+                      fontWeight: 700,
+                      color: 'var(--agnex-blue)',
                       marginLeft: '0.25rem'
                     }}
                   >
@@ -364,12 +372,13 @@ export default function Contact() {
                   style={{
                     fontFamily: 'var(--font-mono)',
                     fontSize: 'var(--text-xs)',
-                    color: 'var(--agnex-steel)',
+                    color: 'var(--text-muted)',
                     textTransform: 'uppercase',
-                    letterSpacing: '0.06em'
+                    letterSpacing: '0.06em',
+                    fontWeight: 700
                   }}
                 >
-                  Connect with AGNEX:
+                  Connect:
                 </span>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <a
@@ -384,7 +393,7 @@ export default function Contact() {
                       gap: '0.5rem',
                       fontFamily: 'var(--font-sans)',
                       fontSize: 'var(--text-sm)',
-                      color: 'var(--text-muted)',
+                      color: 'var(--text-secondary)',
                       textDecoration: 'none',
                       padding: '0.5rem 0.75rem',
                       borderRadius: 'var(--radius-xs)',
@@ -408,7 +417,7 @@ export default function Contact() {
                       gap: '0.5rem',
                       fontFamily: 'var(--font-sans)',
                       fontSize: 'var(--text-sm)',
-                      color: 'var(--text-muted)',
+                      color: 'var(--text-secondary)',
                       textDecoration: 'none',
                       padding: '0.5rem 0.75rem',
                       borderRadius: 'var(--radius-xs)',
@@ -423,55 +432,58 @@ export default function Contact() {
               </div>
             </div>
           </ScrollFade>
-        </div>
+        </Container>
       </section>
 
       {/* Consultation Form Section */}
-      <section className="agnex-section" style={{ backgroundColor: 'var(--agnex-base-raised)' }}>
-        <div className="agnex-container" style={{ maxWidth: '840px' }}>
+      <section className="agnex-section agnex-section-subtle">
+        <Container style={{ maxWidth: '880px' }}>
           {isSuccess ? (
             /* Success State */
             <div
-              className="agnex-card"
               style={{
-                backgroundColor: 'var(--agnex-base)',
+                backgroundColor: '#FFFFFF',
                 textAlign: 'center',
                 padding: 'clamp(3rem, 5vw, 5rem) 2rem',
-                border: '1px solid var(--agnex-accent-border)'
+                border: '1px solid var(--border-strong)',
+                borderRadius: 'var(--radius-sm)',
+                boxShadow: 'var(--shadow-subtle)'
               }}
             >
               <div
                 style={{
-                  width: '56px',
-                  height: '56px',
+                  width: '64px',
+                  height: '64px',
                   borderRadius: '50%',
-                  backgroundColor: 'var(--agnex-accent-subtle)',
-                  border: '2px solid var(--agnex-accent)',
-                  color: 'var(--agnex-white)',
+                  backgroundColor: 'var(--agnex-blue-pale)',
+                  border: '2px solid var(--agnex-blue)',
+                  color: 'var(--agnex-blue)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: '1.75rem',
+                  fontSize: '2rem',
+                  fontWeight: 700,
                   margin: '0 auto 1.5rem auto'
                 }}
               >
                 ✓
               </div>
-              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-white)', marginBottom: '1rem' }}>
+              <h2 style={{ fontSize: 'var(--text-3xl)', color: 'var(--agnex-navy)', marginBottom: '1rem' }}>
                 Consultation Request Received
               </h2>
-              <p style={{ fontSize: 'var(--text-md)', color: 'var(--text-muted)', maxWidth: '580px', margin: '0 auto 2rem auto', lineHeight: 1.6 }}>
+              <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', maxWidth: '580px', margin: '0 auto 2rem auto', lineHeight: 1.6 }}>
                 Thank you, <strong>{formData.name}</strong>. An AGNEX engineering lead will review your project parameters and respond to <strong>{formData.workEmail}</strong> within 24 business hours.
               </p>
               <div
                 style={{
                   padding: '1.25rem',
-                  backgroundColor: 'var(--agnex-base-raised)',
-                  border: '1px solid var(--border-color)',
+                  backgroundColor: 'var(--agnex-canvas-subtle)',
+                  border: '1px solid var(--border-strong)',
                   borderRadius: 'var(--radius-sm)',
                   fontSize: 'var(--text-xs)',
                   fontFamily: 'var(--font-mono)',
-                  color: 'var(--agnex-steel)',
+                  color: 'var(--agnex-navy)',
+                  fontWeight: 600,
                   marginBottom: '2.5rem',
                   display: 'inline-block'
                 }}
@@ -526,11 +538,12 @@ export default function Contact() {
           ) : (
             /* Progressive Disclosure Multi-Step Form */
             <div
-              className="agnex-card"
               style={{
-                backgroundColor: 'var(--agnex-base)',
+                backgroundColor: '#FFFFFF',
                 padding: 'clamp(2rem, 4vw, 3.5rem)',
-                border: '1px solid var(--border-color)'
+                border: '1px solid var(--border-strong)',
+                borderRadius: 'var(--radius-sm)',
+                boxShadow: 'var(--shadow-subtle)'
               }}
             >
               {/* Progress Indicator */}
@@ -549,16 +562,16 @@ export default function Contact() {
                     style={{
                       fontFamily: 'var(--font-mono)',
                       fontSize: 'var(--text-xs)',
-                      padding: '0.2rem 0.6rem',
+                      padding: '0.25rem 0.65rem',
                       borderRadius: 'var(--radius-xs)',
-                      backgroundColor: 'var(--agnex-accent)',
+                      backgroundColor: 'var(--agnex-navy)',
                       color: '#FFFFFF',
                       fontWeight: 700
                     }}
                   >
                     STEP {currentStep} OF 2
                   </span>
-                  <span style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-white)', fontWeight: 500 }}>
+                  <span style={{ fontSize: 'var(--text-sm)', color: 'var(--agnex-navy)', fontWeight: 600 }}>
                     {currentStep === 1 ? 'Project Scope & Requirements' : 'Organization & Contact Details'}
                   </span>
                 </div>
@@ -568,7 +581,7 @@ export default function Contact() {
                     style={{
                       width: '28px',
                       height: '3px',
-                      backgroundColor: 'var(--agnex-accent)',
+                      backgroundColor: 'var(--agnex-blue)',
                       borderRadius: '2px'
                     }}
                   />
@@ -576,7 +589,7 @@ export default function Contact() {
                     style={{
                       width: '28px',
                       height: '3px',
-                      backgroundColor: currentStep === 2 ? 'var(--agnex-accent)' : 'var(--agnex-graphite)',
+                      backgroundColor: currentStep === 2 ? 'var(--agnex-blue)' : 'rgba(12, 28, 41, 0.15)',
                       borderRadius: '2px',
                       transition: 'background-color 0.3s'
                     }}
@@ -592,22 +605,22 @@ export default function Contact() {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   gap: '1rem',
-                  padding: '1rem 1.25rem',
-                  backgroundColor: 'var(--agnex-base-raised)',
-                  border: '1px solid var(--border-color)',
+                  padding: '1.25rem 1.5rem',
+                  backgroundColor: 'var(--agnex-canvas-subtle)',
+                  border: '1px solid var(--border-strong)',
                   borderRadius: 'var(--radius-xs)',
                   marginBottom: '2rem'
                 }}
               >
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.2rem' }}>
-                    <WhatsAppIcon size={16} style={{ color: 'var(--agnex-accent)' }} />
-                    <span style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-white)' }}>
-                      Start a Conversation on WhatsApp
+                    <WhatsAppIcon size={16} style={{ color: '#10B981' }} />
+                    <span style={{ fontSize: 'var(--text-sm)', fontWeight: 700, color: 'var(--agnex-navy)' }}>
+                      Start a Direct Conversation on WhatsApp
                     </span>
                   </div>
-                  <p style={{ margin: 0, fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>
-                    Tell us what you're building. We'll take it from there.
+                  <p style={{ margin: 0, fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>
+                    Tell us what you're building. We'll outline an immediate response.
                   </p>
                 </div>
                 <a
@@ -623,12 +636,12 @@ export default function Contact() {
                     gap: '0.5rem',
                     fontSize: 'var(--text-xs)',
                     padding: '0.5rem 1rem',
-                    minHeight: '44px'
+                    minHeight: '40px'
                   }}
                 >
-                  <WhatsAppIcon size={14} style={{ color: 'var(--agnex-accent)' }} />
+                  <WhatsAppIcon size={14} style={{ color: '#10B981' }} />
                   <span>Continue on WhatsApp</span>
-                  <span style={{ color: 'var(--agnex-accent)', fontWeight: 700 }}>→</span>
+                  <span className="btn-arrow" style={{ fontWeight: 700 }}>→</span>
                 </a>
               </div>
 
@@ -637,10 +650,10 @@ export default function Contact() {
                   role="alert"
                   style={{
                     padding: '1rem',
-                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
-                    border: '1px solid var(--agnex-error)',
+                    backgroundColor: '#FEE2E2',
+                    border: '1px solid #EF4444',
                     borderRadius: 'var(--radius-sm)',
-                    color: 'var(--agnex-error)',
+                    color: '#B91C1C',
                     fontSize: 'var(--text-sm)',
                     marginBottom: '2rem'
                   }}
@@ -664,9 +677,9 @@ export default function Contact() {
               {/* STEP 1: Project Scope */}
               {currentStep === 1 && (
                 <form onSubmit={handleNextStep}>
-                  <div className="agnex-form-group">
-                    <label className="agnex-label" id="help-label">
-                      What do you need help with? <span style={{ color: 'var(--agnex-accent)' }}>*</span>
+                  <div style={{ marginBottom: '1.75rem' }}>
+                    <label style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '0.75rem' }} id="help-label">
+                      What do you need help with? <span style={{ color: 'var(--agnex-blue)' }}>*</span>
                     </label>
                     <div
                       role="group"
@@ -674,8 +687,7 @@ export default function Contact() {
                       style={{
                         display: 'grid',
                         gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                        gap: '0.75rem',
-                        marginTop: '0.5rem'
+                        gap: '0.75rem'
                       }}
                     >
                       {helpOptions.map((opt) => {
@@ -688,11 +700,12 @@ export default function Contact() {
                             style={{
                               textAlign: 'left',
                               padding: '1rem',
-                              backgroundColor: checked ? 'var(--agnex-accent-subtle)' : 'var(--agnex-base-raised)',
+                              backgroundColor: checked ? 'var(--agnex-blue-pale)' : '#FFFFFF',
                               border: '1px solid',
-                              borderColor: checked ? 'var(--agnex-accent)' : 'var(--border-color)',
+                              borderColor: checked ? 'var(--agnex-blue)' : 'var(--border-strong)',
                               borderRadius: 'var(--radius-sm)',
-                              color: checked ? 'var(--agnex-white)' : 'var(--agnex-steel)',
+                              color: 'var(--agnex-navy)',
+                              fontWeight: checked ? 600 : 500,
                               fontSize: 'var(--text-xs)',
                               fontFamily: 'var(--font-sans)',
                               cursor: 'pointer',
@@ -704,17 +717,18 @@ export default function Contact() {
                           >
                             <span
                               style={{
-                                width: '16px',
-                                height: '16px',
+                                width: '18px',
+                                height: '18px',
                                 borderRadius: '3px',
                                 border: '1px solid',
-                                borderColor: checked ? 'var(--agnex-accent)' : 'var(--agnex-steel-dark)',
-                                backgroundColor: checked ? 'var(--agnex-accent)' : 'transparent',
+                                borderColor: checked ? 'var(--agnex-blue)' : 'var(--border-strong)',
+                                backgroundColor: checked ? 'var(--agnex-blue)' : '#FFFFFF',
                                 display: 'inline-flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 fontSize: '11px',
-                                color: '#FFFFFF'
+                                color: '#FFFFFF',
+                                fontWeight: 700
                               }}
                             >
                               {checked ? '✓' : ''}
@@ -725,15 +739,15 @@ export default function Contact() {
                       })}
                     </div>
                     {validationErrors.needHelpWith && (
-                      <span className="agnex-form-error" role="alert" style={{ marginTop: '0.5rem' }}>
+                      <span role="alert" style={{ display: 'block', color: '#DC2626', fontSize: 'var(--text-xs)', marginTop: '0.5rem', fontWeight: 500 }}>
                         {validationErrors.needHelpWith}
                       </span>
                     )}
                   </div>
 
-                  <div className="agnex-form-group">
-                    <label className="agnex-label" htmlFor="description">
-                      Project Description & Core Challenge <span style={{ color: 'var(--agnex-accent)' }}>*</span>
+                  <div style={{ marginBottom: '1.75rem' }}>
+                    <label htmlFor="description" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '0.5rem' }}>
+                      Project Description & Core Challenge <span style={{ color: 'var(--agnex-blue)' }}>*</span>
                     </label>
                     <textarea
                       id="description"
@@ -745,7 +759,7 @@ export default function Contact() {
                       aria-required="true"
                     />
                     {validationErrors.description && (
-                      <span className="agnex-form-error" role="alert">
+                      <span role="alert" style={{ display: 'block', color: '#DC2626', fontSize: 'var(--text-xs)', marginTop: '0.5rem', fontWeight: 500 }}>
                         {validationErrors.description}
                       </span>
                     )}
@@ -759,8 +773,8 @@ export default function Contact() {
                       marginBottom: '2rem'
                     }}
                   >
-                    <div className="agnex-form-group" style={{ margin: 0 }}>
-                      <label className="agnex-label" htmlFor="timeline">
+                    <div>
+                      <label htmlFor="timeline" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '0.5rem' }}>
                         Estimated Target Timeline
                       </label>
                       <select
@@ -777,8 +791,8 @@ export default function Contact() {
                       </select>
                     </div>
 
-                    <div className="agnex-form-group" style={{ margin: 0 }}>
-                      <label className="agnex-label" htmlFor="budgetRange">
+                    <div>
+                      <label htmlFor="budgetRange" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '0.5rem' }}>
                         Anticipated Budget Range
                       </label>
                       <select
@@ -800,7 +814,7 @@ export default function Contact() {
                   <div style={{ display: 'flex', justifyContent: 'flex-end', paddingTop: '1.5rem', borderTop: '1px solid var(--border-color)' }}>
                     <button type="submit" className="btn btn-primary" style={{ padding: '0.875rem 2rem' }}>
                       <span>Continue to Contact Info</span>
-                      <span style={{ color: 'var(--agnex-accent)', fontWeight: 700 }}>→</span>
+                      <span className="btn-arrow" style={{ fontWeight: 700 }}>→</span>
                     </button>
                   </div>
                 </form>
@@ -817,9 +831,9 @@ export default function Contact() {
                       marginBottom: '1.5rem'
                     }}
                   >
-                    <div className="agnex-form-group" style={{ margin: 0 }}>
-                      <label className="agnex-label" htmlFor="name">
-                        Your Full Name <span style={{ color: 'var(--agnex-accent)' }}>*</span>
+                    <div>
+                      <label htmlFor="name" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '0.5rem' }}>
+                        Your Full Name <span style={{ color: 'var(--agnex-blue)' }}>*</span>
                       </label>
                       <input
                         type="text"
@@ -832,15 +846,15 @@ export default function Contact() {
                         aria-required="true"
                       />
                       {validationErrors.name && (
-                        <span className="agnex-form-error" role="alert">
+                        <span role="alert" style={{ display: 'block', color: '#DC2626', fontSize: 'var(--text-xs)', marginTop: '0.5rem', fontWeight: 500 }}>
                           {validationErrors.name}
                         </span>
                       )}
                     </div>
 
-                    <div className="agnex-form-group" style={{ margin: 0 }}>
-                      <label className="agnex-label" htmlFor="workEmail">
-                        Work Email Address <span style={{ color: 'var(--agnex-accent)' }}>*</span>
+                    <div>
+                      <label htmlFor="workEmail" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '0.5rem' }}>
+                        Work Email Address <span style={{ color: 'var(--agnex-blue)' }}>*</span>
                       </label>
                       <input
                         type="email"
@@ -853,7 +867,7 @@ export default function Contact() {
                         aria-required="true"
                       />
                       {validationErrors.workEmail && (
-                        <span className="agnex-form-error" role="alert">
+                        <span role="alert" style={{ display: 'block', color: '#DC2626', fontSize: 'var(--text-xs)', marginTop: '0.5rem', fontWeight: 500 }}>
                           {validationErrors.workEmail}
                         </span>
                       )}
@@ -868,9 +882,9 @@ export default function Contact() {
                       marginBottom: '1.5rem'
                     }}
                   >
-                    <div className="agnex-form-group" style={{ margin: 0 }}>
-                      <label className="agnex-label" htmlFor="company">
-                        Company / Organization <span style={{ color: 'var(--agnex-accent)' }}>*</span>
+                    <div>
+                      <label htmlFor="company" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '0.5rem' }}>
+                        Company / Organization <span style={{ color: 'var(--agnex-blue)' }}>*</span>
                       </label>
                       <input
                         type="text"
@@ -883,14 +897,14 @@ export default function Contact() {
                         aria-required="true"
                       />
                       {validationErrors.company && (
-                        <span className="agnex-form-error" role="alert">
+                        <span role="alert" style={{ display: 'block', color: '#DC2626', fontSize: 'var(--text-xs)', marginTop: '0.5rem', fontWeight: 500 }}>
                           {validationErrors.company}
                         </span>
                       )}
                     </div>
 
-                    <div className="agnex-form-group" style={{ margin: 0 }}>
-                      <label className="agnex-label" htmlFor="website">
+                    <div>
+                      <label htmlFor="website" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '0.5rem' }}>
                         Company Website (Optional)
                       </label>
                       <input
@@ -913,8 +927,8 @@ export default function Contact() {
                       marginBottom: '2.5rem'
                     }}
                   >
-                    <div className="agnex-form-group" style={{ margin: 0 }}>
-                      <label className="agnex-label" htmlFor="phone">
+                    <div>
+                      <label htmlFor="phone" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '0.5rem' }}>
                         Phone Number (Optional)
                       </label>
                       <input
@@ -922,14 +936,14 @@ export default function Contact() {
                         id="phone"
                         name="phone"
                         className="agnex-input"
-                        placeholder="+1 (555) 000-0000"
+                        placeholder="+91 75983 41607"
                         value={formData.phone}
                         onChange={handleInputChange}
                       />
                     </div>
 
-                    <div className="agnex-form-group" style={{ margin: 0 }}>
-                      <label className="agnex-label" htmlFor="preferredContactMethod">
+                    <div>
+                      <label htmlFor="preferredContactMethod" style={{ display: 'block', fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--agnex-navy)', marginBottom: '0.5rem' }}>
                         Preferred Contact Method
                       </label>
                       <select
@@ -942,6 +956,7 @@ export default function Contact() {
                         <option value="Email">Email</option>
                         <option value="Video Call (Google Meet / Zoom)">Video Call (Google Meet / Zoom)</option>
                         <option value="Phone Call">Phone Call</option>
+                        <option value="WhatsApp">WhatsApp</option>
                       </select>
                     </div>
                   </div>
@@ -949,12 +964,12 @@ export default function Contact() {
                   {/* Privacy & Confidentiality Guarantee */}
                   <div
                     style={{
-                      padding: '1rem',
-                      backgroundColor: 'var(--agnex-base-raised)',
-                      border: '1px solid var(--border-color)',
+                      padding: '1.25rem',
+                      backgroundColor: 'var(--agnex-canvas-subtle)',
+                      border: '1px solid var(--border-strong)',
                       borderRadius: 'var(--radius-sm)',
                       fontSize: 'var(--text-xs)',
-                      color: 'var(--agnex-steel)',
+                      color: 'var(--text-secondary)',
                       lineHeight: 1.5,
                       marginBottom: '2rem'
                     }}
@@ -993,23 +1008,24 @@ export default function Contact() {
               )}
             </div>
           )}
-        </div>
+        </Container>
       </section>
 
       <style>{`
         .contact-phone-pill:hover,
         .contact-whatsapp-pill:hover {
-          border-color: var(--agnex-accent) !important;
-          background-color: var(--agnex-black) !important;
-          color: var(--agnex-white) !important;
+          border-color: var(--agnex-blue) !important;
+          background-color: #FFFFFF !important;
+          color: var(--agnex-blue) !important;
+          box-shadow: 0 2px 8px rgba(1, 122, 239, 0.15);
         }
         .contact-social-pill:hover {
-          color: var(--agnex-white) !important;
+          color: var(--agnex-blue) !important;
           transform: translateY(-1px);
         }
         .contact-whatsapp-direct:hover {
-          border-color: var(--agnex-accent) !important;
-          color: var(--agnex-white) !important;
+          border-color: var(--agnex-blue) !important;
+          color: var(--agnex-blue) !important;
         }
       `}</style>
     </>

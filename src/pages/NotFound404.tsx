@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import AgnexLogo from '../components/brand/AgnexLogo';
+import { Container, SectionLabel } from '../components/primitives';
 
 export default function NotFound404() {
   return (
@@ -12,41 +13,33 @@ export default function NotFound404() {
 
       <section
         style={{
-          minHeight: '70vh',
+          minHeight: '75vh',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '4rem 1.5rem',
+          padding: '6rem 1.5rem',
           textAlign: 'center',
-          backgroundColor: 'var(--agnex-black)'
+          backgroundColor: '#FFFFFF',
+          position: 'relative'
         }}
-        className="agnex-grid-mesh"
+        className="agnex-blueprint-grid"
       >
-        <div style={{ maxWidth: '640px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-            <AgnexLogo asLink={true} size="md" />
+        <Container style={{ maxWidth: '680px' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2.5rem' }}>
+            <AgnexLogo asLink={true} size="md" variant="dark" />
           </div>
 
-          <div
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 'var(--text-xs)',
-              color: 'var(--agnex-accent)',
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              marginBottom: '1rem'
-            }}
-          >
-            404 // ROUTE NOT RESOLVED
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
+            <SectionLabel number="404" text="ROUTE NOT RESOLVED" />
           </div>
 
           <h1
             style={{
-              fontSize: 'clamp(3rem, 7vw, 6rem)',
+              fontSize: 'clamp(4rem, 8vw, 7rem)',
               fontWeight: 700,
-              color: 'var(--agnex-white)',
+              color: 'var(--agnex-navy)',
               lineHeight: 1,
-              marginBottom: '1.5rem',
+              marginBottom: '1.25rem',
               letterSpacing: 'var(--tracking-tight)'
             }}
           >
@@ -55,9 +48,9 @@ export default function NotFound404() {
 
           <h2
             style={{
-              fontSize: 'var(--text-xl)',
-              fontWeight: 500,
-              color: 'var(--agnex-white)',
+              fontSize: 'var(--text-2xl)',
+              fontWeight: 600,
+              color: 'var(--agnex-navy)',
               marginBottom: '1rem'
             }}
           >
@@ -67,7 +60,7 @@ export default function NotFound404() {
           <p
             style={{
               fontSize: 'var(--text-base)',
-              color: 'var(--text-muted)',
+              color: 'var(--text-secondary)',
               marginBottom: '2.5rem',
               lineHeight: 1.6
             }}
@@ -78,16 +71,16 @@ export default function NotFound404() {
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
             <Link to="/" className="btn btn-primary">
               <span>Return to Home</span>
-              <span className="btn-arrow" style={{ color: 'var(--agnex-accent)' }}>→</span>
+              <span className="btn-arrow" style={{ fontWeight: 700 }}>→</span>
             </Link>
-            <Link to="/expertise" className="btn btn-secondary">
-              <span>Explore Capabilities</span>
+            <Link to="/work" className="btn btn-secondary">
+              <span>Selected Work</span>
             </Link>
             <Link to="/contact" className="btn btn-secondary">
               <span>Contact Engineering</span>
             </Link>
           </div>
-        </div>
+        </Container>
       </section>
     </>
   );

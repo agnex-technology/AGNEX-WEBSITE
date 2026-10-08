@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import ScrollFade from '../components/motion/ScrollFade';
+import { Container, SectionLabel, TechnicalLabel } from '../components/primitives';
 
 interface CapabilityPillar {
   id: string;
@@ -163,23 +164,28 @@ export default function Services() {
       {/* Hero Header */}
       <section
         style={{
-          padding: 'clamp(4rem, 6vw, 6rem) 0 3rem 0',
+          padding: 'clamp(5rem, 8vw, 7.5rem) 0 4rem 0',
           borderBottom: '1px solid var(--border-color)',
-          backgroundColor: 'var(--agnex-base)'
+          backgroundColor: '#FFFFFF',
+          position: 'relative'
         }}
-        className="agnex-grid-mesh"
+        className="agnex-blueprint-grid"
       >
-        <div className="agnex-container">
+        <Container>
           <ScrollFade>
-            <div className="agnex-badge agnex-badge-accent" style={{ marginBottom: '1.5rem' }}>
-              01 // CAPABILITIES & ARCHITECTURE
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
+              <SectionLabel number="01" text="CAPABILITIES & ARCHITECTURE" />
+              <TechnicalLabel code="SYS//CAPABILITIES_01" status="ACTIVE" />
             </div>
+
             <h1
               style={{
                 fontSize: 'clamp(2.75rem, 5vw, 4.5rem)',
-                lineHeight: 1.1,
+                lineHeight: 1.08,
                 marginBottom: '1.5rem',
-                color: 'var(--agnex-white)'
+                color: 'var(--agnex-navy)',
+                maxWidth: '920px',
+                letterSpacing: 'var(--tracking-tight)'
               }}
             >
               Engineering Capabilities
@@ -187,36 +193,38 @@ export default function Services() {
             <p
               style={{
                 fontSize: 'var(--text-lg)',
-                color: 'var(--text-muted)',
-                maxWidth: '720px',
-                lineHeight: 1.6
+                color: 'var(--text-secondary)',
+                maxWidth: '740px',
+                lineHeight: 1.6,
+                margin: 0
               }}
             >
               We don't sell packaged licenses or generic tech stacks. We architect custom digital infrastructure designed to eliminate operational friction, connect disconnected tools, and accelerate business growth.
             </p>
           </ScrollFade>
-        </div>
+        </Container>
       </section>
 
       {/* Interactive Quick-Jump Navigation */}
       <nav
         aria-label="Capabilities Navigation"
         style={{
-          backgroundColor: 'var(--agnex-base-raised)',
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
           borderBottom: '1px solid var(--border-color)',
           position: 'sticky',
-          top: '76px',
+          top: '68px',
           zIndex: 50,
-          backdropFilter: 'blur(12px)'
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)'
         }}
       >
-        <div className="agnex-container">
+        <Container>
           <div
             style={{
               display: 'flex',
-              gap: '1rem',
+              gap: '0.75rem',
               overflowX: 'auto',
-              padding: '0.75rem 0',
+              padding: '0.875rem 0',
               scrollbarWidth: 'none'
             }}
           >
@@ -234,42 +242,45 @@ export default function Services() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.5rem',
-                  padding: '0.5rem 1rem',
-                  borderRadius: 'var(--radius-sm)',
+                  padding: '0.5rem 1.15rem',
+                  borderRadius: 'var(--radius-xs)',
                   fontSize: 'var(--text-xs)',
                   fontFamily: 'var(--font-mono)',
+                  fontWeight: 600,
                   textTransform: 'uppercase',
                   textDecoration: 'none',
                   whiteSpace: 'nowrap',
                   border: '1px solid',
-                  borderColor: selectedPillar === cap.id ? 'var(--agnex-accent)' : 'var(--border-color)',
-                  backgroundColor: selectedPillar === cap.id ? 'var(--agnex-accent-subtle)' : 'transparent',
-                  color: selectedPillar === cap.id ? 'var(--agnex-white)' : 'var(--agnex-steel)',
-                  transition: 'all 0.2s ease'
+                  borderColor: selectedPillar === cap.id ? 'var(--agnex-navy)' : 'var(--border-strong)',
+                  backgroundColor: selectedPillar === cap.id ? 'var(--agnex-navy)' : '#FFFFFF',
+                  color: selectedPillar === cap.id ? '#FFFFFF' : 'var(--agnex-navy)',
+                  transition: 'all 0.2s ease',
+                  boxShadow: selectedPillar === cap.id ? '0 2px 8px rgba(12, 28, 41, 0.15)' : 'none'
                 }}
               >
-                <span style={{ color: 'var(--agnex-accent)' }}>{cap.number}</span>
+                <span style={{ color: selectedPillar === cap.id ? 'var(--agnex-blue-light)' : 'var(--agnex-blue)' }}>{cap.number}</span>
                 <span>{cap.title}</span>
               </a>
             ))}
           </div>
-        </div>
+        </Container>
       </nav>
 
       {/* 4 Deep-Dive Pillars Editorial Layout */}
-      <section className="agnex-section" style={{ backgroundColor: 'var(--agnex-base)' }}>
-        <div className="agnex-container">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '5rem' }}>
+      <section className="agnex-section agnex-section-subtle">
+        <Container>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
             {capabilities.map((cap) => (
               <article
                 key={cap.id}
                 id={cap.id}
                 style={{
                   padding: 'clamp(2rem, 4vw, 3.5rem)',
-                  backgroundColor: 'var(--agnex-base-raised)',
-                  border: '1px solid var(--border-color)',
-                  borderRadius: 'var(--radius-md)',
-                  position: 'relative'
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid var(--border-strong)',
+                  borderRadius: 'var(--radius-sm)',
+                  position: 'relative',
+                  boxShadow: 'var(--shadow-subtle)'
                 }}
               >
                 <ScrollFade>
@@ -291,26 +302,30 @@ export default function Services() {
                         style={{
                           fontFamily: 'var(--font-mono)',
                           fontSize: 'var(--text-lg)',
-                          color: 'var(--agnex-accent)',
+                          color: 'var(--agnex-blue)',
                           fontWeight: 700
                         }}
                       >
                         {cap.number} // PILLAR
                       </span>
-                      <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', margin: 0, color: 'var(--agnex-white)' }}>
+                      <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', margin: 0, color: 'var(--agnex-navy)' }}>
                         {cap.title}
                       </h2>
                     </div>
-                    <Link to={`/contact?pillar=${cap.id}`} className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: 'var(--text-xs)' }}>
+                    <Link
+                      to={`/contact?pillar=${cap.id}`}
+                      className="btn btn-secondary"
+                      style={{ padding: '0.5rem 1.15rem', fontSize: 'var(--text-xs)' }}
+                    >
                       <span>Discuss a {cap.title.toLowerCase()} project</span>
-                      <span>→</span>
+                      <span className="btn-arrow">→</span>
                     </Link>
                   </div>
 
                   <p
                     style={{
                       fontSize: 'var(--text-lg)',
-                      color: 'var(--agnex-white)',
+                      color: 'var(--agnex-navy)',
                       fontWeight: 500,
                       marginBottom: '2.5rem',
                       lineHeight: 1.5
@@ -334,15 +349,16 @@ export default function Services() {
                         style={{
                           fontFamily: 'var(--font-mono)',
                           fontSize: 'var(--text-xs)',
-                          color: 'var(--agnex-steel)',
+                          color: 'var(--text-muted)',
                           textTransform: 'uppercase',
                           letterSpacing: '0.1em',
-                          marginBottom: '0.75rem'
+                          marginBottom: '0.75rem',
+                          fontWeight: 700
                         }}
                       >
                         [01] The Problem
                       </div>
-                      <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', lineHeight: 1.7 }}>
+                      <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
                         {cap.problem}
                       </p>
                     </div>
@@ -353,15 +369,16 @@ export default function Services() {
                         style={{
                           fontFamily: 'var(--font-mono)',
                           fontSize: 'var(--text-xs)',
-                          color: 'var(--agnex-accent)',
+                          color: 'var(--agnex-blue)',
                           textTransform: 'uppercase',
                           letterSpacing: '0.1em',
-                          marginBottom: '0.75rem'
+                          marginBottom: '0.75rem',
+                          fontWeight: 700
                         }}
                       >
                         [02] Our Engineering Approach
                       </div>
-                      <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', lineHeight: 1.7 }}>
+                      <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
                         {cap.approach}
                       </p>
                     </div>
@@ -372,18 +389,19 @@ export default function Services() {
                         style={{
                           fontFamily: 'var(--font-mono)',
                           fontSize: 'var(--text-xs)',
-                          color: 'var(--agnex-steel)',
+                          color: 'var(--text-muted)',
                           textTransform: 'uppercase',
                           letterSpacing: '0.1em',
-                          marginBottom: '0.75rem'
+                          marginBottom: '0.75rem',
+                          fontWeight: 700
                         }}
                       >
                         [03] What We Build
                       </div>
                       <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                         {cap.builds.map((item, i) => (
-                          <li key={i} style={{ fontSize: 'var(--text-xs)', color: 'var(--agnex-white)', display: 'flex', gap: '0.5rem' }}>
-                            <span style={{ color: 'var(--agnex-accent)' }}>+</span>
+                          <li key={i} style={{ fontSize: 'var(--text-xs)', color: 'var(--agnex-navy)', display: 'flex', gap: '0.5rem', fontWeight: 500 }}>
+                            <span style={{ color: 'var(--agnex-blue)', fontWeight: 700 }}>+</span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -396,23 +414,25 @@ export default function Services() {
                         style={{
                           fontFamily: 'var(--font-mono)',
                           fontSize: 'var(--text-xs)',
-                          color: 'var(--agnex-steel)',
+                          color: 'var(--text-muted)',
                           textTransform: 'uppercase',
                           letterSpacing: '0.1em',
-                          marginBottom: '0.75rem'
+                          marginBottom: '0.75rem',
+                          fontWeight: 700
                         }}
                       >
                         [04] Client Business Outcome
                       </div>
                       <div
                         style={{
-                          backgroundColor: 'var(--agnex-base)',
-                          border: '1px solid var(--agnex-accent-border)',
+                          backgroundColor: 'var(--agnex-canvas-subtle)',
+                          border: '1px solid var(--border-strong)',
                           padding: '1.25rem',
-                          borderRadius: 'var(--radius-sm)',
+                          borderRadius: 'var(--radius-xs)',
                           fontSize: 'var(--text-sm)',
-                          color: 'var(--agnex-white)',
-                          lineHeight: 1.6
+                          color: 'var(--agnex-navy)',
+                          lineHeight: 1.6,
+                          fontWeight: 500
                         }}
                       >
                         {cap.outcome}
@@ -435,9 +455,10 @@ export default function Services() {
                       style={{
                         fontFamily: 'var(--font-mono)',
                         fontSize: 'var(--text-2xs)',
-                        color: 'var(--agnex-steel)',
+                        color: 'var(--text-muted)',
                         marginRight: '0.5rem',
-                        textTransform: 'uppercase'
+                        textTransform: 'uppercase',
+                        fontWeight: 700
                       }}
                     >
                       Stack:
@@ -448,11 +469,12 @@ export default function Services() {
                         style={{
                           fontFamily: 'var(--font-mono)',
                           fontSize: 'var(--text-2xs)',
-                          padding: '0.25rem 0.5rem',
-                          backgroundColor: 'var(--agnex-base)',
+                          padding: '0.25rem 0.55rem',
+                          backgroundColor: 'var(--agnex-canvas-subtle)',
                           border: '1px solid var(--border-color)',
                           borderRadius: 'var(--radius-xs)',
-                          color: 'var(--agnex-steel-light)'
+                          color: 'var(--agnex-navy)',
+                          fontWeight: 500
                         }}
                       >
                         {tech}
@@ -463,21 +485,19 @@ export default function Services() {
               </article>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Engagement Models */}
-      <section className="agnex-section" style={{ backgroundColor: 'var(--agnex-base-raised)', borderBottom: '1px solid var(--border-color)' }}>
-        <div className="agnex-container">
+      <section className="agnex-section" style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid var(--border-color)' }}>
+        <Container>
           <ScrollFade>
             <div style={{ maxWidth: '640px', marginBottom: '4rem' }}>
-              <div className="agnex-badge" style={{ marginBottom: '1rem' }}>
-                Engagement Models
-              </div>
-              <h2 style={{ fontSize: 'var(--text-4xl)', marginBottom: '1rem' }}>
+              <SectionLabel number="FRAMEWORK" text="ENGAGEMENT MODELS" />
+              <h2 style={{ fontSize: 'var(--text-4xl)', color: 'var(--agnex-navy)', marginBottom: '1rem' }}>
                 How We Partner With You
               </h2>
-              <p>
+              <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)' }}>
                 Whether you need an entire bespoke platform built from scratch or high-impact modernization of existing infrastructure, we structure our engagements for clarity and velocity.
               </p>
             </div>
@@ -490,78 +510,102 @@ export default function Services() {
               gap: '2rem'
             }}
           >
-            <div className="agnex-card" style={{ backgroundColor: 'var(--agnex-base)' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-accent)', marginBottom: '1rem' }}>
+            <div
+              style={{
+                backgroundColor: 'var(--agnex-canvas-subtle)',
+                border: '1px solid var(--border-strong)',
+                borderRadius: 'var(--radius-sm)',
+                padding: '2rem',
+                boxShadow: 'var(--shadow-subtle)'
+              }}
+            >
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-blue)', marginBottom: '1rem', fontWeight: 700 }}>
                 MODEL // 01
               </div>
-              <h3 style={{ fontSize: 'var(--text-xl)', color: 'var(--agnex-white)', marginBottom: '0.75rem' }}>
+              <h3 style={{ fontSize: 'var(--text-xl)', color: 'var(--agnex-navy)', marginBottom: '0.75rem' }}>
                 End-to-End System Build
               </h3>
-              <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+              <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
                 From architectural discovery through production launch, we take full ownership of designing, building, and delivering your custom software or digital product.
               </p>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: 'var(--text-xs)', color: 'var(--agnex-white)' }}>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: 'var(--text-xs)', color: 'var(--agnex-navy)', fontWeight: 500 }}>
                 <li>✓ Defined milestones & deliverables</li>
                 <li>✓ Full source code & IP ownership</li>
                 <li>✓ Post-launch SLA & warranty</li>
               </ul>
             </div>
 
-            <div className="agnex-card" style={{ backgroundColor: 'var(--agnex-base)' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-accent)', marginBottom: '1rem' }}>
+            <div
+              style={{
+                backgroundColor: 'var(--agnex-canvas-subtle)',
+                border: '1px solid var(--border-strong)',
+                borderRadius: 'var(--radius-sm)',
+                padding: '2rem',
+                boxShadow: 'var(--shadow-subtle)'
+              }}
+            >
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-blue)', marginBottom: '1rem', fontWeight: 700 }}>
                 MODEL // 02
               </div>
-              <h3 style={{ fontSize: 'var(--text-xl)', color: 'var(--agnex-white)', marginBottom: '0.75rem' }}>
+              <h3 style={{ fontSize: 'var(--text-xl)', color: 'var(--agnex-navy)', marginBottom: '0.75rem' }}>
                 Architecture & Modernization
               </h3>
-              <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+              <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
                 Refactor brittle legacy systems, optimize slow databases, integrate third-party APIs, and migrate monolithic applications to high-availability cloud microservices.
               </p>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: 'var(--text-xs)', color: 'var(--agnex-white)' }}>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: 'var(--text-xs)', color: 'var(--agnex-navy)', fontWeight: 500 }}>
                 <li>✓ Zero-downtime transition plans</li>
                 <li>✓ Security & performance audits</li>
                 <li>✓ Modern scalable design patterns</li>
               </ul>
             </div>
 
-            <div className="agnex-card" style={{ backgroundColor: 'var(--agnex-base)' }}>
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-accent)', marginBottom: '1rem' }}>
+            <div
+              style={{
+                backgroundColor: 'var(--agnex-canvas-subtle)',
+                border: '1px solid var(--border-strong)',
+                borderRadius: 'var(--radius-sm)',
+                padding: '2rem',
+                boxShadow: 'var(--shadow-subtle)'
+              }}
+            >
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--text-xs)', color: 'var(--agnex-blue)', marginBottom: '1rem', fontWeight: 700 }}>
                 MODEL // 03
               </div>
-              <h3 style={{ fontSize: 'var(--text-xl)', color: 'var(--agnex-white)', marginBottom: '0.75rem' }}>
+              <h3 style={{ fontSize: 'var(--text-xl)', color: 'var(--agnex-navy)', marginBottom: '0.75rem' }}>
                 Dedicated Engineering Pod
               </h3>
-              <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+              <p style={{ fontSize: 'var(--text-sm)', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
                 Embed senior software architects, frontend engineers, and backend specialists directly alongside your internal team to accelerate critical roadmap initiatives.
               </p>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: 'var(--text-xs)', color: 'var(--agnex-white)' }}>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: 'var(--text-xs)', color: 'var(--agnex-navy)', fontWeight: 500 }}>
                 <li>✓ Senior engineers only</li>
                 <li>✓ Seamless sprint & workflow integration</li>
                 <li>✓ Flexible scale-up capacity</li>
               </ul>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Conversion CTA */}
-      <section className="agnex-section" style={{ textAlign: 'center', backgroundColor: 'var(--agnex-base)' }}>
-        <div className="agnex-container">
+      <section className="agnex-section agnex-section-subtle" style={{ textAlign: 'center' }}>
+        <Container>
           <ScrollFade>
             <div style={{ maxWidth: '700px', margin: '0 auto' }}>
-              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--agnex-white)', marginBottom: '1.25rem' }}>
+              <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--agnex-navy)', marginBottom: '1.25rem' }}>
                 Need an engineering assessment?
               </h2>
-              <p style={{ fontSize: 'var(--text-md)', color: 'var(--text-muted)', marginBottom: '2.5rem', lineHeight: 1.6 }}>
+              <p style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)', marginBottom: '2.5rem', lineHeight: 1.6 }}>
                 Share your operational requirements with our team. We'll outline an architectural proposal and delivery timeline.
               </p>
               <Link to="/contact" className="btn btn-primary" style={{ padding: '0.875rem 2.25rem' }}>
                 <span>Start a Project Consultation</span>
-                <span style={{ color: 'var(--agnex-accent)', fontWeight: 700 }}>→</span>
+                <span className="btn-arrow" style={{ fontWeight: 700 }}>→</span>
               </Link>
             </div>
           </ScrollFade>
-        </div>
+        </Container>
       </section>
     </>
   );

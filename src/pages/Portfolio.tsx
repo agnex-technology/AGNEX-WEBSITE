@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import ScrollFade from '../components/motion/ScrollFade';
 import { projectsData } from '../features/work/projectsData';
 import ComparisonMatrix from '../features/work/components/ComparisonMatrix';
+import { Container, SectionLabel, TechnicalLabel } from '../components/primitives';
 
 type DomainFilter = 'ALL' | 'LOGISTICS' | 'CYBERSECURITY' | 'LEGAL AI';
 
@@ -56,23 +57,28 @@ export default function Portfolio() {
       {/* Hero Header */}
       <section
         style={{
-          padding: 'clamp(4rem, 6vw, 6rem) 0 3.5rem 0',
+          padding: 'clamp(5rem, 8vw, 7.5rem) 0 4rem 0',
           borderBottom: '1px solid var(--border-color)',
-          backgroundColor: 'var(--agnex-base)'
+          backgroundColor: '#FFFFFF',
+          position: 'relative'
         }}
-        className="agnex-grid-mesh"
+        className="agnex-blueprint-grid"
       >
-        <div className="agnex-container">
+        <Container>
           <ScrollFade>
-            <div className="agnex-badge agnex-badge-accent" style={{ marginBottom: '1.5rem' }}>
-              02 // SELECTED WORK & ENGINEERING ARCHIVE
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
+              <SectionLabel number="02" text="SELECTED WORK & ARCHIVE" />
+              <TechnicalLabel code="SYS//ARCHIVE_02" status="ACTIVE" />
             </div>
+
             <h1
               style={{
                 fontSize: 'clamp(2.75rem, 5vw, 4.5rem)',
-                lineHeight: 1.1,
+                lineHeight: 1.08,
                 marginBottom: '1.25rem',
-                color: 'var(--agnex-white)'
+                color: 'var(--agnex-navy)',
+                maxWidth: '900px',
+                letterSpacing: 'var(--tracking-tight)'
               }}
             >
               Systems we've engineered.
@@ -80,30 +86,32 @@ export default function Portfolio() {
             <p
               style={{
                 fontSize: 'var(--text-lg)',
-                color: 'var(--text-muted)',
+                color: 'var(--text-secondary)',
                 maxWidth: '740px',
-                lineHeight: 1.6
+                lineHeight: 1.6,
+                margin: 0
               }}
             >
-              We engineer technology around complex real-world problems — from logistics infrastructure and cybersecurity platforms to AI-powered research systems.
+              We engineer technology around complex real-world problems — from logistics mobility infrastructure and cybersecurity platforms to AI-powered research systems.
             </p>
           </ScrollFade>
-        </div>
+        </Container>
       </section>
 
       {/* Domain Filter Bar */}
       <nav
         aria-label="Engineering Domain Filters"
         style={{
-          backgroundColor: 'var(--agnex-base-raised)',
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
           borderBottom: '1px solid var(--border-color)',
           position: 'sticky',
-          top: '76px',
+          top: '68px',
           zIndex: 40,
-          backdropFilter: 'blur(12px)'
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)'
         }}
       >
-        <div className="agnex-container">
+        <Container>
           <div
             style={{
               display: 'flex',
@@ -122,39 +130,41 @@ export default function Portfolio() {
                   fontFamily: 'var(--font-mono)',
                   fontSize: 'var(--text-xs)',
                   fontWeight: 600,
-                  padding: '0.5rem 1rem',
+                  padding: '0.5rem 1.15rem',
                   borderRadius: 'var(--radius-xs)',
-                  backgroundColor: activeFilter === filter ? 'var(--agnex-accent)' : 'var(--agnex-base)',
-                  color: activeFilter === filter ? '#FFFFFF' : 'var(--text-muted)',
-                  border: activeFilter === filter ? '1px solid var(--agnex-accent)' : '1px solid var(--border-color)',
+                  backgroundColor: activeFilter === filter ? 'var(--agnex-navy)' : '#FFFFFF',
+                  color: activeFilter === filter ? '#FFFFFF' : 'var(--agnex-navy)',
+                  border: activeFilter === filter ? '1px solid var(--agnex-navy)' : '1px solid var(--border-strong)',
                   cursor: 'pointer',
                   whiteSpace: 'nowrap',
-                  minHeight: '44px',
-                  transition: 'all 0.2s ease'
+                  minHeight: '40px',
+                  transition: 'all 0.2s ease',
+                  boxShadow: activeFilter === filter ? '0 2px 8px rgba(12, 28, 41, 0.15)' : 'none'
                 }}
               >
                 {filter === 'ALL' ? 'ALL SYSTEMS (04)' : filter}
               </button>
             ))}
           </div>
-        </div>
+        </Container>
       </nav>
 
       {/* Main Case Studies Section */}
-      <section className="agnex-section" style={{ backgroundColor: 'var(--agnex-black)' }}>
-        <div className="agnex-container">
+      <section className="agnex-section agnex-section-subtle">
+        <Container>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', marginBottom: '5rem' }}>
             {filteredProjects.map((project) => (
               <article
                 key={project.id}
                 className="case-study-card"
                 style={{
-                  backgroundColor: 'var(--agnex-base-raised)',
-                  border: '1px solid var(--border-color)',
+                  backgroundColor: '#FFFFFF',
+                  border: '1px solid var(--border-strong)',
                   borderRadius: 'var(--radius-sm)',
                   padding: 'clamp(2rem, 4vw, 3.5rem)',
-                  transition: 'border-color 0.2s ease',
-                  overflow: 'hidden'
+                  transition: 'all 0.25s ease',
+                  overflow: 'hidden',
+                  boxShadow: 'var(--shadow-subtle)'
                 }}
               >
                 <div
@@ -181,17 +191,17 @@ export default function Portfolio() {
                           fontFamily: 'var(--font-mono)',
                           fontSize: 'var(--text-xs)',
                           fontWeight: 700,
-                          color: 'var(--agnex-accent)',
-                          padding: '0.2rem 0.6rem',
-                          backgroundColor: 'var(--agnex-black)',
-                          border: '1px solid var(--agnex-accent-border)',
+                          color: 'var(--agnex-blue)',
+                          padding: '0.25rem 0.65rem',
+                          backgroundColor: 'var(--agnex-blue-pale)',
+                          border: '1px solid rgba(1, 122, 239, 0.25)',
                           borderRadius: 'var(--radius-xs)'
                         }}
                       >
-                        {project.number} / {project.domain.toUpperCase()}
+                        {project.number} // {project.domain.toUpperCase()}
                       </span>
 
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--agnex-steel)' }}>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-muted)' }}>
                         {project.category}
                       </span>
 
@@ -200,11 +210,12 @@ export default function Portfolio() {
                           style={{
                             fontFamily: 'var(--font-mono)',
                             fontSize: '11px',
-                            color: '#EAB308',
-                            padding: '0.15rem 0.5rem',
-                            backgroundColor: 'rgba(234, 179, 8, 0.1)',
-                            border: '1px solid rgba(234, 179, 8, 0.3)',
-                            borderRadius: 'var(--radius-xs)'
+                            color: '#B45309',
+                            padding: '0.2rem 0.55rem',
+                            backgroundColor: '#FEF3C7',
+                            border: '1px solid #FCD34D',
+                            borderRadius: 'var(--radius-xs)',
+                            fontWeight: 600
                           }}
                         >
                           {project.statusBadge}
@@ -214,9 +225,9 @@ export default function Portfolio() {
 
                     <h2
                       style={{
-                        fontSize: 'clamp(1.875rem, 3vw, 2.75rem)',
+                        fontSize: 'clamp(2rem, 3.2vw, 2.85rem)',
                         fontWeight: 700,
-                        color: 'var(--agnex-white)',
+                        color: 'var(--agnex-navy)',
                         marginBottom: '0.5rem',
                         lineHeight: 1.15
                       }}
@@ -228,10 +239,11 @@ export default function Portfolio() {
                       style={{
                         fontFamily: 'var(--font-mono)',
                         fontSize: 'var(--text-xs)',
-                        color: 'var(--agnex-steel-light)',
+                        color: 'var(--agnex-blue)',
                         marginBottom: '1.5rem',
                         textTransform: 'uppercase',
-                        letterSpacing: '0.06em'
+                        letterSpacing: '0.06em',
+                        fontWeight: 600
                       }}
                     >
                       {project.title.replace(`${project.name} — `, '')}
@@ -239,8 +251,8 @@ export default function Portfolio() {
 
                     <p
                       style={{
-                        fontSize: 'var(--text-md)',
-                        color: 'var(--text-muted)',
+                        fontSize: 'var(--text-base)',
+                        color: 'var(--text-secondary)',
                         lineHeight: 1.65,
                         marginBottom: '1.75rem',
                         maxWidth: '680px'
@@ -252,17 +264,27 @@ export default function Portfolio() {
                     {/* Challenge Summary Box */}
                     <div
                       style={{
-                        backgroundColor: 'var(--agnex-black)',
+                        backgroundColor: 'var(--agnex-canvas-subtle)',
                         border: '1px solid var(--border-color)',
                         borderRadius: 'var(--radius-xs)',
                         padding: '1.25rem',
                         marginBottom: '1.75rem'
                       }}
                     >
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--agnex-accent)', marginBottom: '0.5rem', textTransform: 'uppercase' }}>
+                      <div
+                        style={{
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: '11px',
+                          color: 'var(--agnex-navy)',
+                          marginBottom: '0.5rem',
+                          textTransform: 'uppercase',
+                          fontWeight: 700,
+                          letterSpacing: '0.05em'
+                        }}
+                      >
                         THE ENGINEERING PROBLEM
                       </div>
-                      <p style={{ margin: 0, fontSize: 'var(--text-xs)', color: 'var(--agnex-steel-light)', lineHeight: 1.6 }}>
+                      <p style={{ margin: 0, fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                         {project.challenge.summary}
                       </p>
                     </div>
@@ -275,11 +297,12 @@ export default function Portfolio() {
                           style={{
                             fontFamily: 'var(--font-mono)',
                             fontSize: '11px',
-                            color: 'var(--agnex-steel-light)',
-                            backgroundColor: 'var(--agnex-black)',
-                            border: '1px solid var(--border-color)',
+                            color: 'var(--agnex-navy)',
+                            backgroundColor: '#FFFFFF',
+                            border: '1px solid var(--border-strong)',
                             padding: '0.25rem 0.6rem',
-                            borderRadius: 'var(--radius-xs)'
+                            borderRadius: 'var(--radius-xs)',
+                            fontWeight: 500
                           }}
                         >
                           {t}
@@ -292,8 +315,8 @@ export default function Portfolio() {
                   <div style={{ gridColumn: 'span 12' }} className="portfolio-card-right">
                     <div
                       style={{
-                        backgroundColor: 'var(--agnex-black)',
-                        border: '1px solid var(--border-color)',
+                        backgroundColor: 'var(--agnex-canvas-subtle)',
+                        border: '1px solid var(--border-strong)',
                         borderRadius: 'var(--radius-xs)',
                         padding: '1.75rem',
                         display: 'flex',
@@ -305,7 +328,8 @@ export default function Portfolio() {
                         style={{
                           fontFamily: 'var(--font-mono)',
                           fontSize: 'var(--text-2xs)',
-                          color: 'var(--agnex-steel)',
+                          color: 'var(--agnex-navy)',
+                          fontWeight: 700,
                           letterSpacing: '0.08em',
                           borderBottom: '1px solid var(--border-color)',
                           paddingBottom: '0.625rem',
@@ -315,10 +339,10 @@ export default function Portfolio() {
                         }}
                       >
                         <span>WHAT WE ENGINEERED</span>
-                        <span style={{ color: 'var(--agnex-accent)' }}>SPEC-{project.number}</span>
+                        <span style={{ color: 'var(--agnex-blue)' }}>SPEC-{project.number}</span>
                       </div>
 
-                      <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: 'var(--text-xs)', color: 'var(--text-muted)', lineHeight: 1.7 }}>
+                      <ul style={{ margin: 0, paddingLeft: '1.25rem', fontSize: 'var(--text-xs)', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
                         {project.whatWeBuilt.slice(0, 5).map((w, idx) => (
                           <li key={idx} style={{ marginBottom: '0.35rem' }}>
                             {w}
@@ -333,7 +357,7 @@ export default function Portfolio() {
                           style={{ width: '100%', minHeight: '44px', padding: '0.75rem 1rem' }}
                         >
                           <span>View Case Study</span>
-                          <span className="btn-arrow" style={{ color: 'var(--agnex-accent)' }}>→</span>
+                          <span className="btn-arrow" style={{ fontWeight: 700 }}>→</span>
                         </Link>
                       </div>
                     </div>
@@ -345,12 +369,13 @@ export default function Portfolio() {
 
           {/* Cross-Domain Comparison Matrix */}
           <ComparisonMatrix />
-        </div>
+        </Container>
       </section>
 
       <style>{`
         .case-study-card:hover {
-          border-color: var(--agnex-accent) !important;
+          border-color: var(--agnex-blue) !important;
+          box-shadow: var(--shadow-float) !important;
         }
         @media (min-width: 1024px) {
           .portfolio-card-left {

@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import ScrollFade from '../components/motion/ScrollFade';
+import { Container, SectionLabel, TechnicalLabel } from '../components/primitives';
 
 interface Article {
   id: number;
@@ -78,23 +79,28 @@ export default function Insights() {
       {/* Hero Header */}
       <section
         style={{
-          padding: 'clamp(4rem, 6vw, 6rem) 0 3rem 0',
+          padding: 'clamp(5rem, 8vw, 7.5rem) 0 4rem 0',
           borderBottom: '1px solid var(--border-color)',
-          backgroundColor: 'var(--agnex-base)'
+          backgroundColor: '#FFFFFF',
+          position: 'relative'
         }}
-        className="agnex-grid-mesh"
+        className="agnex-blueprint-grid"
       >
-        <div className="agnex-container">
+        <Container>
           <ScrollFade>
-            <div className="agnex-badge agnex-badge-accent" style={{ marginBottom: '1.5rem' }}>
-              05 // RESEARCH & ESSAYS
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
+              <SectionLabel number="05" text="RESEARCH & ESSAYS" />
+              <TechnicalLabel code="SYS//INSIGHTS_05" status="ACTIVE" />
             </div>
+
             <h1
               style={{
                 fontSize: 'clamp(2.75rem, 5vw, 4.5rem)',
-                lineHeight: 1.1,
+                lineHeight: 1.08,
                 marginBottom: '1.5rem',
-                color: 'var(--agnex-white)'
+                color: 'var(--agnex-navy)',
+                maxWidth: '920px',
+                letterSpacing: 'var(--tracking-tight)'
               }}
             >
               Engineering Insights
@@ -102,46 +108,49 @@ export default function Insights() {
             <p
               style={{
                 fontSize: 'var(--text-lg)',
-                color: 'var(--text-muted)',
-                maxWidth: '720px',
-                lineHeight: 1.6
+                color: 'var(--text-secondary)',
+                maxWidth: '740px',
+                lineHeight: 1.6,
+                margin: 0
               }}
             >
               Architectural research, engineering methodologies, and operational lessons learned from building high-reliability digital platforms.
             </p>
           </ScrollFade>
-        </div>
+        </Container>
       </section>
 
       {/* Articles Feed */}
-      <section className="agnex-section" style={{ backgroundColor: 'var(--agnex-base-raised)' }}>
-        <div className="agnex-container" style={{ maxWidth: '880px' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
+      <section className="agnex-section agnex-section-subtle">
+        <Container style={{ maxWidth: '920px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             {articles.map((article) => (
               <ScrollFade key={article.id}>
                 <article
-                  className="agnex-card"
                   style={{
-                    backgroundColor: 'var(--agnex-base)',
+                    backgroundColor: '#FFFFFF',
                     padding: 'clamp(2rem, 3.5vw, 3rem)',
-                    border: '1px solid var(--border-color)',
-                    transition: 'border-color 0.2s ease'
+                    border: '1px solid var(--border-strong)',
+                    borderRadius: 'var(--radius-sm)',
+                    boxShadow: 'var(--shadow-subtle)',
+                    transition: 'all 0.2s ease'
                   }}
+                  className="insight-card"
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem', fontSize: 'var(--text-xs)' }}>
-                    <span style={{ color: 'var(--agnex-accent)', fontFamily: 'var(--font-mono)', fontWeight: 600 }}>
+                    <span style={{ color: 'var(--agnex-blue)', fontFamily: 'var(--font-mono)', fontWeight: 700 }}>
                       {article.category}
                     </span>
-                    <span style={{ color: 'var(--agnex-steel-dark)' }}>•</span>
-                    <span style={{ color: 'var(--agnex-steel)' }}>{article.readTime}</span>
-                    <span style={{ color: 'var(--agnex-steel-dark)' }}>•</span>
-                    <span style={{ color: 'var(--agnex-steel)' }}>{article.date}</span>
+                    <span style={{ color: 'var(--text-muted)' }}>•</span>
+                    <span style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>{article.readTime}</span>
+                    <span style={{ color: 'var(--text-muted)' }}>•</span>
+                    <span style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>{article.date}</span>
                   </div>
 
                   <h2
                     style={{
                       fontSize: 'clamp(1.5rem, 2.5vw, 2.125rem)',
-                      color: 'var(--agnex-white)',
+                      color: 'var(--agnex-navy)',
                       marginBottom: '1rem',
                       lineHeight: 1.25
                     }}
@@ -152,7 +161,7 @@ export default function Insights() {
                   <p
                     style={{
                       fontSize: 'var(--text-base)',
-                      color: 'var(--text-muted)',
+                      color: 'var(--text-secondary)',
                       lineHeight: 1.7,
                       marginBottom: '1.5rem'
                     }}
@@ -160,16 +169,23 @@ export default function Insights() {
                     {article.excerpt}
                   </p>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--agnex-white)', fontSize: 'var(--text-xs)', fontWeight: 500 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--agnex-navy)', fontSize: 'var(--text-xs)', fontWeight: 600 }}>
                     <span>Technical Essay</span>
-                    <span style={{ color: 'var(--agnex-accent)' }}>→</span>
+                    <span style={{ color: 'var(--agnex-blue)', fontWeight: 700 }}>→</span>
                   </div>
                 </article>
               </ScrollFade>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
+
+      <style>{`
+        .insight-card:hover {
+          border-color: var(--agnex-blue) !important;
+          box-shadow: var(--shadow-float) !important;
+        }
+      `}</style>
     </>
   );
 }
