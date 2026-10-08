@@ -6,6 +6,8 @@
  * Notification (Optional Free Tier): Resend HTTP API (via RESEND_API_KEY, 3000 free emails/mo)
  */
 
+import { Resend } from 'resend';
+
 export default async function handler(req, res) {
   // CORS Preflight / Origin Handling
   res.setHeader('Access-Control-Allow-Credentials', 'true');
@@ -124,33 +126,37 @@ export default async function handler(req, res) {
       }
     }
 
-    // 05 — Optional Free Email Notification (Resend Free Tier: 3,000 emails/month free)
+    // 05 — Production Email Notification via Resend SDK
     if (process.env.RESEND_API_KEY) {
       try {
-        const alertRecipient = process.env.INQUIRY_ALERT_EMAIL || 'contact@agnextechnology.com';
-        await fetch('https://api.resend.com/emails', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            from: 'AGNEX System <onboarding@resend.dev>',
-            to: alertRecipient,
-            subject: `[New Inquiry] ${leadPayload.company} — ${referenceId}`,
-            html: `
-              <h2>New Consultation Request Received</h2>
-              <p><strong>Reference:</strong> ${referenceId}</p>
-              <p><strong>Name:</strong> ${leadPayload.name}</p>
-              <p><strong>Email:</strong> ${leadPayload.workEmail}</p>
-              <p><strong>Company:</strong> ${leadPayload.company}</p>
-              <p><strong>Timeline:</strong> ${leadPayload.timeline}</p>
-              <p><strong>Budget Range:</strong> ${leadPayload.budgetRange}</p>
-              <p><strong>Pillars:</strong> ${leadPayload.needHelpWith.join(', ')}</p>
-              <p><strong>Scope:</strong></p>
-              <blockquote>${leadPayload.description}</blockquote>
-            `
-          })
+        const resend = new Resend(process.env.RESEND_API_KEY);
+        const alertRecipient = process.env.INQUIRY_ALERT_EMAIL || 'agnextechnology@gmail.com';
+        await resend.emails.send({
+          from: 'AGNEX Lead Desk <onboarding@resend.dev>',
+          to: alertRecipient,
+          subject: `[New Project Inquiry] ${leadPayload.company} — ${referenceId}`,
+          html: `
+            <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #E2E8F0; border-radius: 8px;">
+              <h2 style="color: #0C1C29; margin-top: 0;">New Project Consultation Inquiry</h2>
+              <p style="color: #017AEF; font-family: monospace; font-weight: bold; margin-bottom: 20px;">REFERENCE: ${referenceId}</p>
+              <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                <tr><td style="padding: 8px 0; color: #64748B; width: 140px;">Name:</td><td style="padding: 8px 0; color: #0C1C29; font-weight: 600;">${leadPayload.name}</td></tr>
+                <tr><td style="padding: 8px 0; color: #64748B;">Work Email:</td><td style="padding: 8px 0; color: #017AEF; font-weight: 600;"><a href="mailto:${leadPayload.workEmail}">${leadPayload.workEmail}</a></td></tr>
+                <tr><td style="padding: 8px 0; color: #64748B;">Company:</td><td style="padding: 8px 0; color: #0C1C29; font-weight: 600;">${leadPayload.company}</td></tr>
+                <tr><td style="padding: 8px 0; color: #64748B;">Phone:</td><td style="padding: 8px 0; color: #0C1C29;">${leadPayload.phone || 'Not provided'}</td></tr>
+                <tr><td style="padding: 8px 0; color: #64748B;">Timeline:</td><td style="padding: 8px 0; color: #0C1C29;">${leadPayload.timeline}</td></tr>
+                <tr><td style="padding: 8px 0; color: #64748B;">Budget:</td><td style="padding: 8px 0; color: #0C1C29;">${leadPayload.budgetRange || 'Not specified'}</td></tr>
+                <tr><td style="padding: 8px 0; color: #64748B;">Services:</td><td style="padding: 8px 0; color: #0C1C29;">${leadPayload.needHelpWith.join(', ')}</td></tr>
+              </table>
+              <div style="background-color: #F8FAFC; border-left: 4px solid #017AEF; padding: 16px; border-radius: 4px; margin-top: 16px;">
+                <p style="margin: 0 0 8px 0; color: #64748B; font-size: 12px; font-weight: bold; text-transform: uppercase;">Project Description</p>
+                <p style="margin: 0; color: #0C1C29; line-height: 1.6; white-space: pre-wrap;">${leadPayload.description}</p>
+              </div>
+              <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #E2E8F0; font-size: 12px; color: #94A3B8; text-align: center;">
+                AGNEX Technology Lead Dispatch Engine · ${new Date().toISOString()}
+              </div>
+            </div>
+          `
         });
       } catch (emailError) {
         console.warn('[Consultation API] Optional notification dispatch bypassed:', emailError.message);
