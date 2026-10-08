@@ -34,9 +34,16 @@ Brand Concept:
 
 ## Target Audience
 - Founders & Growth-Stage Startups
-- SMEs & Operations Teams
-- Enterprise Leaders & CTOs
-- Businesses needing custom software and workflow automation
+- Indian SMEs, Manufacturers, Logistics Operators & Operations Teams
+- Enterprise Leaders & CTOs (India, US, UK, UAE, Singapore, Global)
+- Businesses needing custom software, bespoke ERPs, and workflow automation
+
+## Geographical Presence & Headquarters
+- Headquarters: Tamil Nadu, India
+- Domestic Focus: Indian enterprises requiring custom ERPs, GST billing engines, double-entry inventory ledgers, and operational automation.
+- International Delivery: US, UK, UAE, Singapore, Australia, Canada, Germany, and worldwide scaleups requiring senior engineering pods with overlapping working hours.
+- Direct Contact / Phone: +91 75983 41607 (Voice & WhatsApp)
+- Email: agnextechnology@gmail.com
 
 ## Featured Products & Tools
 - **AI Slop Website Auditor**: Enterprise website content quality and intelligence analyzer evaluating AI-generated content likelihood, AI-slop risk, originality, thin content, duplicate page clustering, SEO, and technical website health.
@@ -46,4 +53,5 @@ Brand Concept:
 - Website: https://agnextechnology.com
 - Consultation Intake: https://agnextechnology.com/contact
 - Inquiries: Direct project discovery through the online consultation portal.
+
 
