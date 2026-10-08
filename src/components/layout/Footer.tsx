@@ -23,6 +23,7 @@ export default function Footer() {
     { label: 'Solutions', href: '/solutions' },
     { label: 'Industries', href: '/industries' },
     { label: 'Projects', href: '/projects' },
+    { label: 'Pricing & Investment', href: '/pricing' },
     { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' }
   ];

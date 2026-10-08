@@ -11,6 +11,7 @@ const Industries = lazy(() => import('./pages/Industries'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
 const CaseStudy = lazy(() => import('./pages/CaseStudy'));
 const About = lazy(() => import('./pages/About'));
+const Pricing = lazy(() => import('./pages/Pricing'));
 const Contact = lazy(() => import('./pages/Contact'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const Terms = lazy(() => import('./pages/Terms'));
@@ -174,7 +175,17 @@ const router = createBrowserRouter([
         ),
       },
 
-      // 06 — CONTACT (/contact)
+      // 06 — PRICING & INVESTMENT (/pricing)
+      {
+        path: 'pricing',
+        element: (
+          <Suspense fallback={<RouteLoader />}>
+            <Pricing />
+          </Suspense>
+        ),
+      },
+
+      // 07 — CONTACT (/contact)
       {
         path: 'contact',
         element: (

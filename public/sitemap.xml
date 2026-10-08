@@ -93,11 +93,16 @@
         <priority>0.85</priority>
     </url>
 
-    <!-- 05 Company & Contact -->
+    <!-- 05 Company, Pricing & Contact -->
     <url>
         <loc>https://agnextechnology.com/about</loc>
         <changefreq>monthly</changefreq>
         <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://agnextechnology.com/pricing</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
     </url>
     <url>
         <loc>https://agnextechnology.com/contact</loc>

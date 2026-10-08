@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import ScrollFade from '../components/motion/ScrollFade';
 import { LinkedInIcon, InstagramIcon, PhoneIcon, WhatsAppIcon } from '../components/brand/SocialIcons';
@@ -50,6 +51,8 @@ export default function Contact() {
     honeypot: ''
   }));
 
+  const [searchParams] = useSearchParams();
+
   // Keep country and budget synchronized if country changes
   useEffect(() => {
     setFormData((prev) => ({
@@ -60,6 +63,47 @@ export default function Contact() {
         : `${country.budgetTiers[0]?.label || ''} (${country.budgetTiers[0]?.range || ''})`
     }));
   }, [country.code]);
+
+  // Route & commercial tier parameter integration (e.g. /contact?tier=start|build|engineer|custom)
+  useEffect(() => {
+    const tier = searchParams.get('tier');
+    if (!tier) return;
+
+    if (tier === 'start') {
+      setFormData((prev) => ({
+        ...prev,
+        needHelpWith: ['01 — Digital Platforms (Web / Mobile Apps)'],
+        budgetRange: country.budgetTiers[0]
+          ? `${country.budgetTiers[0].label} (${country.budgetTiers[0].range})`
+          : prev.budgetRange
+      }));
+    } else if (tier === 'build') {
+      setFormData((prev) => ({
+        ...prev,
+        needHelpWith: [
+          '01 — Digital Platforms (Web / Mobile Apps)',
+          '03 — Intelligence & AI Automation'
+        ],
+        budgetRange: country.budgetTiers[1]
+          ? `${country.budgetTiers[1].label} (${country.budgetTiers[1].range})`
+          : prev.budgetRange
+      }));
+    } else if (tier === 'engineer') {
+      setFormData((prev) => ({
+        ...prev,
+        needHelpWith: ['02 — Business Systems (ERP, CRM, Workflows)'],
+        budgetRange: country.budgetTiers[2]
+          ? `${country.budgetTiers[2].label} (${country.budgetTiers[2].range})`
+          : prev.budgetRange
+      }));
+    } else if (tier === 'custom') {
+      setFormData((prev) => ({
+        ...prev,
+        needHelpWith: ['04 — Architecture, APIs & Cloud Modernization'],
+        budgetRange: 'Flexible / Needs Technical Scoping'
+      }));
+    }
+  }, [searchParams, country.budgetTiers]);
 
   const helpOptions = [
     { id: 'digital', label: '01 — Digital Platforms (Web / Mobile Apps)' },

@@ -8,6 +8,7 @@ import AgnexMethodSection from '../features/home/AgnexMethodSection';
 import SelectedWorkSection from '../features/home/SelectedWorkSection';
 import WhyAgnexSection from '../features/home/WhyAgnexSection';
 import EngineeringPrinciplesSection from '../features/home/EngineeringPrinciplesSection';
+import PricingSection from '../features/home/PricingSection';
 import AboutIntroSection from '../features/home/AboutIntroSection';
 import FaqSection from '../features/home/FaqSection';
 import ContactConvergenceSection from '../features/home/ContactConvergenceSection';
@@ -66,7 +67,10 @@ export default function Home() {
       {/* 09 — ENGINEERING PRINCIPLES (Technology Should Do Something) */}
       <EngineeringPrinciplesSection />
 
-      {/* 10 — ABOUT AGNEX OVERVIEW */}
+      {/* 10 — COMMERCIAL INVESTMENT FRAMEWORK (01 START, 02 BUILD, 03 ENGINEER, CUSTOM) */}
+      <PricingSection />
+
+      {/* 11 — ABOUT AGNEX OVERVIEW */}
       <AboutIntroSection />
 
       {/* 11 — FAQ */}
